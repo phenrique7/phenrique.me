@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- Theme Made By www.w3schools.com - No Copyright -->
+    <title>Paulo Henrique - Web Developer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Me</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="item-active" href="#about">ABOUT</a></li>
+                    <li><a href="#portfolio">PORTFOLIO</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- First Container -->
+    <div id="about" class="container-fluid bg-1 text-center first-container">
+        <h3 class="margin">Who Am I?</h3>
+        <img src="https://photos-1.dropbox.com/t/2/AADJFyYXitrcx5F4pjPG2BdgxI8LpbLITkM4k0VE3h8mhA/12/127388410/jpeg/32x32/1/_/1/2/IMG_20170605_134839-01.jpeg/ENjai2IYvooCIAIoAg/jrN0G2RlGv1HYsKaNfp5nIlUCWg3oz6RcYnfI91-XPk?size=800x600&size_mode=3" class="img-responsive img-circle margin" style="display:inline" alt="PH" width="350" height="350">
+        <h3>I'm a web developer</h3>
+    </div>
+
+    <!-- Second Container (Grid) -->
+    <div id="portfolio" class="container-fluid bg-2 text-center">
+        <h3 class="margin">Portfolio</h3><br>
+        <div class="row">
+            <div class="col-sm-6">
+                <figure class="img-subtitle">
+                    <a href="https://codepen.io/_phenrique/full/qppPpv" target="_blank">
+                        <img src="https://photos-1.dropbox.com/t/2/AACmNQx_9q5z0vD1IaR_VWAK5HJj1386yli00jWPf8MrQQ/12/127388410/png/32x32/1/_/1/2/Tribute-Page-C-S-Lewis.png/ENjai2IYwooCIAIoAg/92IdPOt5O6ZKOqEDxv3mSliwDiELCVFntftT4g60N08?preserve_transparency=1&size=800x600&size_mode=3" class="img-responsive margin" style="width:100%" alt="Image">
+                        <!--<i class="fa fa-5x fa-plus-circle" aria-hidden="true"></i>-->
+                    </a>
+                </figure>
+            </div>
+            <div class="col-sm-6">
+                <figure class="img-subtitle">
+                    <a href="https://github.com/phenrique7/projeto-glass-html5" target="_blank">
+                        <img src="https://photos-5.dropbox.com/t/2/AAAcnnYnKXdx9qSdVIvdBENw8OW0tII1QI2yGLnuFjAYDQ/12/127388410/png/32x32/1/_/1/2/Google%20Glass.png/ENjai2IYwooCIAIoAg/h7qqDIQEKO_T2vfIpzsvJnLig9QuG_epNYxVX79CI78?preserve_transparency=1&size=800x600&size_mode=3" class="img-responsive margin" style="width:100%" alt="Image">
+                        <!--<i class="fa fa-5x fa-plus-circle" aria-hidden="true"></i>-->
+                    </a>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <!-- Third Container -->
+    <div id="contact" class="container-fluid bg-3 text-center">
+        <h3 class="margin">Contact me</h3>
+        <div class="row div-contact">
+            <div class="col-sm-5">
+                <p style="text-align: justify" class="text-left">Want to get in touch with me? Be it to request more info about myself or my experience, to ask for my resume.. just feel free to drop me a line anytime. I promise to reply as soon as I can.</p>
+                <p class="text-left"><span class="glyphicon glyphicon-map-marker"></span> Fortaleza, BR</p>
+                <p class="text-left"><span class="glyphicon glyphicon-phone"></span> +55 85985891008</p>
+                <p class="text-left"><span class="glyphicon glyphicon-envelope"></span> kobinho_la@yahoo.com.br</p>
+            </div>
+            <div class="col-sm-7">
+                <form action="#">
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                        </div>
+                    </div>
+                    <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+                    <div class="row">
+                        <div class="col-sm-12 form-group">
+                            <button class="btn btn-default pull-right" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="container-fluid bg-4 text-center">
+        <div>
+            <h3 class="around-web">Around the Web</h3>
+            <ul>
+                <li><a class="button-social" href="https://www.linkedin.com/in/paulo-henrique-559706144/" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+                <li><a class="button-social" href="https://github.com/phenrique7" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+                <li><a class="button-social" href="https://twitter.com/__phenrique7" target="_blank"><i class="fa fa-fw fa-twitter"></i></a></li>
+                <li><a class="button-social" href="https://www.facebook.com/PHenrique1288" target="_blank"><i class="fa fa-fw fa-facebook"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+</html>
