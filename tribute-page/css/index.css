@@ -1,0 +1,41 @@
+
+body {
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-size: 12px;
+  background: #eee;
+}
+
+.main-content {
+  background-color: #fafafa;
+  border-radius: 5px;
+  padding: 30px;
+  margin-top: 50px;
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, .15);
+}
+
+h1 {
+  font-size: 55px;
+}
+
+img {
+  width: 100%;
+  border-radius: 2px !important;
+}
+
+.caption {
+  padding-bottom: 0 !important;
+}
+
+.wiki-entry {
+  margin-top: 10px;
+}
+
+.wiki-entry p {
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 767px) {
+  h1 {
+    font-size: 36px;
+  }
+}
