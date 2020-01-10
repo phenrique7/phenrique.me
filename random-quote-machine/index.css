@@ -1,0 +1,33 @@
+
+body{
+    transition: all 1.5s !important;
+}
+
+.panel{
+    border: none;
+}
+
+.panel, button{
+    border-radius: 2px !important;
+}
+
+.panel-body{
+    padding: 30px;
+}
+
+.container{
+    margin-top: 10%;
+}
+
+.btn-default{
+    color: #FFFFFF !important;
+    border: 0 !important;
+}
+
+.text-content{
+    font-size: 24px;
+}
+
+.quote-author{
+    font-size: 16px;
+}
