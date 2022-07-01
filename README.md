@@ -1,2 +1,1 @@
-# fcc
-FreeCodeCamp projects
+# Page header
