@@ -44,13 +44,22 @@ html {
 
 body {
   margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
-  padding-top: 8rem;
+  width: 100%;
   max-width: 64rem;
   margin-left: auto;
   margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.hero {
+  flex: 1;
+  padding-top: 8rem;
 }
 
 .title {
@@ -61,4 +70,14 @@ body {
 .subtitle {
   margin-top: 1rem;
   color: rgb(71 85 105);
+}
+
+footer {
+  font-size: 0.875rem;
+  padding-bottom: 8rem;
+}
+
+.media-social {
+  display: flex;
+  gap: 1rem;
 }
