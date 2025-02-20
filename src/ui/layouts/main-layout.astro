@@ -1,0 +1,36 @@
+---
+import "../styles/base.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>
+      Paulo Henrique − Christian • Software Engineer • Bible teacher • Musical
+      director
+    </title>
+  </head>
+  <body>
+    <div class="container">
+      <slot />
+    </div>
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .container {
+    margin: 0 auto;
+    max-width: var(--sizes-breakpoint-xl);
+  }
+</style>
