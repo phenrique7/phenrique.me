@@ -587,17 +587,6 @@
     --colors-dark: #111;
     --colors-black: #000;
     --colors-white: #fff;
-    --colors-primary-50: hsl(var(--nextra-primary-hue) 100% 97%);
-    --colors-primary-100: hsl(var(--nextra-primary-hue) 100% 94%);
-    --colors-primary-200: hsl(var(--nextra-primary-hue) 100% 86%);
-    --colors-primary-300: hsl(var(--nextra-primary-hue) 100% 77%);
-    --colors-primary-400: hsl(var(--nextra-primary-hue) 100% 66%);
-    --colors-primary-500: hsl(var(--nextra-primary-hue) 100% 50%);
-    --colors-primary-600: hsl(var(--nextra-primary-hue) 100% 45%);
-    --colors-primary-700: hsl(var(--nextra-primary-hue) 100% 39%);
-    --colors-primary-750: hsl(var(--nextra-primary-hue) 100% 35%);
-    --colors-primary-800: hsl(var(--nextra-primary-hue) 100% 32%);
-    --colors-primary-900: hsl(var(--nextra-primary-hue) 100% 24%);
     --colors-gray-50: #f9fafb;
     --colors-gray-100: #f3f4f6;
     --colors-gray-200: #e5e7eb;
@@ -698,6 +687,11 @@
     --colors-text-main: var(--colors-black);
     --colors-text-headline: var(--colors-black);
     --colors-text-muted: var(--colors-gray-800);
+    --colors-text-extra-light: #0003;
+    --colors-text-light: #0006;
+    --colors-text-medium: #0009;
+    --colors-text-dark: #111;
+    --colors-text-regular: #040404;
   }
   :where(.dark, [data-theme="dark"]) {
     --colors-bg-main: var(--colors-gray-700);
