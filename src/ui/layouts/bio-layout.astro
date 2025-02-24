@@ -1,0 +1,86 @@
+---
+import "../styles/base.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <meta
+      name="description"
+      content="View phenrique’s Linkbio to discover and explore more about code, music, theology and philosophy"
+    />
+    <meta property="og:title" content="Paulo Henrique's Linkbio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Paulo Henrique" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Paulo Henrique − Linkbio</title>
+  </head>
+  <body>
+    <div class="root">
+      <div class="container">
+        <slot />
+      </div>
+    </div>
+  </body>
+</html>
+
+<style>
+  .root {
+    inset: 0;
+    z-index: -1;
+    height: 100dvh;
+    overflow-y: auto;
+    position: fixed;
+    background-size: cover;
+    color: var(--colors-white);
+    background-repeat: no-repeat;
+    background-color: rgb(0, 0, 0);
+  }
+
+  .root::before {
+    top: 0;
+    content: "";
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    position: fixed;
+    filter: blur(40px);
+    -webkit-filter: blur(40px);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 20%;
+    background-image: url("/images/me-bg.linkbio.png");
+  }
+
+  .root::after {
+    top: 0;
+    content: "";
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    position: fixed;
+    mix-blend-mode: overlay;
+    background-repeat: repeat;
+    background-size: 512px 512px;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PScwIDAgNTEyIDUxMicgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz4KICA8ZmlsdGVyIGlkPSdub2lzZUZpbHRlcic+CiAgICA8ZmVUdXJidWxlbmNlIAogICAgICB0eXBlPSdmcmFjdGFsTm9pc2UnIAogICAgICBiYXNlRnJlcXVlbmN5PScwLjcnCiAgICAgIG51bU9jdGF2ZXM9JzMnIAogICAgICBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+CiAgICA8ZmVDb2xvck1hdHJpeCBpbj0idHVyYnVsZW5jZSIgdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPgoKICAgIDxmZUNvbXBvbmVudFRyYW5zZmVyPgogICAgICA8ZmVGdW5jUiB0eXBlPSJkaXNjcmV0ZSIgdGFibGVWYWx1ZXM9IjAgMSIgLz4KICAgICAgPGZlRnVuY0cgdHlwZT0iZGlzY3JldGUiIHRhYmxlVmFsdWVzPSIwIDEiIC8+CiAgICAgIDxmZUZ1bmNCIHR5cGU9ImRpc2NyZXRlIiB0YWJsZVZhbHVlcz0iMCAxIiAvPgogICAgPC9mZUNvbXBvbmVudFRyYW5zZmVyPgogIDwvZmlsdGVyPgogIAogIDxyZWN0IHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIGZpbHRlcj0ndXJsKCNub2lzZUZpbHRlciknLz4KPC9zdmc+");
+  }
+
+  .container {
+    z-index: 1;
+    margin: 0 auto;
+    position: relative;
+    padding: var(--sizes-6) var(--sizes-6) var(--sizes-8);
+    max-width: var(--sizes-xl);
+  }
+
+  @media screen and (max-width: 640px) {
+    .root::before {
+      opacity: 0.4;
+    }
+  }
+</style>

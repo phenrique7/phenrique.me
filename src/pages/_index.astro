@@ -1,0 +1,127 @@
+---
+import { Image } from "astro:assets";
+import MeWebsiteImage from "../assets/me.website.png";
+import MainLayout from "../ui/layouts/main-layout.astro";
+---
+
+<MainLayout>
+  <div slot="first-column" class="first-column">
+    <div class="presentation-profile">
+      <Image
+        src={MeWebsiteImage}
+        class="presentation-profile__me-image"
+        alt="Paulo Henrique's picture"
+      />
+      <div class="presentation-profile__info">
+        <span class="name">Paulo Henrique</span>
+        <span class="link-name">phenrique.me</span>
+      </div>
+    </div>
+    <div class="website-description">
+      <p>
+        Thoughts and ideas on software engineering, theology, philosophy, music
+        and my faith in Christ.
+      </p>
+    </div>
+    <div class="horizontal-divider"></div>
+    <nav class="navigation">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/linkbio">Linkbio</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div slot="center-column" class="center-column">
+    <div class="presentation-description">
+      <p>
+        Hi 👋 I'm a Protestant Christian, software engineer, Bible professor and
+        musical director based in Fortaleza, Brazil.
+      </p>
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  .first-column {
+    flex-basis: var(--sizes-52);
+    margin-right: var(--spacing-10);
+
+    & .presentation-profile {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-3);
+      margin-top: var(--spacing-16);
+
+      & .presentation-profile__me-image {
+        width: var(--spacing-12);
+        border-radius: var(--radii-full);
+        outline: 1px solid var(--colors-black-alpha-200);
+      }
+
+      & .presentation-profile__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        & .name {
+          line-height: 1;
+          font-weight: var(--font-weights-semibold);
+        }
+
+        & .link-name {
+          font-size: var(--font-sizes-sm);
+          color: var(--colors-text-medium);
+        }
+      }
+    }
+
+    & .website-description {
+      padding: var(--spacing-6) 0;
+
+      & p {
+        font-size: var(--font-sizes-sm);
+        color: var(--colors-text-medium);
+      }
+    }
+
+    & .horizontal-divider {
+      height: 1px;
+      width: var(--sizes-16);
+      margin-bottom: var(--spacing-6);
+      background-color: var(--colors-black-alpha-200);
+    }
+
+    & .navigation ul {
+      display: flex;
+      gap: var(--spacing-2);
+      flex-direction: column;
+
+      & li {
+        color: var(--colors-text-medium);
+
+        & a:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .center-column {
+    display: flex;
+    padding-top: var(--spacing-16);
+
+    &::before {
+      content: "";
+      width: 1px;
+      display: block;
+      height: var(--sizes-80);
+      background-color: var(--colors-black-alpha-200);
+    }
+
+    & .presentation-description {
+      padding: 0 var(--spacing-16);
+      max-width: var(--sizes-breakpoint-md);
+    }
+  }
+</style>
