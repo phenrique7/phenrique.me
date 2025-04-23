@@ -1,0 +1,19 @@
+{
+  "name": "phenrique.me",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "node_modules/.bin/astro dev --host",
+    "build": "node_modules/.bin/astro build",
+    "preview": "node_modules/.bin/astro preview --host",
+    "astro": "node_modules/.bin/astro"
+  },
+  "dependencies": {
+    "@astrojs/netlify": "^6.3.0",
+    "astro": "^5.7.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1"
+  }
+}
