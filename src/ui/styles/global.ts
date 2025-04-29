@@ -21,10 +21,11 @@ export const globalCss = defineGlobalStyles({
     display: "flex",
     alignItems: "center",
     gap: "16px",
-    background: "slateblue",
+    background: "neutral.900",
     color: "white",
     padding: "12px 16px",
     borderRadius: "8px",
+    border: "1px solid rgb(42, 42, 42)",
     outline: "none",
 
     "&[data-focus-visible]": {

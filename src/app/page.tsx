@@ -1,7 +1,18 @@
-import { css } from "../../styled-system/css";
+import { flex } from "../../styled-system/patterns";
 
 export default function Home() {
   return (
-    <div className={css({ fontSize: "2xl", fontWeight: "bold" })}>Hello</div>
+    <div
+      className={flex({
+        color: "white",
+        height: "100dvh",
+        bg: "neutral.900",
+        fontWeight: "medium",
+        alignItems: "center",
+        justifyContent: "center",
+      })}
+    >
+      Cooking...
+    </div>
   );
 }

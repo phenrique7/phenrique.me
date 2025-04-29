@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import "@/ui/styles/base.css";
-import { ToastProvider } from "@/app/toast-provider";
+import { ToastProvider } from "@/app/_components/toast-provider";
 
 export const metadata: Metadata = {
   generator: "Next.js",

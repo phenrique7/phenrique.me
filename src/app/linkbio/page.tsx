@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { Pump } from "basehub/react-pump";
 import { css } from "../../../styled-system/css";
-import { Head } from "@/app/linkbio/components/head";
-import { TopBar } from "@/app/linkbio/components/top-bar";
-import { SocialLinks } from "@/app/linkbio/components/social-links";
+import { Head } from "@/app/linkbio/_components/head";
+import { TopBar } from "@/app/linkbio/_components/top-bar";
+import { SocialLinks } from "@/app/linkbio/_components/social-links";
 
 export async function generateMetadata(): Promise<Metadata> {
   const metadata = await basehub().query({
