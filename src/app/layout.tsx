@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
+import { GoogleTagManager } from "@next/third-parties/google";
 import "@/ui/styles/base.css";
 import { ToastProvider } from "@/app/_components/toast-provider";
 
@@ -30,6 +31,7 @@ export default function App(props: Readonly<React.PropsWithChildren>) {
   return (
     <html lang="en" className={GeistSans.className}>
       <body>
+        <GoogleTagManager gtmId="GTM-5CX6S9KJ" />
         <ToastProvider />
         {props.children}
       </body>
