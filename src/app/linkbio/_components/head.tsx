@@ -15,12 +15,7 @@ type HeadProps = {
 
 export function Head(props: HeadProps) {
   return (
-    <div
-      className={css({
-        marginTop: 2,
-        textAlign: "center",
-      })}
-    >
+    <div className={css({ mt: 2, textAlign: "center" })}>
       <div className={css({ maxW: 24, mx: "auto" })}>
         <Image
           priority
@@ -31,6 +26,7 @@ export function Head(props: HeadProps) {
           className={css({
             mb: 6,
             mx: "auto",
+            boxShadow: "lg",
             borderRadius: "full",
             outline: "1px solid rgba(243, 245, 247, 0.15)",
           })}

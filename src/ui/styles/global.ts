@@ -40,7 +40,8 @@ export const globalCss = defineGlobalStyles({
       minWidth: "0px",
 
       "[slot=title]": {
-        fontWeight: "semibold",
+        fontSize: "sm",
+        fontWeight: "medium",
       },
     },
 
