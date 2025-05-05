@@ -43,48 +43,47 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function LinkbioPage() {
   return (
-    <div
-      className={css({
-        inset: 0,
-        zIndex: -1,
-        color: "white",
-        height: "100dvh",
-        overflowY: "auto",
-        position: "fixed",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundColor: "rgb(0, 0, 0)",
-        _before: {
-          top: 0,
-          content: "''",
-          width: "100%",
-          height: "100%",
+    <>
+      <div
+        className={css({
+          inset: 0,
+          zIndex: -1,
+          color: "white",
           position: "fixed",
-          filter: "blur(40px)",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          opacity: { base: 0.15, md: 0.4 },
-          backgroundPosition: "center 20%",
-          backgroundImage: 'url("/images/me-bg.linkbio.png")',
-        },
-        _after: {
-          top: 0,
-          content: "''",
-          width: "100%",
-          height: "100%",
-          opacity: 0.25,
-          position: "fixed",
-          mixBlendMode: "overlay",
-          backgroundRepeat: "repeat",
-          backgroundSize: "512px 512px",
-          backgroundImage: `url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PScwIDAgNTEyIDUxMicgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz4KICA8ZmlsdGVyIGlkPSdub2lzZUZpbHRlcic+CiAgICA8ZmVUdXJidWxlbmNlIAogICAgICB0eXBlPSdmcmFjdGFsTm9pc2UnIAogICAgICBiYXNlRnJlcXVlbmN5PScwLjcnCiAgICAgIG51bU9jdGF2ZXM9JzMnIAogICAgICBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+CiAgICA8ZmVDb2xvck1hdHJpeCBpbj0idHVyYnVsZW5jZSIgdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPgoKICAgIDxmZUNvbXBvbmVudFRyYW5zZmVyPgogICAgICA8ZmVGdW5jUiB0eXBlPSJkaXNjcmV0ZSIgdGFibGVWYWx1ZXM9IjAgMSIgLz4KICAgICAgPGZlRnVuY0cgdHlwZT0iZGlzY3JldGUiIHRhYmxlVmFsdWVzPSIwIDEiIC8+CiAgICAgIDxmZUZ1bmNCIHR5cGU9ImRpc2NyZXRlIiB0YWJsZVZhbHVlcz0iMCAxIiAvPgogICAgPC9mZUNvbXBvbmVudFRyYW5zZmVyPgogIDwvZmlsdGVyPgogIAogIDxyZWN0IHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIGZpbHRlcj0ndXJsKCNub2lzZUZpbHRlciknLz4KPC9zdmc+")`,
-        },
-      })}
-    >
+          backgroundColor: "rgb(0, 0, 0)",
+          _before: {
+            top: 0,
+            content: "''",
+            width: "100%",
+            height: "100%",
+            position: "fixed",
+            filter: "blur(40px)",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            opacity: { base: 0.15, md: 0.4 },
+            backgroundPosition: "center 20%",
+            backgroundImage: 'url("/images/me-bg.linkbio.png")',
+          },
+          _after: {
+            top: 0,
+            content: "''",
+            width: "100%",
+            height: "100%",
+            opacity: 0.25,
+            position: "fixed",
+            mixBlendMode: "overlay",
+            backgroundRepeat: "repeat",
+            backgroundSize: "512px 512px",
+            backgroundImage: `url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PScwIDAgNTEyIDUxMicgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz4KICA8ZmlsdGVyIGlkPSdub2lzZUZpbHRlcic+CiAgICA8ZmVUdXJidWxlbmNlIAogICAgICB0eXBlPSdmcmFjdGFsTm9pc2UnIAogICAgICBiYXNlRnJlcXVlbmN5PScwLjcnCiAgICAgIG51bU9jdGF2ZXM9JzMnIAogICAgICBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+CiAgICA8ZmVDb2xvck1hdHJpeCBpbj0idHVyYnVsZW5jZSIgdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPgoKICAgIDxmZUNvbXBvbmVudFRyYW5zZmVyPgogICAgICA8ZmVGdW5jUiB0eXBlPSJkaXNjcmV0ZSIgdGFibGVWYWx1ZXM9IjAgMSIgLz4KICAgICAgPGZlRnVuY0cgdHlwZT0iZGlzY3JldGUiIHRhYmxlVmFsdWVzPSIwIDEiIC8+CiAgICAgIDxmZUZ1bmNCIHR5cGU9ImRpc2NyZXRlIiB0YWJsZVZhbHVlcz0iMCAxIiAvPgogICAgPC9mZUNvbXBvbmVudFRyYW5zZmVyPgogIDwvZmlsdGVyPgogIAogIDxyZWN0IHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIGZpbHRlcj0ndXJsKCNub2lzZUZpbHRlciknLz4KPC9zdmc+")`,
+          },
+        })}
+      ></div>
       <div
         className={css({
           px: 6,
-          pb: 8,
+          py: 8,
           zIndex: 1,
           maxWidth: "xl",
           margin: "0 auto",
@@ -175,6 +174,6 @@ export default async function LinkbioPage() {
           }}
         </Pump>
       </div>
-    </div>
+    </>
   );
 }
