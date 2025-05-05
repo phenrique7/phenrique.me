@@ -100,7 +100,7 @@ export function TopBar() {
   return (
     <div
       className={css({
-        my: 6,
+        mb: 6,
         display: "flex",
         justifyContent: "flex-end",
       })}
