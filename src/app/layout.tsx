@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GoogleTagManager } from "@next/third-parties/google";
 import "@/ui/styles/base.css";
-import { ToastProvider } from "@/app/_components/toast-provider";
+import { CToastProvider } from "@/app/_components/toast-provider.client";
 
 export const metadata: Metadata = {
   generator: "Next.js",
@@ -27,13 +27,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function App(props: Readonly<React.PropsWithChildren>) {
+export default function AppLayout(props: Readonly<React.PropsWithChildren>) {
   return (
-    <html lang="en" className={GeistSans.className}>
+    <html lang="en" className={`dark ${GeistSans.className}`}>
       <body>
         <GoogleTagManager gtmId="GTM-5CX6S9KJ" />
-        <ToastProvider />
-        {props.children}
+        <CToastProvider />
+        <main>{props.children}</main>
       </body>
     </html>
   );

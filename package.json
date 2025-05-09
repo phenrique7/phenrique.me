@@ -8,7 +8,9 @@
     "build": "basehub & next build --turbopack",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "panda codegen"
+    "prepare": "panda codegen",
+    "storybook": "storybook dev -p 6006 --no-open",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@next/third-parties": "^15.3.1",
@@ -21,12 +23,21 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.6",
     "@pandacss/dev": "^0.53.4",
+    "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/addon-onboarding": "^8.6.12",
+    "@storybook/blocks": "^8.6.12",
+    "@storybook/experimental-addon-test": "^8.6.12",
+    "@storybook/nextjs": "^8.6.12",
+    "@storybook/react": "^8.6.12",
+    "@storybook/test": "^8.6.12",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "19.1.0-rc.1",
     "prettier": "3.5.3",
+    "storybook": "^8.6.12",
     "typescript": "^5"
   }
 }

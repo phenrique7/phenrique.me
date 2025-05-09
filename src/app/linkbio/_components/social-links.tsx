@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { css } from "../../../../styled-system/css";
-import { vstack } from "../../../../styled-system/patterns";
+import { css } from "@/panda/css";
+import { vstack } from "@/panda/patterns";
 
 type SocialLinkProps = {
   items: Array<{
