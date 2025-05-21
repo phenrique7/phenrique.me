@@ -1,0 +1,27 @@
+import { Geist } from "next/font/google";
+import type { Preview } from "@storybook/react";
+import "../src/ui/styles/base.css";
+
+const geist = Geist({
+  subsets: ["latin"],
+});
+
+const preview: Preview = {
+  parameters: {
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
+      },
+    },
+  },
+  decorators: [
+    (Story) => (
+      <div className={geist.className}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export default preview;

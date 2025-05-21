@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import { GoogleTagManager } from "@next/third-parties/google";
 import "@/ui/styles/base.css";
-import { ToastProvider } from "@/app/_components/toast-provider";
+import { css } from "@/panda/css";
+import { themeEffect } from "@/app/(main)/_theme-effect";
+import { CToastProvider } from "@/app/_components/toast-provider.client";
 
 export const metadata: Metadata = {
   generator: "Next.js",
@@ -27,13 +30,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function App(props: Readonly<React.PropsWithChildren>) {
+export default function AppLayout(props: Readonly<React.PropsWithChildren>) {
   return (
-    <html lang="en" className={GeistSans.className}>
-      <body>
+    <html lang="en" className={[GeistSans.className, GeistMono.className].join(" ")} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(${themeEffect.toString()})();`,
+          }}
+        />
+      </head>
+      <body className={css({ fontFamily: "GeistSans" })}>
         <GoogleTagManager gtmId="GTM-5CX6S9KJ" />
-        <ToastProvider />
-        {props.children}
+        <CToastProvider />
+        <main>{props.children}</main>
       </body>
     </html>
   );
