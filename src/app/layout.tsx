@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleTagManager } from "@next/third-parties/google";
 import "@/ui/styles/base.css";
 import { css } from "@/panda/css";
@@ -44,6 +45,7 @@ export default function AppLayout(props: Readonly<React.PropsWithChildren>) {
         <GoogleTagManager gtmId="GTM-5CX6S9KJ" />
         <CToastProvider />
         <main>{props.children}</main>
+        <SpeedInsights />
       </body>
     </html>
   );
