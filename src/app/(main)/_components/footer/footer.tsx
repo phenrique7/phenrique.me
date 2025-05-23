@@ -1,11 +1,9 @@
-import { draftMode } from "next/headers";
 import { Pump } from "basehub/react-pump";
 import { CFooter } from "@/app/(main)/_components/footer/footer.client";
 
-export async function Footer() {
+export function Footer() {
   return (
     <Pump
-      draft={(await draftMode()).isEnabled}
       queries={[
         {
           layout: {

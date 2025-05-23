@@ -1,1 +1,19 @@
+@import "@prose-ui/next/prose-ui.css";
+
 @layer reset, base, tokens, recipes, utilities;
+
+:root {
+  --p-font-family: GeistSans;
+  --p-font-family-heading: GeistSans;
+  --p-font-family-mono: GeistMono;
+  --p-body-color-bg: transparent;
+  --p-content-gap: 1rem;
+}
+
+.prose-ui :is(p, blockquote p) {
+  line-height: 1.5;
+}
+
+.prose-ui blockquote {
+  padding-left: 1rem;
+}
