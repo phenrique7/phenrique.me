@@ -8,7 +8,7 @@ type InnerContainerProps = React.PropsWithChildren<{
 export function InnerContainer(props: InnerContainerProps) {
   const innerContainerStyles = container.raw({
     w: "full",
-    px: { base: 0, lg: 6 },
+    px: { base: 5, md: 6 },
     maxW: { base: "full", lg: "4xl" },
   });
 

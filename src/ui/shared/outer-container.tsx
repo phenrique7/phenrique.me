@@ -14,6 +14,7 @@ export function OuterContainer(props: OuterContainerProps) {
   const outerContainerStyles = container.raw({
     w: "full",
     maxW: "6xl",
+    px: { base: 0, lg: 8 },
   });
 
   return (

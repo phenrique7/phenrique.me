@@ -73,7 +73,7 @@ export function CHeader(props: CHeaderProps) {
         transform: isHeaderVisible ? "translateY(0)" : "translateY(-4.5rem)",
       })}
     >
-      <header className={css({ w: "full", px: { base: 4, md: 0 } })}>
+      <header className={css({ w: "full", px: { base: 5, md: 0 } })}>
         <motion.div
           variants={{
             open: { height: "auto", borderRadius: "1.875rem" },

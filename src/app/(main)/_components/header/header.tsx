@@ -1,11 +1,9 @@
-import { draftMode } from "next/headers";
 import { Pump } from "basehub/react-pump";
 import { CHeader } from "@/app/(main)/_components/header/header.client";
 
-export async function Header() {
+export function Header() {
   return (
     <Pump
-      draft={(await draftMode()).isEnabled}
       queries={[
         {
           layout: {
