@@ -140,7 +140,7 @@ export function CTopBar() {
               boxShadow: "2xl",
               borderRadius: "lg",
               border: "1px solid",
-              bg: "rgb(12, 12, 12)",
+              bg: "neutral.800",
               borderColor: "rgb(37, 37, 37)",
             })}
           >
@@ -163,7 +163,7 @@ export function CTopBar() {
                   color: "#EEE",
                   borderRadius: "md",
                   transition: "background-color 0.15s ease-in-out",
-                  _hover: { bg: "rgb(27, 27, 27)", cursor: "default" },
+                  _hover: { bg: "neutral.700", cursor: "default" },
                 })}
               >
                 <div className={css({ w: 6, h: 6 })}>
@@ -197,7 +197,7 @@ export function CTopBar() {
                     color: "#EEE",
                     borderRadius: "md",
                     transition: "background-color 0.15s ease-in-out",
-                    _hover: { bg: "rgb(27, 27, 27)" },
+                    _hover: { bg: "neutral.700" },
                   })}
                 >
                   <div className={css({ w: 6, h: 6 })}>{item.icon}</div>
