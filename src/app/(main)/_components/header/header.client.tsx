@@ -264,6 +264,7 @@ export function CHeader(props: CHeaderProps) {
                       key={link._title}
                       href={link.path}
                       className={hstack({
+                        pointerEvents: "none", // Remove later when menu pages is ready
                         p: 1.5,
                         fontSize: "sm",
                         position: "relative",
@@ -275,7 +276,7 @@ export function CHeader(props: CHeaderProps) {
                     >
                       <span dangerouslySetInnerHTML={{ __html: link.icon! }} />
                       {link.label}
-                      {link.path !== "/" && (
+                      {link.path !== "/" ? (
                         <span
                           className={css({
                             position: "absolute",
@@ -293,7 +294,7 @@ export function CHeader(props: CHeaderProps) {
                         >
                           Soon
                         </span>
-                      )}
+                      ) : null}
                     </Link>
                   ))}
                 </motion.nav>
