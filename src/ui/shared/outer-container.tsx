@@ -1,0 +1,49 @@
+import { container } from "@/panda/patterns";
+import { css, type Styles } from "@/panda/css";
+
+type OuterContainerProps = React.PropsWithChildren<{
+  noiseBackground?: boolean;
+  styles?: {
+    root: Styles;
+    content: Styles;
+  };
+}>;
+
+export function OuterContainer(props: OuterContainerProps) {
+  const { noiseBackground = true } = props;
+  const outerContainerStyles = container.raw({
+    w: "full",
+    maxW: "6xl",
+    px: { base: 0, lg: 8 },
+  });
+
+  return (
+    <div className={css(outerContainerStyles, props.styles?.root)}>
+      <div
+        className={css(
+          {
+            position: "relative",
+            borderInline: {
+              base: "none",
+              lg: "1px dashed token(colors.clr_neutral_300_700)",
+            },
+            _before: {
+              top: 0,
+              left: 0,
+              content: '""',
+              opacity: 0.4,
+              width: "100%",
+              height: "100%",
+              position: "absolute",
+              background: "url('/images/noise.png')",
+              display: noiseBackground ? "block" : "none",
+            },
+          },
+          props.styles?.content,
+        )}
+      >
+        {props.children}
+      </div>
+    </div>
+  );
+}

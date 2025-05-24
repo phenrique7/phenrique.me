@@ -2,13 +2,13 @@ import { basehub } from "basehub";
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { Pump } from "basehub/react-pump";
-import { css } from "../../../styled-system/css";
+import { css } from "@/panda/css";
 import { Head } from "@/app/linkbio/_components/head";
-import { TopBar } from "@/app/linkbio/_components/top-bar";
 import { SocialLinks } from "@/app/linkbio/_components/social-links";
+import { CTopBar } from "@/app/linkbio/_components/top-bar.client";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const metadata = await basehub().query({
+  const meta = await basehub().query({
     linkbio: {
       metadata: {
         title: true,
@@ -22,21 +22,22 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 
   return {
-    title: metadata.linkbio.metadata.title,
-    description: metadata.linkbio.metadata.description,
+    title: meta.linkbio.metadata.title,
+    description: meta.linkbio.metadata.description,
     openGraph: {
-      title: metadata.linkbio.metadata.title,
+      title: meta.linkbio.metadata.title,
       images: [
         {
           width: 1200,
           height: 630,
-          url: metadata.linkbio.metadata.ogImage.url,
+          url: meta.linkbio.metadata.ogImage.url,
         },
       ],
     },
     twitter: {
-      title: metadata.linkbio.metadata.title,
-      description: metadata.linkbio.metadata.description,
+      title: meta.linkbio.metadata.title,
+      description: meta.linkbio.metadata.description,
+      images: [{ url: meta.linkbio.metadata.ogImage.url }],
     },
   };
 }
@@ -91,7 +92,6 @@ export default async function LinkbioPage() {
         })}
       >
         <Pump
-          next={{ revalidate: 30 }}
           draft={(await draftMode()).isEnabled}
           queries={[
             {
@@ -137,7 +137,7 @@ export default async function LinkbioPage() {
 
             return (
               <>
-                <TopBar />
+                <CTopBar />
                 <Head
                   name={data.linkbio.bioSection.name}
                   quote={data.linkbio.bioSection.quote}

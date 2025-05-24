@@ -9,10 +9,10 @@ import {
   MenuTrigger,
   MenuSection,
 } from "react-aria-components";
+import { css } from "@/panda/css";
 import { queue } from "@/lib/toast";
+import { hstack } from "@/panda/patterns";
 import { MenuIcon } from "@/ui/icons/menu-icon";
-import { css } from "../../../../styled-system/css";
-import { hstack } from "../../../../styled-system/patterns";
 
 const shareLinks = [
   {
@@ -83,7 +83,7 @@ const shareLinks = [
   },
 ];
 
-export function TopBar() {
+export function CTopBar() {
   function onCopyLinkbio() {
     navigator.clipboard
       .writeText(`${process.env.NEXT_PUBLIC_SITE_URL}/linkbio`)
