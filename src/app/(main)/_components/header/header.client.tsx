@@ -41,12 +41,12 @@ export function CHeader(props: CHeaderProps) {
         const currentScrollY = window.scrollY;
         const scrollDifference = Math.abs(currentScrollY - lastScrollY.current);
 
-        if (currentScrollY > lastScrollY.current && scrollDifference > 100) {
+        if (currentScrollY > lastScrollY.current && scrollDifference > 50) {
           setIsHeaderVisible(false);
           if (isMenuOpen) {
             setIsMenuOpen(false);
           }
-        } else if (scrollDifference > 100) {
+        } else if (scrollDifference > 50 || currentScrollY < 10) {
           setIsHeaderVisible(true);
         }
 
@@ -139,6 +139,7 @@ export function CHeader(props: CHeaderProps) {
                   key={link._title}
                   href={link.path}
                   className={css({
+                    pointerEvents: "none", // Remove later when menu pages is ready
                     p: 1.5,
                     position: "relative",
                     fontWeight: "medium",
@@ -162,6 +163,25 @@ export function CHeader(props: CHeaderProps) {
                         gradientTo: "red.400/0",
                       })}
                     />
+                  ) : null}
+                  {link.path !== "/" ? (
+                    <span
+                      className={css({
+                        position: "absolute",
+                        top: "-8px",
+                        right: "-16px",
+                        fontSize: "xs",
+                        fontWeight: "semibold",
+                        color: "white",
+                        bg: "clr_coral_flame",
+                        px: 1.5,
+                        py: 0.5,
+                        borderRadius: "full",
+                        transform: "rotate(10deg)",
+                      })}
+                    >
+                      Soon
+                    </span>
                   ) : null}
                 </Link>
               ))}
@@ -230,12 +250,12 @@ export function CHeader(props: CHeaderProps) {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.15 }}
                   className={css({
-                    my: 4,
+                    mb: 4,
+                    pt: 4,
                     gap: 3,
                     px: "1rem",
                     display: "grid",
                     overflow: "hidden",
-                    flexDirection: "column",
                     gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
                   })}
                 >
@@ -255,6 +275,25 @@ export function CHeader(props: CHeaderProps) {
                     >
                       <span dangerouslySetInnerHTML={{ __html: link.icon! }} />
                       {link.label}
+                      {link.path !== "/" && (
+                        <span
+                          className={css({
+                            position: "absolute",
+                            top: "-8px",
+                            right: "32px",
+                            fontSize: "xs",
+                            fontWeight: "bold",
+                            color: "white",
+                            bg: "clr_coral_flame",
+                            px: 1.5,
+                            py: 0.5,
+                            borderRadius: "full",
+                            transform: "rotate(10deg)",
+                          })}
+                        >
+                          Soon
+                        </span>
+                      )}
                     </Link>
                   ))}
                 </motion.nav>

@@ -46,7 +46,7 @@ export default async function Home() {
                     fontWeight: "medium",
                     color: "transparent",
                     backgroundClip: "text",
-                    backgroundImage: `linear-gradient(135deg, token(colors.clr_clr_gray_soft), token(colors.clr_coral_flame))`,
+                    backgroundImage: `linear-gradient(135deg, token(colors.clr_gray_soft), token(colors.clr_coral_flame))`,
                   })}
                 >
                   {data.home.bioSection.subtitle}
@@ -66,11 +66,7 @@ export default async function Home() {
                   <MDX
                     data={data.home.bioSection.description.markdown}
                     wrapper={(props) => (
-                      <div
-                        className={"prose-ui antialiased " + css({ mt: 4, maxW: "2xl", color: "clr_neutral_700_400" })}
-                      >
-                        {props.children}
-                      </div>
+                      <div className={"prose-ui antialiased " + css({ mt: 4, maxW: "2xl" })}>{props.children}</div>
                     )}
                   />
                 </Suspense>
