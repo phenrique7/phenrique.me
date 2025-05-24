@@ -13,8 +13,8 @@ export function OuterContainer(props: OuterContainerProps) {
   const { noiseBackground = true } = props;
   const outerContainerStyles = container.raw({
     w: "full",
-    maxW: "6xl",
-    px: { base: 0, lg: 8 },
+    maxW: { base: "full", md: "4xl", lg: "6xl" },
+    px: { base: 0, md: 8 },
   });
 
   return (
@@ -25,7 +25,7 @@ export function OuterContainer(props: OuterContainerProps) {
             position: "relative",
             borderInline: {
               base: "none",
-              lg: "1px dashed token(colors.clr_neutral_300_700)",
+              md: "1px dashed token(colors.clr_neutral_300_700)",
             },
             _before: {
               top: 0,

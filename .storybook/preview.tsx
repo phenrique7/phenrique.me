@@ -21,7 +21,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <div className={[geist.className, geistMono.className].join(" ")}>
+      <div className={[geistMono.className, geist.className].join(" ")} style={{ fontFamily: "Geist" }}>
         <Story />
       </div>
     ),

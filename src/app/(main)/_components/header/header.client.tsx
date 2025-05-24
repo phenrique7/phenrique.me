@@ -9,6 +9,7 @@ import { css } from "@/panda/css";
 import type { MediaData } from "@/types/basehub";
 import { flex, hstack, vstack } from "@/panda/patterns";
 import { ThemeToggle } from "@/app/(main)/_components/header/theme-toggle";
+import { useMediaQuery } from "@/hooks/use-media-query";
 
 type NavLink = {
   _title: string;
@@ -30,6 +31,13 @@ export function CHeader(props: CHeaderProps) {
   const lastScrollY = useRef(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const isSMScreen = useMediaQuery("(min-width: 640px)");
+
+  useEffect(() => {
+    if (isSMScreen && isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  }, [isSMScreen, isMenuOpen]);
 
   useEffect(() => {
     let scrollTimeout: NodeJS.Timeout;
@@ -88,7 +96,7 @@ export function CHeader(props: CHeaderProps) {
             overflow: "hidden",
             alignItems: "stretch",
             bgColor: "clr_neutral_100_950",
-            w: { base: "full", md: "fit-content" },
+            w: { base: "full", sm: "fit-content" },
             border: "1px solid token(colors.clr_neutral_300_700)",
           })}
         >
@@ -128,12 +136,12 @@ export function CHeader(props: CHeaderProps) {
                 className={css({
                   height: 5,
                   width: "1px",
-                  hideBelow: "md",
+                  hideBelow: "sm",
                   bgColor: "clr_neutral_300_700",
                 })}
               />
             </div>
-            <nav className={hstack({ gap: 4, fontSize: "sm", px: 5, hideBelow: "md" })}>
+            <nav className={hstack({ gap: 4, fontSize: "sm", px: 5, hideBelow: "sm" })}>
               {props.navLinks.items.map((link, index) => (
                 <Link
                   key={link._title}
@@ -186,7 +194,7 @@ export function CHeader(props: CHeaderProps) {
                 </Link>
               ))}
             </nav>
-            <div className={flex({ hideFrom: "md", flex: 1, justifyContent: "flex-end" })}>
+            <div className={flex({ hideFrom: "sm", flex: 1, justifyContent: "flex-end" })}>
               <ToggleButton
                 isSelected={isMenuOpen}
                 onChange={setIsMenuOpen}
@@ -224,7 +232,7 @@ export function CHeader(props: CHeaderProps) {
                 />
               </ToggleButton>
             </div>
-            <div className={hstack({ gap: 6, hideBelow: "md" })}>
+            <div className={hstack({ gap: 6, hideBelow: "sm" })}>
               <div
                 className={css({
                   height: 5,
@@ -242,7 +250,7 @@ export function CHeader(props: CHeaderProps) {
                 initial={{ height: 0 }}
                 animate={{ height: "auto" }}
                 transition={{ duration: 0.3 }}
-                className={css({ hideFrom: "md", pb: 4 })}
+                className={css({ pb: 4 })}
               >
                 <motion.nav
                   exit={{ opacity: 0 }}
@@ -281,7 +289,7 @@ export function CHeader(props: CHeaderProps) {
                           className={css({
                             position: "absolute",
                             top: "-8px",
-                            right: "32px",
+                            left: 16,
                             fontSize: "xs",
                             fontWeight: "bold",
                             color: "white",
