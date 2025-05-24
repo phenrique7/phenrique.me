@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import { draftMode } from "next/headers";
 import { Pump } from "basehub/react-pump";
 import { css } from "@/panda/css";
 import { MDX } from "@/ui/shared/mdx";
@@ -7,7 +6,7 @@ import { flex } from "@/panda/patterns";
 import { OuterContainer } from "@/ui/shared/outer-container";
 import { InnerContainer } from "@/ui/shared/inner-container";
 
-export default async function Home() {
+export default function Home() {
   return (
     <OuterContainer
       styles={{
@@ -20,7 +19,6 @@ export default async function Home() {
     >
       <InnerContainer styles={css.raw({ py: { base: 32, sm: 44, "2xl": 56 } })}>
         <Pump
-          draft={(await draftMode()).isEnabled}
           queries={[
             {
               home: {
