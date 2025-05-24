@@ -28,7 +28,7 @@ export function CFooter(props: CFooterProps) {
               justifyContent: "space-between",
             })}
           >
-            <div className={hstack({ gap: 4 })}>
+            <div className={hstack({ gap: { base: 6, lg: 4 } })}>
               {props.socialLinks.items.map((item) => (
                 <a
                   key={item._title}
@@ -56,9 +56,10 @@ export function CFooter(props: CFooterProps) {
               rel="noopener noreferrer"
               className={css({
                 fontSize: "xs",
+                fontWeight: "medium",
                 color: "clr_neutral_700_400",
                 textDecoration: "underline",
-                fontFamily: "GeistMono",
+                fontFamily: "GeistMono, 'Geist Mono'",
                 transition: "color 0.15s ease-in-out",
                 _hover: {
                   color: "clr_neutral_900_50",

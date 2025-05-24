@@ -24,7 +24,7 @@ export default defineConfig({
         clr_neutral_950_snow: {
           value: { base: "#0A0A0A", _dark: "#F5F5F5" },
         },
-        clr_clr_gray_soft: {
+        clr_gray_soft: {
           value: { base: "#404040", _dark: "#E5E5E5" },
         },
         clr_coral_flame: {

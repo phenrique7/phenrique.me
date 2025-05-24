@@ -1,8 +1,12 @@
-import { Geist } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import type { Preview } from "@storybook/react";
 import "../src/ui/styles/base.css";
 
 const geist = Geist({
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
@@ -17,7 +21,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <div className={geist.className}>
+      <div className={[geist.className, geistMono.className].join(" ")}>
         <Story />
       </div>
     ),

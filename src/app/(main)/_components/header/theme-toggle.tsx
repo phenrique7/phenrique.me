@@ -32,7 +32,19 @@ export function ThemeToggle() {
   useEffect(() => {
     function onStorageChange(event: StorageEvent) {
       if (event.key === "theme") {
-        setTheme(event.newValue as Theme);
+        const newTheme = event.newValue as Theme;
+        const htmlElement = document.documentElement;
+        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+        htmlElement.classList.remove("dark", "light");
+
+        if (newTheme === "dark" || newTheme === "light") {
+          setTheme(newTheme);
+          htmlElement.classList.add(newTheme);
+        } else {
+          setTheme("system");
+          htmlElement.classList.add(mediaQuery.matches ? "dark" : "light");
+        }
       }
     }
 

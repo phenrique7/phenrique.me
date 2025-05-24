@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { vstack } from "@/panda/patterns";
 import { CFooter } from "@/app/(main)/_components/footer/footer.client";
 
 const meta = {
@@ -10,6 +11,19 @@ const meta = {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
   },
+  decorators: [
+    (Story) => (
+      <div
+        className={vstack({
+          height: "100vh",
+          alignItems: "stretch",
+          _before: { content: '""', flex: 1, display: "block" },
+        })}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof CFooter>;
 
 export default meta;
