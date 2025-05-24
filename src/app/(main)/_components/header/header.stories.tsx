@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { CHeader } from "@/app/(main)/_components/header/header.client";
+import { css } from "@/panda/css";
 
 const meta = {
-  title: "layout/HeaderClient",
+  title: "layout/CHeader",
   component: CHeader,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
@@ -10,6 +11,13 @@ const meta = {
     // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
     layout: "fullscreen",
   },
+  decorators: [
+    (Story) => (
+      <div className={css({ position: "relative", height: "100vh" })}>
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof CHeader>;
 
 export default meta;
@@ -48,8 +56,7 @@ export const Default: Story = {
           _title: "reading",
           label: "Reading",
           path: "/reading",
-          icon:
-            '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="lucide lucide-book-text-icon lucide-book-text">  <path    d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"  />  <path d="M8 11h8" />  <path d="M8 7h6" /></svg>',
+          icon: '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="lucide lucide-book-text-icon lucide-book-text">  <path    d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"  />  <path d="M8 11h8" />  <path d="M8 7h6" /></svg>',
         },
       ],
     },

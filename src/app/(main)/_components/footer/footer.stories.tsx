@@ -3,7 +3,7 @@ import { vstack } from "@/panda/patterns";
 import { CFooter } from "@/app/(main)/_components/footer/footer.client";
 
 const meta = {
-  title: "layout/FooterClient",
+  title: "layout/CFooter",
   component: CFooter,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],
