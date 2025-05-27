@@ -84,7 +84,7 @@ export default function LinkbioPage(props: PageProps) {
           },
         })}
       />
-      <div
+      <main
         className={css({
           px: 6,
           py: 8,
@@ -103,7 +103,7 @@ export default function LinkbioPage(props: PageProps) {
           </Suspense>
         </Head>
         <SocialLinks />
-      </div>
+      </main>
     </>
   );
 }

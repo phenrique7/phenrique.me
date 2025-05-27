@@ -1,5 +1,6 @@
 import { css } from "@/panda/css";
 import { basehub } from "basehub";
+import { flex } from "@/panda/patterns";
 import type { PageProps } from "@/types/next";
 import { ensureChosenLanguage } from "@/utils/locale";
 import { getLocaleLanguage } from "@/app/linkbio/_utils/locale";
@@ -68,11 +69,9 @@ export async function Presentation(props: PresentationProps) {
   });
 
   return (
-    <>
+    <div lang={displayLanguage} className={flex({ mt: 2, justifyContent: "center" })}>
       <h2
         className={css({
-          mt: 2,
-          mx: "auto",
           fontSize: "sm",
           color: "#fffcf4b0",
           fontWeight: "semibold",
@@ -84,7 +83,6 @@ export async function Presentation(props: PresentationProps) {
       {data.linkbio.bioSection.quote ? (
         <span
           className={css({
-            mx: "auto",
             fontSize: "sm",
             display: "block",
             color: "#fffcf4b0",
@@ -96,6 +94,6 @@ export async function Presentation(props: PresentationProps) {
           {data.linkbio.bioSection.quote}
         </span>
       ) : null}
-    </>
+    </div>
   );
 }

@@ -7,7 +7,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import "@/ui/styles/base.css";
 import { css } from "@/panda/css";
 import { Provider } from "@/app/_components/provider";
-import { themeEffect } from "@/app/(main)/_theme-effect";
+import { themeEffect } from "@/app/_utils/theme-effect";
 
 export const viewport: Viewport = {
   themeColor: [
@@ -74,9 +74,7 @@ export default function AppLayout(props: Readonly<React.PropsWithChildren>) {
       </head>
       <body className={css({ fontFamily: "GeistSans" })}>
         <GoogleTagManager gtmId="GTM-5CX6S9KJ" />
-        <main>
-          <Provider>{props.children}</Provider>
-        </main>
+        <Provider>{props.children}</Provider>
         <SpeedInsights />
       </body>
     </html>

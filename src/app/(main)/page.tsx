@@ -1,6 +1,5 @@
 import { Suspense } from "react";
-import { draftMode } from "next/headers";
-import { Pump } from "basehub/react-pump";
+import { basehub } from "basehub";
 import { css } from "@/panda/css";
 import { MDX } from "@/ui/shared/mdx";
 import { flex } from "@/panda/patterns";
@@ -8,6 +7,18 @@ import { OuterContainer } from "@/ui/shared/outer-container";
 import { InnerContainer } from "@/ui/shared/inner-container";
 
 export default async function Home() {
+  const data = await basehub().query({
+    home: {
+      bioSection: {
+        title: true,
+        subtitle: true,
+        description: {
+          markdown: true,
+        },
+      },
+    },
+  });
+
   return (
     <OuterContainer
       styles={{
@@ -19,61 +30,36 @@ export default async function Home() {
       }}
     >
       <InnerContainer styles={css.raw({ py: { base: 32, sm: 44, "2xl": 56 } })}>
-        <Pump
-          draft={(await draftMode()).isEnabled}
-          queries={[
-            {
-              home: {
-                bioSection: {
-                  title: true,
-                  subtitle: true,
-                  description: {
-                    markdown: true,
-                  },
-                },
-              },
-            },
-          ]}
+        <h2
+          className={css({
+            width: "fit-content",
+            fontWeight: "medium",
+            color: "transparent",
+            backgroundClip: "text",
+            backgroundImage: `linear-gradient(135deg, token(colors.clr_gray_soft), token(colors.clr_coral_flame))`,
+          })}
         >
-          {async ([data]) => {
-            "use server";
-
-            return (
-              <>
-                <h2
-                  className={css({
-                    width: "fit-content",
-                    fontWeight: "medium",
-                    color: "transparent",
-                    backgroundClip: "text",
-                    backgroundImage: `linear-gradient(135deg, token(colors.clr_gray_soft), token(colors.clr_coral_flame))`,
-                  })}
-                >
-                  {data.home.bioSection.subtitle}
-                </h2>
-                <h1
-                  className={css({
-                    fontSize: "4xl",
-                    color: "transparent",
-                    fontWeight: "semibold",
-                    backgroundClip: "text",
-                    backgroundImage: `linear-gradient(to bottom, token(colors.clr_neutral_950_snow), token(colors.clr_neutral_950_snow) 40%, #999999)`,
-                  })}
-                >
-                  {data.home.bioSection.title}
-                </h1>
-                <Suspense fallback={<div>Loading...</div>}>
-                  <MDX
-                    data={data.home.bioSection.description.markdown}
-                    wrapper={(props) => (
-                      <div className={"prose-ui antialiased " + css({ mt: 4, maxW: "2xl" })}>{props.children}</div>
-                    )}
-                  />
-                </Suspense>
-              </>
-            );
-          }}
-        </Pump>
+          {data.home.bioSection.subtitle}
+        </h2>
+        <h1
+          className={css({
+            fontSize: "4xl",
+            color: "transparent",
+            fontWeight: "semibold",
+            backgroundClip: "text",
+            backgroundImage: `linear-gradient(to bottom, token(colors.clr_neutral_950_snow), token(colors.clr_neutral_950_snow) 40%, #999999)`,
+          })}
+        >
+          {data.home.bioSection.title}
+        </h1>
+        <Suspense fallback={<div>Loading...</div>}>
+          <MDX
+            data={data.home.bioSection.description.markdown}
+            wrapper={(props) => (
+              <div className={"prose-ui antialiased " + css({ mt: 4, maxW: "2xl" })}>{props.children}</div>
+            )}
+          />
+        </Suspense>
       </InnerContainer>
     </OuterContainer>
   );
