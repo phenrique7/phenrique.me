@@ -101,7 +101,6 @@ export default function LinkbioPage(props: PageProps) {
           <Suspense fallback={<PresentationSkeleton />}>
             <Presentation searchParams={props.searchParams} />
           </Suspense>
-          {/*<PresentationSkeleton />*/}
         </Head>
         <SocialLinks />
       </div>

@@ -1,17 +1,7 @@
-import { headers } from "next/headers";
-import type { Languages } from "@/types/app";
+import { getLocale } from "@/utils/locale";
+import { LanguageEnum } from "~/basehub/schema";
 
-export async function getLocale(): Promise<string> {
-  const headersList = await headers();
-  const acceptLanguage = headersList.get("accept-language");
-  return acceptLanguage?.split(",")[0] ?? "en";
-}
-
-export async function getDisplayLanguage(chosenLanguage: string | undefined): Promise<Languages> {
-  if (chosenLanguage === "en" || chosenLanguage === "pt" || chosenLanguage === "de") {
-    return chosenLanguage;
-  }
-
+export async function getLocaleLanguage(): Promise<LanguageEnum> {
   switch (await getLocale()) {
     case "en":
     case "en-US":

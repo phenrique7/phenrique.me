@@ -4,13 +4,14 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Button, Header, Menu, MenuItem, MenuSection, MenuTrigger, Popover } from "react-aria-components";
 import { css } from "@/panda/css";
-import type { Languages } from "@/types/app";
 import { USAIcon } from "@/ui/icons/usa-icon";
 import { flex, hstack } from "@/panda/patterns";
 import { MenuIcon } from "@/ui/icons/menu-icon";
-import { BrazilIcon } from "@/ui/icons/brazil-icon";
-import { DeutschIcon } from "@/ui/icons/deutsch-icon";
 import { CheckIcon } from "@/ui/icons/close-icon";
+import { BrazilIcon } from "@/ui/icons/brazil-icon";
+import type { LanguageEnum } from "~/basehub/schema";
+import { DeutschIcon } from "@/ui/icons/deutsch-icon";
+import { getDictionary } from "@/app/linkbio/_dictionaries/dictionaries";
 
 const languageItems = [
   {
@@ -94,7 +95,8 @@ const shareLinks = [
 ];
 
 type CTopMenuProps = {
-  displayLanguage: Languages;
+  displayLanguage: LanguageEnum;
+  dict: Awaited<ReturnType<typeof getDictionary>>;
 };
 
 export function CTopMenu(props: CTopMenuProps) {
@@ -173,7 +175,7 @@ export function CTopMenu(props: CTopMenuProps) {
                   textTransform: "uppercase",
                 })}
               >
-                Language
+                {props.dict["top-menu"].language}
               </Header>
               {languageItems.map((language) => (
                 <MenuItem
@@ -207,7 +209,7 @@ export function CTopMenu(props: CTopMenuProps) {
                   textTransform: "uppercase",
                 })}
               >
-                Share
+                {props.dict["top-menu"].share}
               </Header>
               <MenuItem
                 onAction={() => onCopyLinkbio()}
@@ -232,7 +234,7 @@ export function CTopMenu(props: CTopMenuProps) {
                     </g>
                   </svg>
                 </div>
-                <span>Copy link</span>
+                <span>{props.dict["top-menu"].copy}</span>
               </MenuItem>
               {shareLinks.map((item) => (
                 <MenuItem
@@ -292,7 +294,7 @@ export function CTopMenu(props: CTopMenuProps) {
               border: "1px solid rgb(42, 42, 42)",
             })}
           >
-            Link copied!
+            {props.dict["toast-feedback"]}
           </motion.div>
         ) : null}
       </AnimatePresence>

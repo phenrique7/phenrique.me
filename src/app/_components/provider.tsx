@@ -1,7 +1,7 @@
 "use client";
 
+import { PropsWithChildren } from "react";
 import { useRouter } from "next/navigation";
-import type { PropsWithChildren } from "react";
 import { RouterProvider } from "react-aria-components";
 
 declare module "react-aria-components" {

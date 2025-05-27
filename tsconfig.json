@@ -20,7 +20,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/panda/*": ["./styled-system/*"]
+      "@/panda/*": ["./styled-system/*"],
+      "~/basehub/*": ["./.basehub/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
