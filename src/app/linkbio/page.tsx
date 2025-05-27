@@ -1,11 +1,14 @@
+import { Suspense } from "react";
 import { basehub } from "basehub";
 import type { Metadata } from "next";
-import { draftMode } from "next/headers";
-import { Pump } from "basehub/react-pump";
 import { css } from "@/panda/css";
+import type { PageProps } from "@/types/next";
 import { Head } from "@/app/linkbio/_components/head";
 import { SocialLinks } from "@/app/linkbio/_components/social-links";
-import { CTopBar } from "@/app/linkbio/_components/top-bar.client";
+import { Presentation, PresentationSkeleton } from "@/app/linkbio/_components/presentation";
+import { TopMenuSkeleton, TopMenu } from "@/app/linkbio/_components/top-menu";
+
+export const experimental_ppr = true;
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta = await basehub().query({
@@ -42,7 +45,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function LinkbioPage() {
+export default function LinkbioPage(props: PageProps) {
   return (
     <>
       <div
@@ -80,7 +83,7 @@ export default async function LinkbioPage() {
             backgroundImage: `url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PScwIDAgNTEyIDUxMicgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz4KICA8ZmlsdGVyIGlkPSdub2lzZUZpbHRlcic+CiAgICA8ZmVUdXJidWxlbmNlIAogICAgICB0eXBlPSdmcmFjdGFsTm9pc2UnIAogICAgICBiYXNlRnJlcXVlbmN5PScwLjcnCiAgICAgIG51bU9jdGF2ZXM9JzMnIAogICAgICBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+CiAgICA8ZmVDb2xvck1hdHJpeCBpbj0idHVyYnVsZW5jZSIgdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPgoKICAgIDxmZUNvbXBvbmVudFRyYW5zZmVyPgogICAgICA8ZmVGdW5jUiB0eXBlPSJkaXNjcmV0ZSIgdGFibGVWYWx1ZXM9IjAgMSIgLz4KICAgICAgPGZlRnVuY0cgdHlwZT0iZGlzY3JldGUiIHRhYmxlVmFsdWVzPSIwIDEiIC8+CiAgICAgIDxmZUZ1bmNCIHR5cGU9ImRpc2NyZXRlIiB0YWJsZVZhbHVlcz0iMCAxIiAvPgogICAgPC9mZUNvbXBvbmVudFRyYW5zZmVyPgogIDwvZmlsdGVyPgogIAogIDxyZWN0IHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIGZpbHRlcj0ndXJsKCNub2lzZUZpbHRlciknLz4KPC9zdmc+")`,
           },
         })}
-      ></div>
+      />
       <div
         className={css({
           px: 6,
@@ -91,88 +94,15 @@ export default async function LinkbioPage() {
           position: "relative",
         })}
       >
-        <Pump
-          draft={(await draftMode()).isEnabled}
-          queries={[
-            {
-              linkbio: {
-                bioSection: {
-                  name: true,
-                  quote: true,
-                  description: true,
-                  avatar: {
-                    on_BlockImage: {
-                      url: true,
-                      alt: true,
-                      width: true,
-                      height: true,
-                    },
-                  },
-                },
-                socialLinks: {
-                  items: {
-                    _title: true,
-                    mediaName: true,
-                    mediaSlug: true,
-                    mediaLink: true,
-                    mediaLogo: {
-                      on_BlockFile: {
-                        url: true,
-                      },
-                      on_BlockImage: {
-                        url: true,
-                        alt: true,
-                        width: true,
-                        height: true,
-                      },
-                    },
-                  },
-                },
-              },
-            },
-          ]}
-        >
-          {async ([data]) => {
-            "use server";
-
-            return (
-              <>
-                <CTopBar />
-                <Head
-                  name={data.linkbio.bioSection.name}
-                  quote={data.linkbio.bioSection.quote}
-                  description={data.linkbio.bioSection.description}
-                  avatar={{
-                    url: data.linkbio.bioSection.avatar.url,
-                    // @ts-ignore
-                    alt: data.linkbio.bioSection.avatar.alt,
-                    // @ts-ignore
-                    width: data.linkbio.bioSection.avatar.width,
-                    // @ts-ignore
-                    height: data.linkbio.bioSection.avatar.height,
-                  }}
-                />
-                <SocialLinks
-                  items={data.linkbio.socialLinks.items.map((item) => ({
-                    id: item._title,
-                    mediaName: item.mediaName,
-                    mediaSlug: item.mediaSlug,
-                    mediaLink: item.mediaLink,
-                    mediaLogo: {
-                      url: item.mediaLogo.url,
-                      // @ts-ignore
-                      alt: item.mediaLogo.alt ?? null,
-                      // @ts-ignore
-                      width: item.mediaLogo.width ?? null,
-                      // @ts-ignore
-                      height: item.mediaLogo.height ?? null,
-                    },
-                  }))}
-                />
-              </>
-            );
-          }}
-        </Pump>
+        <Suspense fallback={<TopMenuSkeleton />}>
+          <TopMenu searchParams={props.searchParams} />
+        </Suspense>
+        <Head>
+          <Suspense fallback={<PresentationSkeleton />}>
+            <Presentation searchParams={props.searchParams} />
+          </Suspense>
+        </Head>
+        <SocialLinks />
       </div>
     </>
   );
