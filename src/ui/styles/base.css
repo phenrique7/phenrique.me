@@ -25,3 +25,9 @@
 .prose-ui blockquote {
   padding-left: 1rem;
 }
+
+@keyframes pulse-custom {
+  50% {
+    opacity: 0.5;
+  }
+}
