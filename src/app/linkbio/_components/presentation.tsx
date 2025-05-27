@@ -1,6 +1,6 @@
 import { css } from "@/panda/css";
 import { basehub } from "basehub";
-import { flex } from "@/panda/patterns";
+import { vstack } from "@/panda/patterns";
 import type { PageProps } from "@/types/next";
 import { ensureChosenLanguage } from "@/utils/locale";
 import { getLocaleLanguage } from "@/app/linkbio/_utils/locale";
@@ -69,7 +69,7 @@ export async function Presentation(props: PresentationProps) {
   });
 
   return (
-    <div lang={displayLanguage} className={flex({ mt: 2, justifyContent: "center" })}>
+    <div lang={displayLanguage} className={vstack({ mt: 2, gap: 0 })}>
       <h2
         className={css({
           fontSize: "sm",
