@@ -1,16 +1,9 @@
 "use client";
 
-import {
-  Menu,
-  Button,
-  Header,
-  Popover,
-  MenuItem,
-  MenuTrigger,
-  MenuSection,
-} from "react-aria-components";
+import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { Menu, Button, Header, Popover, MenuItem, MenuTrigger, MenuSection } from "react-aria-components";
 import { css } from "@/panda/css";
-import { queue } from "@/lib/toast";
 import { hstack } from "@/panda/patterns";
 import { MenuIcon } from "@/ui/icons/menu-icon";
 
@@ -35,7 +28,7 @@ const shareLinks = [
     link: "https://wa.me/?text=Check%20out%20this%20Linkbio! - https://phenrique.me/linkbio",
     icon: (
       <svg viewBox="0 0 24 24">
-        <circle cx="50%" cy="50%" r="50%" fill="#00E676"></circle>
+        <circle cx="50%" cy="50%" r="50%" fill="#22C55E"></circle>
         <path
           d="M16.201 7.746a5.9 5.9 0 0 0-4.205-1.745c-3.276 0-5.945 2.669-5.948 5.945 0 1.049.274 2.07.793 2.973L6 18.001l3.153-.826a5.95 5.95 0 0 0 2.843.724h.003c3.275 0 5.944-2.669 5.947-5.948A5.92 5.92 0 0 0 16.2 7.746m-4.205 9.146c-.89 0-1.76-.24-2.518-.69l-.18-.108-1.87.49.5-1.824-.118-.188a4.9 4.9 0 0 1-.755-2.63 4.95 4.95 0 0 1 4.944-4.937c1.32 0 2.56.516 3.495 1.448a4.92 4.92 0 0 1 1.445 3.496 4.95 4.95 0 0 1-4.943 4.943m2.711-3.7a27 27 0 0 0-1.015-.485c-.137-.049-.236-.074-.334.074-.1.148-.384.485-.47.582-.085.1-.174.11-.322.037s-.627-.231-1.195-.739a4.5 4.5 0 0 1-.827-1.029c-.085-.148-.008-.228.066-.302.066-.066.148-.174.223-.26.074-.085.1-.148.148-.248s.025-.185-.012-.259-.333-.807-.459-1.103c-.12-.291-.242-.251-.333-.254C10.09 9.2 9.99 9.2 9.892 9.2c-.1 0-.26.037-.397.185-.136.149-.519.508-.519 1.24 0 .733.534 1.438.608 1.537.074.1 1.046 1.6 2.537 2.244.354.154.63.245.847.314.356.114.678.097.935.06.285-.043.878-.36 1.004-.707.122-.348.122-.645.085-.707-.037-.063-.137-.1-.285-.174"
           fill="#fff"
@@ -62,13 +55,7 @@ const shareLinks = [
     name: "E-mail",
     link: "mailto:?subject= Check out this Linkbio! &body= Check%20out%20this%20Linkbio! - https://phenrique.me/linkbio",
     icon: (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="12" fill="#60696c" />
         <g transform="translate(4.5 4.5)">
           <path
@@ -84,17 +71,22 @@ const shareLinks = [
 ];
 
 export function CTopBar() {
+  const [isToastShown, setIsToastShown] = useState(false);
+
   function onCopyLinkbio() {
-    navigator.clipboard
-      .writeText(`${process.env.NEXT_PUBLIC_SITE_URL}/linkbio`)
-      .then(
+    if (!isToastShown) {
+      navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_SITE_URL}/linkbio`).then(
         () => {
-          queue.add({ title: "Link copied!" }, { timeout: 4000 });
+          setIsToastShown(true);
+          setTimeout(() => {
+            setIsToastShown(false);
+          }, 2500);
         },
         () => {
           console.log("clipboard write failed");
         },
       );
+    }
   }
 
   return (
@@ -140,7 +132,7 @@ export function CTopBar() {
               boxShadow: "2xl",
               borderRadius: "lg",
               border: "1px solid",
-              bg: "rgb(12, 12, 12)",
+              bg: "neutral.800",
               borderColor: "rgb(37, 37, 37)",
             })}
           >
@@ -163,7 +155,7 @@ export function CTopBar() {
                   color: "#EEE",
                   borderRadius: "md",
                   transition: "background-color 0.15s ease-in-out",
-                  _hover: { bg: "rgb(27, 27, 27)", cursor: "default" },
+                  _hover: { bg: "neutral.700", cursor: "default" },
                 })}
               >
                 <div className={css({ w: 6, h: 6 })}>
@@ -197,7 +189,7 @@ export function CTopBar() {
                     color: "#EEE",
                     borderRadius: "md",
                     transition: "background-color 0.15s ease-in-out",
-                    _hover: { bg: "rgb(27, 27, 27)" },
+                    _hover: { bg: "neutral.700" },
                   })}
                 >
                   <div className={css({ w: 6, h: 6 })}>{item.icon}</div>
@@ -224,6 +216,31 @@ export function CTopBar() {
           </Menu>
         </Popover>
       </MenuTrigger>
+      <AnimatePresence>
+        {isToastShown ? (
+          <motion.div
+            layout
+            role="alertdialog"
+            initial={{ opacity: 0, y: 50, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.8 }}
+            className={css({
+              bottom: 4,
+              right: 4,
+              fontSize: "sm",
+              position: "fixed",
+              padding: "10px 14px",
+              color: "neutral.50",
+              borderRadius: "8px",
+              fontWeight: "medium",
+              bgColor: "neutral.950",
+              border: "1px solid rgb(42, 42, 42)",
+            })}
+          >
+            Link copied!
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </div>
   );
 }

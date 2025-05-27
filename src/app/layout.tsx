@@ -7,7 +7,6 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import "@/ui/styles/base.css";
 import { css } from "@/panda/css";
 import { themeEffect } from "@/app/(main)/_theme-effect";
-import { CToastProvider } from "@/app/_components/toast-provider.client";
 
 export const viewport: Viewport = {
   themeColor: [
@@ -74,7 +73,6 @@ export default function AppLayout(props: Readonly<React.PropsWithChildren>) {
       </head>
       <body className={css({ fontFamily: "GeistSans" })}>
         <GoogleTagManager gtmId="GTM-5CX6S9KJ" />
-        <CToastProvider />
         <main>{props.children}</main>
         <SpeedInsights />
       </body>
