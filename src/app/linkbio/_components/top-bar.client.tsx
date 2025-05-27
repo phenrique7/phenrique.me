@@ -4,7 +4,6 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, Button, Header, Popover, MenuItem, MenuTrigger, MenuSection } from "react-aria-components";
 import { css } from "@/panda/css";
-import { queue } from "@/lib/toast";
 import { hstack } from "@/panda/patterns";
 import { MenuIcon } from "@/ui/icons/menu-icon";
 
