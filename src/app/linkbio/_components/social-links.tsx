@@ -1,23 +1,33 @@
 import Image from "next/image";
+import { basehub } from "basehub";
 import { css } from "@/panda/css";
 import { vstack } from "@/panda/patterns";
 
-type SocialLinkProps = {
-  items: Array<{
-    id: string;
-    mediaName: string;
-    mediaSlug: string;
-    mediaLink: string;
-    mediaLogo: {
-      url: string;
-      alt: string | null;
-      width: number | null;
-      height: number | null;
-    };
-  }>;
-};
+export async function SocialLinks() {
+  const data = await basehub().query({
+    linkbio: {
+      socialLinks: {
+        items: {
+          _title: true,
+          mediaName: true,
+          mediaSlug: true,
+          mediaLink: true,
+          mediaLogo: {
+            on_BlockFile: {
+              url: true,
+            },
+            on_BlockImage: {
+              url: true,
+              alt: true,
+              width: true,
+              height: true,
+            },
+          },
+        },
+      },
+    },
+  });
 
-export function SocialLinks(props: SocialLinkProps) {
   return (
     <div
       className={vstack({
@@ -25,9 +35,9 @@ export function SocialLinks(props: SocialLinkProps) {
         marginTop: { base: 12, md: 16 },
       })}
     >
-      {props.items.map((item) => (
+      {data.linkbio.socialLinks.items.map((item) => (
         <a
-          key={item.id}
+          key={item._title}
           target="_blank"
           href={item.mediaLink}
           className={css({
@@ -53,8 +63,11 @@ export function SocialLinks(props: SocialLinkProps) {
           >
             <Image
               src={item.mediaLogo.url}
+              // @ts-ignore
               width={item.mediaLogo.width ?? "32"}
+              // @ts-ignore
               height={item.mediaLogo.height ?? "32"}
+              // @ts-ignore
               alt={item.mediaLogo.alt ?? `${item.mediaName} logo`}
             />
           </span>

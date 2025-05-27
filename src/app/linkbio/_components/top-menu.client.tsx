@@ -2,10 +2,34 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Menu, Button, Header, Popover, MenuItem, MenuTrigger, MenuSection } from "react-aria-components";
+import { Button, Header, Menu, MenuItem, MenuSection, MenuTrigger, Popover } from "react-aria-components";
 import { css } from "@/panda/css";
-import { hstack } from "@/panda/patterns";
+import type { Languages } from "@/types/app";
+import { USAIcon } from "@/ui/icons/usa-icon";
+import { flex, hstack } from "@/panda/patterns";
 import { MenuIcon } from "@/ui/icons/menu-icon";
+import { CheckIcon } from "@/ui/icons/close-icon";
+import { BrazilIcon } from "@/ui/icons/brazil-icon";
+import { DeutschIcon } from "@/ui/icons/deutsch-icon";
+import { getDictionary } from "@/app/linkbio/_dictionaries/dictionaries";
+
+const languageItems = [
+  {
+    id: "pt" as const,
+    name: "Português",
+    icon: <BrazilIcon />,
+  },
+  {
+    id: "en" as const,
+    name: "English",
+    icon: <USAIcon />,
+  },
+  {
+    id: "de" as const,
+    name: "Deutsch",
+    icon: <DeutschIcon />,
+  },
+];
 
 const shareLinks = [
   {
@@ -70,7 +94,12 @@ const shareLinks = [
   },
 ];
 
-export function CTopBar() {
+type CTopMenuProps = {
+  displayLanguage: Languages;
+  dict: Awaited<ReturnType<typeof getDictionary>>;
+};
+
+export function CTopMenu(props: CTopMenuProps) {
   const [isToastShown, setIsToastShown] = useState(false);
 
   function onCopyLinkbio() {
@@ -146,7 +175,41 @@ export function CTopBar() {
                   textTransform: "uppercase",
                 })}
               >
-                Share linkbio
+                {props.dict["top-menu"].language}
+              </Header>
+              {languageItems.map((language) => (
+                <MenuItem
+                  key={language.id}
+                  href={`?lang=${language.id}`}
+                  className={flex({
+                    p: 2,
+                    color: "#EEE",
+                    borderRadius: "md",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    transition: "background-color 0.15s ease-in-out",
+                    _hover: { bg: "neutral.700", cursor: "default" },
+                  })}
+                >
+                  <div className={hstack()}>
+                    <div className={flex({ w: 6, h: 6, alignItems: "center" })}>{language.icon}</div>
+                    <span>{language.name}</span>
+                  </div>
+                  {language.id === props.displayLanguage ? <CheckIcon /> : null}
+                </MenuItem>
+              ))}
+            </MenuSection>
+            <MenuSection>
+              <Header
+                className={css({
+                  p: 2,
+                  fontSize: "xs",
+                  color: "#fffcf4b0",
+                  fontWeight: "medium",
+                  textTransform: "uppercase",
+                })}
+              >
+                {props.dict["top-menu"].share}
               </Header>
               <MenuItem
                 onAction={() => onCopyLinkbio()}
@@ -159,13 +222,7 @@ export function CTopBar() {
                 })}
               >
                 <div className={css({ w: 6, h: 6 })}>
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="12" cy="12" r="12" fill="#e0e2d9" />
                     <g transform="translate(4.5 4.5)">
                       <path
@@ -176,8 +233,8 @@ export function CTopBar() {
                       />
                     </g>
                   </svg>
-                </div>{" "}
-                <span>Copy link</span>
+                </div>
+                <span>{props.dict["top-menu"].copy}</span>
               </MenuItem>
               {shareLinks.map((item) => (
                 <MenuItem
@@ -237,7 +294,7 @@ export function CTopBar() {
               border: "1px solid rgb(42, 42, 42)",
             })}
           >
-            Link copied!
+            {props.dict["toast-feedback"]}
           </motion.div>
         ) : null}
       </AnimatePresence>
