@@ -4,12 +4,12 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Button, Header, Menu, MenuItem, MenuSection, MenuTrigger, Popover } from "react-aria-components";
 import { css } from "@/panda/css";
+import type { Languages } from "@/types/app";
 import { USAIcon } from "@/ui/icons/usa-icon";
 import { flex, hstack } from "@/panda/patterns";
 import { MenuIcon } from "@/ui/icons/menu-icon";
 import { CheckIcon } from "@/ui/icons/close-icon";
 import { BrazilIcon } from "@/ui/icons/brazil-icon";
-import type { LanguageEnum } from "~/basehub/schema";
 import { DeutschIcon } from "@/ui/icons/deutsch-icon";
 import { getDictionary } from "@/app/linkbio/_dictionaries/dictionaries";
 
@@ -95,7 +95,7 @@ const shareLinks = [
 ];
 
 type CTopMenuProps = {
-  displayLanguage: LanguageEnum;
+  displayLanguage: Languages;
   dict: Awaited<ReturnType<typeof getDictionary>>;
 };
 

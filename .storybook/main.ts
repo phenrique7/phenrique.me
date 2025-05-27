@@ -19,7 +19,6 @@ const config: StorybookConfig = {
       config.resolve.alias = {
         ...config.resolve.alias,
         "@/panda": path.resolve(__dirname, "../styled-system"),
-        "~/basehub": path.resolve(__dirname, "../.basehub"),
       };
     }
 

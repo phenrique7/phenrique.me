@@ -1,5 +1,5 @@
 import "server-only";
-import type { LanguageEnum } from "~/basehub/schema";
+import type { Languages } from "@/types/app";
 
 const dictionaries = {
   en: () => import("./en.json").then((module) => module.default),
@@ -7,4 +7,4 @@ const dictionaries = {
   pt: () => import("./pt.json").then((module) => module.default),
 };
 
-export const getDictionary = async (locale: LanguageEnum) => dictionaries[locale]();
+export const getDictionary = async (locale: Languages) => dictionaries[locale]();

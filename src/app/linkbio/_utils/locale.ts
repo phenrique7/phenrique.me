@@ -1,7 +1,7 @@
 import { getLocale } from "@/utils/locale";
-import { LanguageEnum } from "~/basehub/schema";
+import type { Languages } from "@/types/app";
 
-export async function getLocaleLanguage(): Promise<LanguageEnum> {
+export async function getLocaleLanguage(): Promise<Languages> {
   switch (await getLocale()) {
     case "en":
     case "en-US":
