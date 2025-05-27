@@ -19,7 +19,12 @@ export default defineConfig({
     semanticTokens: {
       colors: {
         clr_white_neutral_900: {
+          // bg
           value: { base: "white", _dark: "{colors.neutral.900}" },
+        },
+        clr_neutral_50_800: {
+          // bg-error
+          value: { base: "{colors.neutral.50}", _dark: "{colors.neutral.800}" },
         },
         clr_neutral_950_snow: {
           value: { base: "#0A0A0A", _dark: "#F5F5F5" },
@@ -40,9 +45,11 @@ export default defineConfig({
           value: { base: "{colors.neutral.900}", _dark: "{colors.neutral.50}" },
         },
         clr_neutral_800_200: {
+          // text-primary
           value: { base: "{colors.neutral.800}", _dark: "{colors.neutral.200}" },
         },
         clr_neutral_700_400: {
+          // text-secondary
           value: { base: "{colors.neutral.700}", _dark: "{colors.neutral.400}" },
         },
       },
