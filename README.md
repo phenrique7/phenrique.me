@@ -10,6 +10,5 @@ This is my personal website/portfolio built with Next.js and other modern web te
 - [PandaCSS](https://panda-css.com/) - CSS-in-JS styling solution
 - [Geist Font](https://vercel.com/font) - Typography
 - [BaseHub](https://basehub.com/) - Content management
-- [Storybook](https://storybook.js.org/) - Component development and testing
 - [React Aria Components](https://react-spectrum.adobe.com/react-aria/index.html) - World-class accessible components with custom styles
 - [Vercel](https://vercel.com/) - Deployment platform
