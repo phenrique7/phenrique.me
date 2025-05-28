@@ -5,37 +5,17 @@ import { AnimatePresence, motion } from "motion/react";
 import { Button, Header, Menu, MenuItem, MenuSection, MenuTrigger, Popover } from "react-aria-components";
 import { css } from "@/panda/css";
 import type { Languages } from "@/types/app";
-import { USAIcon } from "@/ui/icons/usa-icon";
 import { flex, hstack } from "@/panda/patterns";
-import { MenuIcon } from "@/ui/icons/menu-icon";
-import { CheckIcon } from "@/ui/icons/close-icon";
-import { BrazilIcon } from "@/ui/icons/brazil-icon";
-import { DeutschIcon } from "@/ui/icons/deutsch-icon";
-import { getDictionary } from "@/app/linkbio/_dictionaries/dictionaries";
-
-const languageItems = [
-  {
-    id: "pt" as const,
-    name: "Português",
-    icon: <BrazilIcon />,
-  },
-  {
-    id: "en" as const,
-    name: "English",
-    icon: <USAIcon />,
-  },
-  {
-    id: "de" as const,
-    name: "Deutsch",
-    icon: <DeutschIcon />,
-  },
-];
+import { MenuIcon } from "@/app/_components/menu-icon";
+import { CheckIcon } from "@/app/_components/close-icon";
+import { languageItems } from "@/app/_content/language-items";
+import { getLinkbioDictionary } from "@/app/linkbio/_dictionaries/dictionaries";
 
 const shareLinks = [
   {
     id: "x-twitter",
     name: "X (Twitter)",
-    link: "https://x.com/intent/tweet?text=Check%20out%20this%20Linkbio! - https://phenrique.me/linkbio",
+    link: (text: string) => `https://x.com/intent/tweet?text=${text}! - https://phenrique.me/linkbio`,
     icon: (
       <svg viewBox="0 0 48 48">
         <circle cx="50%" cy="50%" r="50%" fill="black"></circle>
@@ -49,7 +29,7 @@ const shareLinks = [
   {
     id: "whatsapp",
     name: "WhatsApp",
-    link: "https://wa.me/?text=Check%20out%20this%20Linkbio! - https://phenrique.me/linkbio",
+    link: (text: string) => `https://wa.me/?text=${text}! - https://phenrique.me/linkbio`,
     icon: (
       <svg viewBox="0 0 24 24">
         <circle cx="50%" cy="50%" r="50%" fill="#22C55E"></circle>
@@ -63,7 +43,7 @@ const shareLinks = [
   {
     id: "linkedin",
     name: "LinkedIn",
-    link: "https://www.linkedin.com/sharing/share-offsite/?url=https://phenrique.me/linkbio",
+    link: (_: string) => "https://www.linkedin.com/sharing/share-offsite/?url=https://phenrique.me/linkbio",
     icon: (
       <svg viewBox="0 0 24 24">
         <circle cx="50%" cy="50%" r="50%" fill="#0A66C2"></circle>
@@ -77,7 +57,7 @@ const shareLinks = [
   {
     id: "email",
     name: "E-mail",
-    link: "mailto:?subject= Check out this Linkbio! &body= Check%20out%20this%20Linkbio! - https://phenrique.me/linkbio",
+    link: (text: string) => `mailto:?subject=${text}! &body= ${text} - https://phenrique.me/linkbio`,
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="12" fill="#60696c" />
@@ -96,7 +76,7 @@ const shareLinks = [
 
 type CTopMenuProps = {
   displayLanguage: Languages;
-  dict: Awaited<ReturnType<typeof getDictionary>>;
+  dict: Awaited<ReturnType<typeof getLinkbioDictionary>>;
 };
 
 export function CTopMenu(props: CTopMenuProps) {
@@ -120,6 +100,7 @@ export function CTopMenu(props: CTopMenuProps) {
 
   return (
     <div
+      lang={props.displayLanguage}
       className={css({
         mb: 6,
         display: "flex",
@@ -128,6 +109,7 @@ export function CTopMenu(props: CTopMenuProps) {
     >
       <MenuTrigger>
         <Button
+          aria-label={props.dict["top-menu"]["menu-label"]}
           className={css({
             width: 10,
             height: 10,
@@ -175,7 +157,7 @@ export function CTopMenu(props: CTopMenuProps) {
                   textTransform: "uppercase",
                 })}
               >
-                {props.dict["top-menu"].language}
+                {props.dict["top-menu"].menu.language}
               </Header>
               {languageItems.map((language) => (
                 <MenuItem
@@ -209,7 +191,7 @@ export function CTopMenu(props: CTopMenuProps) {
                   textTransform: "uppercase",
                 })}
               >
-                {props.dict["top-menu"].share}
+                {props.dict["top-menu"].menu.share}
               </Header>
               <MenuItem
                 onAction={() => onCopyLinkbio()}
@@ -234,12 +216,12 @@ export function CTopMenu(props: CTopMenuProps) {
                     </g>
                   </svg>
                 </div>
-                <span>{props.dict["top-menu"].copy}</span>
+                <span>{props.dict["top-menu"].menu.copy}</span>
               </MenuItem>
               {shareLinks.map((item) => (
                 <MenuItem
                   key={item.id}
-                  href={item.link}
+                  href={item.link(props.dict["top-menu"].menu["link-text"])}
                   target="_blank"
                   className={hstack({
                     p: 2,
@@ -294,7 +276,7 @@ export function CTopMenu(props: CTopMenuProps) {
               border: "1px solid rgb(42, 42, 42)",
             })}
           >
-            {props.dict["toast-feedback"]}
+            {props.dict.toast.feedback}
           </motion.div>
         ) : null}
       </AnimatePresence>

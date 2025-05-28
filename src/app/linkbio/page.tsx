@@ -4,16 +4,29 @@ import type { Metadata } from "next";
 import { css } from "@/panda/css";
 import type { PageProps } from "@/types/next";
 import { Head } from "@/app/linkbio/_components/head";
+import { ensureChosenLanguage } from "@/utils/locale";
+import { getLocaleLanguage } from "@/app/linkbio/_utils/locale";
 import { SocialLinks } from "@/app/linkbio/_components/social-links";
-import { Presentation, PresentationSkeleton } from "@/app/linkbio/_components/presentation";
 import { TopMenuSkeleton, TopMenu } from "@/app/linkbio/_components/top-menu";
+import { Presentation, PresentationSkeleton } from "@/app/linkbio/_components/presentation";
 
 export const experimental_ppr = true;
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ searchParams }: Pick<PageProps, "searchParams">): Promise<Metadata> {
+  const chosenLanguage = ((await searchParams) as { lang: string } | undefined)?.lang;
+
+  let displayLanguage = ensureChosenLanguage(chosenLanguage);
+
+  if (displayLanguage === undefined) {
+    displayLanguage = await getLocaleLanguage();
+  }
+
   const meta = await basehub().query({
     linkbio: {
       metadata: {
+        __args: {
+          variants: { language: displayLanguage },
+        },
         title: true,
         xUsername: true,
         description: true,
@@ -84,7 +97,7 @@ export default function LinkbioPage(props: PageProps) {
           },
         })}
       />
-      <div
+      <main
         className={css({
           px: 6,
           py: 8,
@@ -103,7 +116,7 @@ export default function LinkbioPage(props: PageProps) {
           </Suspense>
         </Head>
         <SocialLinks />
-      </div>
+      </main>
     </>
   );
 }

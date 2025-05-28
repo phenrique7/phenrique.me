@@ -1,8 +1,14 @@
 {
   "top-menu": {
-    "language": "Language",
-    "share": "Share",
-    "copy": "Copy link"
+    "menu-label": "Menu",
+    "menu": {
+      "language": "Language",
+      "share": "Share",
+      "copy": "Copy link",
+      "link-text": "Check out this Linkbio!"
+    }
   },
-  "toast-feedback": "Link copied!"
+  "toast": {
+    "feedback": "Link copied!"
+  }
 }
