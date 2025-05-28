@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { CHeader } from "@/app/(main)/_components/header/header.client";
 import { css } from "@/panda/css";
+import { CHeader } from "@/app/[lang]/_components/header/header.client";
+import { LanguagesMenu } from "@/app/[lang]/_components/header/languages-menu";
 
 const meta = {
   title: "layout/CHeader",
@@ -26,6 +27,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    children: <LanguagesMenu displayLanguage="en" />,
     avatar: {
       width: 259,
       height: 259,

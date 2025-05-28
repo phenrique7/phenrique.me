@@ -1,0 +1,13 @@
+{
+  "header": {
+    "soon-link": "Soon",
+    "menu-label": "Languages"
+  },
+  "footer": {
+    "source": "Source"
+  },
+  "error-fallback": {
+    "title": "We encountered an issue",
+    "description": "Unfortunately, we couldn’t load the data at the moment. This might be due to a server issue. Please, refresh the page. If the issue persists, try again later or contact us."
+  }
+}

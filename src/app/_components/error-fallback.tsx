@@ -3,12 +3,12 @@
 import { useEffect } from "react";
 import { css } from "@/panda/css";
 import { hstack, vstack } from "@/panda/patterns";
-import { AlertIcon } from "@/ui/icons/alert-icon";
-import { getDictionary } from "@/app/linkbio/_dictionaries/dictionaries";
+import { AlertIcon } from "@/app/_components/alert-icon";
+import { getAppDictionary } from "@/app/_dictionaries/dictionaries";
 
 type ErrorFallbackProps = {
   error: unknown;
-  dict: Awaited<ReturnType<typeof getDictionary>>;
+  dict: Awaited<ReturnType<typeof getAppDictionary>>;
 };
 
 export function ErrorFallback(props: ErrorFallbackProps) {

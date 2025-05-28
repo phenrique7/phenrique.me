@@ -3,7 +3,7 @@ import type { PageProps } from "@/types/next";
 import { ensureChosenLanguage } from "@/utils/locale";
 import { getLocaleLanguage } from "@/app/linkbio/_utils/locale";
 import { CTopMenu } from "@/app/linkbio/_components/top-menu.client";
-import { getDictionary } from "@/app/linkbio/_dictionaries/dictionaries";
+import { getLinkbioDictionary } from "@/app/linkbio/_dictionaries/dictionaries";
 
 export function TopMenuSkeleton() {
   return (
@@ -38,7 +38,7 @@ export async function TopMenu(props: TopMenuProps) {
     displayLanguage = await getLocaleLanguage();
   }
 
-  const dict = await getDictionary(displayLanguage);
+  const dict = await getLinkbioDictionary(displayLanguage);
 
   return <CTopMenu displayLanguage={displayLanguage} dict={dict} />;
 }

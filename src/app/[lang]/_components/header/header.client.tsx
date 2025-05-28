@@ -2,14 +2,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { AnimatePresence, motion } from "motion/react";
-import { ToggleButton } from "react-aria-components";
 import { useEffect, useState, useRef } from "react";
+import { ToggleButton } from "react-aria-components";
+import { AnimatePresence, motion } from "motion/react";
 import { css } from "@/panda/css";
+import type { Languages } from "@/types/app";
 import type { MediaData } from "@/types/basehub";
 import { flex, hstack, vstack } from "@/panda/patterns";
-import { ThemeToggle } from "@/app/(main)/_components/header/theme-toggle";
-import { useMediaQuery } from "@/hooks/use-media-query";
+import { useMediaQuery } from "@/app/_hooks/use-media-query";
+import { getAppDictionary } from "@/app/_dictionaries/dictionaries";
+import { ThemeToggle } from "@/app/[lang]/_components/header/theme-toggle";
+import { LanguagesMenu } from "@/app/[lang]/_components/header/languages-menu";
 
 type NavLink = {
   _title: string;
@@ -25,6 +28,8 @@ type NavLinks = {
 type CHeaderProps = {
   avatar: MediaData;
   navLinks: NavLinks;
+  displayLanguage: Languages;
+  dict: Awaited<ReturnType<typeof getAppDictionary>>;
 };
 
 export function CHeader(props: CHeaderProps) {
@@ -95,7 +100,7 @@ export function CHeader(props: CHeaderProps) {
             mx: "auto",
             overflow: "hidden",
             alignItems: "stretch",
-            bgColor: "clr_neutral_100_950",
+            bgColor: "clr_neutral_100_950_alpha_20",
             w: { base: "full", sm: "fit-content" },
             border: "1px solid token(colors.clr_neutral_300_700)",
           })}
@@ -147,7 +152,7 @@ export function CHeader(props: CHeaderProps) {
                   key={link._title}
                   href={link.path}
                   className={css({
-                    pointerEvents: "none", // Remove later when menu pages is ready
+                    pointerEvents: "none", // Remove later when menu pages are ready
                     p: 1.5,
                     position: "relative",
                     fontWeight: "medium",
@@ -188,18 +193,20 @@ export function CHeader(props: CHeaderProps) {
                         transform: "rotate(10deg)",
                       })}
                     >
-                      Soon
+                      {props.dict.header["soon-link"]}
                     </span>
                   ) : null}
                 </Link>
               ))}
             </nav>
             <div className={flex({ hideFrom: "sm", flex: 1, justifyContent: "flex-end" })}>
+              <LanguagesMenu displayLanguage={props.displayLanguage} dict={props.dict} />
               <ToggleButton
                 isSelected={isMenuOpen}
                 onChange={setIsMenuOpen}
                 aria-label="Menu"
                 className={vstack({
+                  ml: 6,
                   width: 10,
                   height: 10,
                   borderRadius: "full",
@@ -240,6 +247,7 @@ export function CHeader(props: CHeaderProps) {
                   bgColor: "clr_neutral_300_700",
                 })}
               />
+              <LanguagesMenu displayLanguage={props.displayLanguage} dict={props.dict} />
               <ThemeToggle />
             </div>
           </motion.div>
@@ -272,7 +280,7 @@ export function CHeader(props: CHeaderProps) {
                       key={link._title}
                       href={link.path}
                       className={hstack({
-                        pointerEvents: "none", // Remove later when menu pages is ready
+                        pointerEvents: "none", // Remove later when menu pages are ready
                         p: 1.5,
                         fontSize: "sm",
                         position: "relative",

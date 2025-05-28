@@ -10,9 +10,5 @@
   },
   "toast": {
     "feedback": "Link kopiert!"
-  },
-  "error-fallback": {
-    "title": "Wir haben ein Problem festgestellt",
-    "description": "Leider konnten wir die Daten momentan nicht laden. Dies könnte an einem Serverproblem liegen. Bitte aktualisieren Sie die Seite. Wenn das Problem weiterhin besteht, versuchen Sie es später erneut oder kontaktieren Sie uns."
   }
 }

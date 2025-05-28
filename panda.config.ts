@@ -1,11 +1,8 @@
 import { defineConfig } from "@pandacss/dev";
-import { globalCss } from "@/ui/styles/global";
 
 export default defineConfig({
   // Whether to use CSS reset
   preflight: true,
-
-  globalCss,
 
   // Where to look for your CSS declarations
   include: [".storybook/*.{tsx}/", "./src/**/*.{js,jsx,ts,tsx}"],
@@ -19,11 +16,11 @@ export default defineConfig({
     semanticTokens: {
       colors: {
         clr_white_neutral_900: {
-          // bg
+          // app-bg
           value: { base: "white", _dark: "{colors.neutral.900}" },
         },
         clr_neutral_50_800: {
-          // bg-error
+          // error-fallback-bg
           value: { base: "{colors.neutral.50}", _dark: "{colors.neutral.800}" },
         },
         clr_neutral_950_snow: {
@@ -35,13 +32,20 @@ export default defineConfig({
         clr_coral_flame: {
           value: { base: "#EB5E41", _dark: "#EB5E41" },
         },
-        clr_neutral_100_950: {
+        clr_neutral_100_950_alpha_20: {
+          // header-bg
           value: { base: "rgba(245, 245, 245, 0.2)", _dark: "rgba(10, 10, 10, 0.2)" },
         },
+        clr_neutral_100_800: {
+          // languages-menu-bg
+          value: { base: "{colors.neutral.100}", _dark: "{colors.neutral.800}" },
+        },
         clr_neutral_300_700: {
+          // menu-hover-bg, border-color
           value: { base: "{colors.neutral.300}", _dark: "{colors.neutral.700}" },
         },
         clr_neutral_900_50: {
+          // svg-hover-color, svg-fill-color
           value: { base: "{colors.neutral.900}", _dark: "{colors.neutral.50}" },
         },
         clr_neutral_800_200: {

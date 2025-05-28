@@ -1,17 +1,40 @@
-"use client";
-
+import { basehub } from "basehub";
 import { css } from "@/panda/css";
 import { hstack } from "@/panda/patterns";
-import type { FooterData } from "@/types/basehub";
-import { OuterContainer } from "@/ui/shared/outer-container";
-import { InnerContainer } from "@/ui/shared/inner-container";
+import type { Languages } from "@/types/app";
+import { InnerContainer } from "@/app/_components/inner-container";
+import { OuterContainer } from "@/app/_components/outer-container";
+import { getAppDictionary } from "@/app/_dictionaries/dictionaries";
 
-type CFooterProps = {
-  source: FooterData["layout"]["footer"]["source"];
-  socialLinks: FooterData["layout"]["footer"]["socialLinks"];
+type FooterProps = {
+  displayLanguage: Languages;
 };
 
-export function CFooter(props: CFooterProps) {
+export async function Footer(props: FooterProps) {
+  const dict = await getAppDictionary(props.displayLanguage);
+
+  const data = await basehub().query({
+    layout: {
+      footer: {
+        mask: {
+          url: true,
+          alt: true,
+          width: true,
+          height: true,
+        },
+        socialLinks: {
+          items: {
+            _title: true,
+            label: true,
+            icon: true,
+            href: true,
+          },
+        },
+        source: true,
+      },
+    },
+  });
+
   return (
     <footer>
       <div
@@ -29,7 +52,7 @@ export function CFooter(props: CFooterProps) {
             })}
           >
             <div className={hstack({ gap: { base: 6, lg: 4 } })}>
-              {props.socialLinks.items.map((item) => (
+              {data.layout.footer.socialLinks.items.map((item) => (
                 <a
                   key={item._title}
                   target="_blank"
@@ -51,7 +74,7 @@ export function CFooter(props: CFooterProps) {
               ))}
             </div>
             <a
-              href={props.source}
+              href={data.layout.footer.source}
               target="_blank"
               rel="noopener noreferrer"
               className={css({
@@ -66,7 +89,7 @@ export function CFooter(props: CFooterProps) {
                 },
               })}
             >
-              Source
+              {dict.footer.source}
             </a>
           </InnerContainer>
         </OuterContainer>

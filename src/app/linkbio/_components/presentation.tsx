@@ -3,9 +3,9 @@ import { basehub } from "basehub";
 import { vstack } from "@/panda/patterns";
 import type { PageProps } from "@/types/next";
 import { ensureChosenLanguage } from "@/utils/locale";
-import { ErrorFallback } from "@/ui/shared/error-fallback";
+import { ErrorFallback } from "@/app/_components/error-fallback";
 import { getLocaleLanguage } from "@/app/linkbio/_utils/locale";
-import { getDictionary } from "@/app/linkbio/_dictionaries/dictionaries";
+import { getAppDictionary } from "@/app/_dictionaries/dictionaries";
 
 export function PresentationSkeleton() {
   return (
@@ -100,7 +100,7 @@ export async function Presentation(props: PresentationProps) {
       </div>
     );
   } catch (err) {
-    const dict = await getDictionary(displayLanguage);
+    const dict = await getAppDictionary(displayLanguage);
 
     return (
       <div className={css({ mt: 6 })}>

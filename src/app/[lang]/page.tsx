@@ -1,15 +1,22 @@
-import { Suspense } from "react";
 import { basehub } from "basehub";
 import { css } from "@/panda/css";
-import { MDX } from "@/ui/shared/mdx";
+import { MDX } from "@/app/_components/mdx";
 import { flex } from "@/panda/patterns";
-import { OuterContainer } from "@/ui/shared/outer-container";
-import { InnerContainer } from "@/ui/shared/inner-container";
+import type { PageProps } from "@/types/next";
+import { OuterContainer } from "@/app/_components/outer-container";
+import { InnerContainer } from "@/app/_components/inner-container";
 
-export default async function Home() {
+type HomePageProps = Pick<PageProps<{ lang: "en" | "pt" | "de" }>, "params">;
+
+export default async function HomePage(props: HomePageProps) {
+  const displayLanguage = (await props.params).lang;
+
   const data = await basehub().query({
     home: {
       bioSection: {
+        __args: {
+          variants: { language: displayLanguage },
+        },
         title: true,
         subtitle: true,
         description: {
@@ -29,7 +36,7 @@ export default async function Home() {
         content: { flex: 1 },
       }}
     >
-      <InnerContainer styles={css.raw({ py: { base: 32, sm: 44, "2xl": 56 } })}>
+      <InnerContainer styles={css.raw({ py: { base: 32, sm: 44, "2xl": 52 } })}>
         <h2
           className={css({
             width: "fit-content",
@@ -52,14 +59,13 @@ export default async function Home() {
         >
           {data.home.bioSection.title}
         </h1>
-        <Suspense fallback={<div>Loading...</div>}>
-          <MDX
-            data={data.home.bioSection.description.markdown}
-            wrapper={(props) => (
-              <div className={"prose-ui antialiased " + css({ mt: 4, maxW: "2xl" })}>{props.children}</div>
-            )}
-          />
-        </Suspense>
+        <MDX
+          displayLanguage={displayLanguage}
+          data={data.home.bioSection.description.markdown}
+          wrapper={(props) => (
+            <div className={"prose-ui antialiased " + css({ mt: 4, maxW: "2xl" })}>{props.children}</div>
+          )}
+        />
       </InnerContainer>
     </OuterContainer>
   );
