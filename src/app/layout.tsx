@@ -6,8 +6,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleTagManager } from "@next/third-parties/google";
 import "@/ui/styles/base.css";
 import { css } from "@/panda/css";
-import { themeEffect } from "@/app/(main)/_theme-effect";
-import { CToastProvider } from "@/app/_components/toast-provider.client";
+import { Provider } from "@/app/_components/provider";
+import { themeEffect } from "@/app/_utils/theme-effect";
 
 export const viewport: Viewport = {
   themeColor: [
@@ -74,8 +74,7 @@ export default function AppLayout(props: Readonly<React.PropsWithChildren>) {
       </head>
       <body className={css({ fontFamily: "GeistSans" })}>
         <GoogleTagManager gtmId="GTM-5CX6S9KJ" />
-        <CToastProvider />
-        <main>{props.children}</main>
+        <Provider>{props.children}</Provider>
         <SpeedInsights />
       </body>
     </html>

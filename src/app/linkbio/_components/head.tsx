@@ -1,28 +1,39 @@
 import Image from "next/image";
+import { basehub } from "basehub";
+import type { PropsWithChildren } from "react";
 import { css } from "@/panda/css";
 
-type HeadProps = {
-  name: string;
-  quote: string | null;
-  description: string;
-  avatar: {
-    url: string;
-    alt: string;
-    width: number;
-    height: number;
-  };
-};
+type HeadProps = PropsWithChildren;
 
-export function Head(props: HeadProps) {
+export async function Head(props: HeadProps) {
+  const data = await basehub().query({
+    linkbio: {
+      bioSection: {
+        name: true,
+        avatar: {
+          on_BlockImage: {
+            url: true,
+            alt: true,
+            width: true,
+            height: true,
+          },
+        },
+      },
+    },
+  });
+
   return (
     <div className={css({ mt: 2, textAlign: "center" })}>
       <div className={css({ maxW: 24, mx: "auto" })}>
         <Image
           priority
-          src={props.avatar.url}
-          alt={props.avatar.alt}
-          width={props.avatar.width}
-          height={props.avatar.height}
+          src={data.linkbio.bioSection.avatar.url}
+          // @ts-ignore
+          alt={data.linkbio.bioSection.avatar.alt}
+          // @ts-ignore
+          width={data.linkbio.bioSection.avatar.width}
+          // @ts-ignore
+          height={data.linkbio.bioSection.avatar.height}
           className={css({
             mb: 6,
             mx: "auto",
@@ -34,39 +45,16 @@ export function Head(props: HeadProps) {
       </div>
       <h1
         className={css({
-          color: "#EEE",
           fontSize: "xl",
           fontWeight: "bold",
+          color: "transparent",
+          backgroundClip: "text",
+          backgroundImage: `linear-gradient(to bottom, #F5F5F5, #F5F5F5 40%, #999999)`,
         })}
       >
-        {props.name}
+        {data.linkbio.bioSection.name}
       </h1>
-      <h2
-        className={css({
-          mt: 2,
-          mx: "auto",
-          fontSize: "sm",
-          color: "#fffcf4b0",
-          fontWeight: "semibold",
-          maxWidth: { base: "sm", sm: "md" },
-        })}
-      >
-        {props.description}
-      </h2>
-      {props.quote ? (
-        <span
-          className={css({
-            mx: "auto",
-            fontSize: "sm",
-            display: "block",
-            color: "#fffcf4b0",
-            fontWeight: "medium",
-            maxWidth: { base: "sm", sm: "md" },
-          })}
-        >
-          {props.quote}
-        </span>
-      ) : null}
+      {props.children}
     </div>
   );
 }
