@@ -308,7 +308,7 @@ export function CHeader(props: CHeaderProps) {
                             transform: "rotate(10deg)",
                           })}
                         >
-                          Soon
+                          {props.dict.header["soon-link"]}
                         </span>
                       ) : null}
                     </Link>
