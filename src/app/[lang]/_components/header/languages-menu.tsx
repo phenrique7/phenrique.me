@@ -3,11 +3,11 @@
 import { Button, Menu, MenuItem, MenuTrigger, Popover } from "react-aria-components";
 import { css } from "@/panda/css";
 import type { Languages } from "@/types/app";
+import { flex, hstack } from "@/panda/patterns";
 import { CheckIcon } from "@/app/_components/close-icon";
 import { languageItems } from "@/app/_content/language-items";
-import { center, flex, hstack } from "@/panda/patterns";
-import { LanguagesIcon } from "@/app/_components/languages-icon";
 import { getAppDictionary } from "@/app/_dictionaries/dictionaries";
+import { LanguageBadge } from "@/app/[lang]/_components/header/language-badge";
 
 type LanguagesMenuProps = {
   displayLanguage: Languages;
@@ -27,20 +27,7 @@ export function LanguagesMenu(props: LanguagesMenuProps) {
           justifyContent: "center",
         })}
       >
-        <span
-          className={center({
-            w: 6,
-            h: 6,
-            position: "relative",
-            color: "clr_neutral_800_200",
-            "& svg": { transform: "scale(0.85)" },
-          })}
-        >
-          <LanguagesIcon />
-          <span className={css({ display: "block", position: "absolute", top: -0.5, w: 4, right: -2 })}>
-            {languageItems.find((language) => language.id === props.displayLanguage)?.icon ?? null}
-          </span>
-        </span>
+        <LanguageBadge displayLanguage={props.displayLanguage} />
       </Button>
       <Popover placement="bottom">
         <Menu

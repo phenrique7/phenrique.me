@@ -56,6 +56,10 @@ export default defineConfig({
           // text-secondary
           value: { base: "{colors.neutral.700}", _dark: "{colors.neutral.400}" },
         },
+        clr_neutral_400_500: {
+          // text-secondary
+          value: { base: "{colors.neutral.400}", _dark: "{colors.neutral.500}" },
+        },
       },
     },
   },

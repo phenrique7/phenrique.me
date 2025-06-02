@@ -1,8 +1,15 @@
 import { css } from "@/panda/css";
 
-export function USAIcon() {
+type USAIconProps = {
+  width?: number;
+  height?: number;
+};
+
+export function USAIcon(props: USAIconProps) {
+  const { width = 24, height = 18 } = props;
+
   return (
-    <svg viewBox="0 0 640 480" className={css({ borderRadius: "xs", h: "fit-content" })}>
+    <svg viewBox="0 0 640 480" className={css({ borderRadius: "xs", h: "fit-content" })} width={width} height={height}>
       <path fill="#bd3d44" d="M0 0h640v480H0" />
       <path stroke="#fff" strokeWidth="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640" />
       <path fill="#192f5d" d="M0 0h364.8v258.5H0" />
