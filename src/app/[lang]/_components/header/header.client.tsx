@@ -2,17 +2,19 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState, useRef } from "react";
-import { ToggleButton } from "react-aria-components";
 import { AnimatePresence, motion } from "motion/react";
+import { Fragment, useEffect, useState, useRef } from "react";
+import { Separator, ToggleButton } from "react-aria-components";
 import { css } from "@/panda/css";
 import type { Languages } from "@/types/app";
 import type { MediaData } from "@/types/basehub";
 import { flex, hstack, vstack } from "@/panda/patterns";
 import { useMediaQuery } from "@/app/_hooks/use-media-query";
+import { languageItems } from "@/app/_content/language-items";
 import { getAppDictionary } from "@/app/_dictionaries/dictionaries";
 import { ThemeToggle } from "@/app/[lang]/_components/header/theme-toggle";
 import { LanguagesMenu } from "@/app/[lang]/_components/header/languages-menu";
+import { LanguageBadge } from "@/app/[lang]/_components/header/language-badge";
 
 type NavLink = {
   _title: string;
@@ -200,7 +202,6 @@ export function CHeader(props: CHeaderProps) {
               ))}
             </nav>
             <div className={flex({ hideFrom: "sm", flex: 1, justifyContent: "flex-end" })}>
-              <LanguagesMenu displayLanguage={props.displayLanguage} dict={props.dict} />
               <ToggleButton
                 isSelected={isMenuOpen}
                 onChange={setIsMenuOpen}
@@ -319,8 +320,34 @@ export function CHeader(props: CHeaderProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.15 }}
-                  className={flex({ justifyContent: "center", pt: 5 })}
+                  className={flex({ alignItems: "center", justifyContent: "space-between", pt: 5, px: 5 })}
                 >
+                  <div className={hstack({ gap: 5 })}>
+                    <LanguageBadge displayLanguage={props.displayLanguage} />
+                    <div className={hstack({ gap: 2 })}>
+                      {languageItems.map((language, index) => (
+                        <Fragment key={language.id}>
+                          {index !== 0 ? (
+                            <Separator
+                              orientation="vertical"
+                              className={css({ height: 5, width: "1px", bgColor: "clr_neutral_300_700" })}
+                            />
+                          ) : null}
+                          <Link
+                            key={language.id}
+                            href={`/${language.id}`}
+                            className={css({
+                              fontWeight: "semibold",
+                              color:
+                                props.displayLanguage === language.id ? "clr_neutral_900_50" : "clr_neutral_400_500",
+                            })}
+                          >
+                            {language.id}
+                          </Link>
+                        </Fragment>
+                      ))}
+                    </div>
+                  </div>
                   <ThemeToggle />
                 </motion.div>
               </motion.div>
