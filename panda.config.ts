@@ -5,7 +5,7 @@ export default defineConfig({
   preflight: true,
 
   // Where to look for your CSS declarations
-  include: [".storybook/*.{tsx}/", "./src/**/*.{js,jsx,ts,tsx}"],
+  include: ["./src/**/*.{js,jsx,ts,tsx}"],
 
   // Files to exclude
   exclude: [],
@@ -55,6 +55,10 @@ export default defineConfig({
         clr_neutral_700_400: {
           // text-secondary
           value: { base: "{colors.neutral.700}", _dark: "{colors.neutral.400}" },
+        },
+        clr_neutral_400_500: {
+          // text-secondary
+          value: { base: "{colors.neutral.400}", _dark: "{colors.neutral.500}" },
         },
       },
     },
