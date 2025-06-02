@@ -1,5 +1,6 @@
 "use client";
 
+import { cloneElement } from "react";
 import { Button, Menu, MenuItem, MenuTrigger, Popover } from "react-aria-components";
 import { css } from "@/panda/css";
 import type { Languages } from "@/types/app";
@@ -27,18 +28,14 @@ export function LanguagesMenu(props: LanguagesMenuProps) {
           justifyContent: "center",
         })}
       >
-        <span
-          className={center({
-            w: 6,
-            h: 6,
-            position: "relative",
-            color: "clr_neutral_800_200",
-            "& svg": { transform: "scale(0.85)" },
-          })}
-        >
+        <span className={center({ w: 5, h: 5, position: "relative", color: "clr_neutral_800_200" })}>
           <LanguagesIcon />
-          <span className={css({ display: "block", position: "absolute", top: -0.5, w: 4, right: -2 })}>
-            {languageItems.find((language) => language.id === props.displayLanguage)?.icon ?? null}
+          <span className={css({ display: "block", position: "absolute", top: -1.5, w: 4, right: -2.5 })}>
+            {(() => {
+              const language = languageItems.find((language) => language.id === props.displayLanguage);
+              if (language) return cloneElement(language.icon, { width: 14, height: 10.5 });
+              return null;
+            })()}
           </span>
         </span>
       </Button>

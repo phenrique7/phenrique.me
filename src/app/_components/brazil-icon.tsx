@@ -1,8 +1,15 @@
 import { css } from "@/panda/css";
 
-export function BrazilIcon() {
+type BrazilIconProps = {
+  width?: number;
+  height?: number;
+};
+
+export function BrazilIcon(props: BrazilIconProps) {
+  const { width = 24, height = 18 } = props;
+
   return (
-    <svg viewBox="0 0 640 480" className={css({ borderRadius: "xs", h: "fit-content" })}>
+    <svg viewBox="0 0 640 480" className={css({ borderRadius: "xs", h: "fit-content" })} width={width} height={height}>
       <g strokeWidth="1pt">
         <path fill="#229e45" fillRule="evenodd" d="M0 0h640v480H0z" />
         <path fill="#f8e509" fillRule="evenodd" d="m321.4 436 301.5-195.7L319.6 44 17.1 240.7z" />
