@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { Fragment, useEffect, useState, useRef } from "react";
 import { Separator, ToggleButton } from "react-aria-components";
@@ -35,6 +36,7 @@ type CHeaderProps = {
 };
 
 export function CHeader(props: CHeaderProps) {
+  const pathname = usePathname();
   const lastScrollY = useRef(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -152,9 +154,9 @@ export function CHeader(props: CHeaderProps) {
               {props.navLinks.items.map((link, index) => (
                 <Link
                   key={link._title}
-                  href={link.path}
+                  href={pathname + link.path}
                   className={css({
-                    pointerEvents: "none", // Remove later when menu pages are ready
+                    pointerEvents: link.path !== "/reading" ? "none" : "default", // Remove later when menu pages are ready
                     p: 1.5,
                     position: "relative",
                     fontWeight: "medium",
@@ -164,12 +166,12 @@ export function CHeader(props: CHeaderProps) {
                   })}
                 >
                   {link.label}
-                  {index === 0 ? (
+                  {pathname.includes("reading") && index === 3 ? (
                     <span
                       className={css({
                         left: 0,
                         right: 0,
-                        height: "1px",
+                        height: "2px",
                         bottom: "-11px",
                         bgGradient: "to-r",
                         position: "absolute",
@@ -179,7 +181,7 @@ export function CHeader(props: CHeaderProps) {
                       })}
                     />
                   ) : null}
-                  {link.path !== "/" ? (
+                  {link.path !== "/" && link.path !== "/reading" ? (
                     <span
                       className={css({
                         position: "absolute",
@@ -281,7 +283,7 @@ export function CHeader(props: CHeaderProps) {
                       key={link._title}
                       href={link.path}
                       className={hstack({
-                        pointerEvents: "none", // Remove later when menu pages are ready
+                        pointerEvents: link.path !== "/reading" ? "none" : "default", // Remove later when menu pages are ready
                         p: 1.5,
                         fontSize: "sm",
                         position: "relative",
@@ -293,7 +295,7 @@ export function CHeader(props: CHeaderProps) {
                     >
                       <span dangerouslySetInnerHTML={{ __html: link.icon! }} />
                       {link.label}
-                      {link.path !== "/" ? (
+                      {link.path !== "/" && link.path !== "/reading" ? (
                         <span
                           className={css({
                             position: "absolute",
@@ -320,7 +322,12 @@ export function CHeader(props: CHeaderProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.15 }}
-                  className={flex({ alignItems: "center", justifyContent: "space-between", pt: 5, px: 5 })}
+                  className={flex({
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    pt: 5,
+                    px: 5,
+                  })}
                 >
                   <div className={hstack({ gap: 5 })}>
                     <LanguageBadge displayLanguage={props.displayLanguage} />
@@ -330,16 +337,22 @@ export function CHeader(props: CHeaderProps) {
                           {index !== 0 ? (
                             <Separator
                               orientation="vertical"
-                              className={css({ height: 5, width: "1px", bgColor: "clr_neutral_300_700" })}
+                              className={css({
+                                height: 5,
+                                width: "1px",
+                                bgColor: "clr_neutral_300_700",
+                              })}
                             />
                           ) : null}
                           <Link
                             key={language.id}
-                            href={`/${language.id}`}
+                            href={pathname.replace(/^(\/(en|pt|de))/, `/${language.id}`)}
                             className={css({
                               fontWeight: "semibold",
                               color:
-                                props.displayLanguage === language.id ? "clr_neutral_900_50" : "clr_neutral_400_500",
+                                props.displayLanguage === language.id
+                                  ? "clr_neutral_900_50"
+                                  : "clr_neutral_400_500",
                             })}
                           >
                             {language.id}
