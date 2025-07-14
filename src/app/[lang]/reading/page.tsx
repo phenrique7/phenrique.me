@@ -1,15 +1,21 @@
 import { css } from "@/panda/css";
+import type { PageProps } from "@/types/next";
 import { flex, grid, vstack } from "@/panda/patterns";
 import { OuterContainer } from "@/app/_components/outer-container";
 import { InnerContainer } from "@/app/_components/inner-container";
 import { BookItem } from "@/app/[lang]/reading/_components/book-item";
 import { getFinishedReads } from "@/app/[lang]/reading/_api/get-finished-reads";
 import { getCurrentlyReads } from "@/app/[lang]/reading/_api/get-currently-reads";
+import { getAppDictionary } from "@/app/[lang]/reading/_dictionaries/dictionaries";
 import { BookPreviewCard } from "@/app/[lang]/reading/_components/book-preview-card";
 
-export default async function ReadingPage() {
+type ReadingPageProps = Pick<PageProps<{ lang: "en" | "pt" | "de" }>, "params">;
+
+export default async function ReadingPage(props: ReadingPageProps) {
+  const displayLanguage = (await props.params).lang;
   const currentlyReads = await getCurrentlyReads();
   const allBooks = await getFinishedReads();
+  const dict = await getAppDictionary(displayLanguage);
 
   return (
     <OuterContainer
@@ -30,12 +36,12 @@ export default async function ReadingPage() {
               color: "clr_neutral_900_50",
             })}
           >
-            Reading
+            {dict["page-title"]}
           </h1>
           <h2
             className={css({ fontSize: "sm", fontWeight: "medium", color: "clr_neutral_700_400" })}
           >
-            Currently reading
+            {dict["currently-reads"]["section-title"]}
           </h2>
         </div>
         {currentlyReads.length === 0 ? (
@@ -72,7 +78,7 @@ export default async function ReadingPage() {
                 fontSize: "sm",
               })}
             >
-              No reads
+              {dict["currently-reads"]["no-reads"].title}
             </h3>
             <p
               className={css({
@@ -84,7 +90,7 @@ export default async function ReadingPage() {
                 color: "clr_neutral_700_400",
               })}
             >
-              Paulo Henrique is not reading any literature at the moment.
+              {dict["currently-reads"]["no-reads"].description}
             </p>
           </div>
         ) : (
@@ -131,7 +137,7 @@ export default async function ReadingPage() {
               },
             })}
           >
-            More reads
+            {dict["more-reads"]}
           </h2>
           <ul className={vstack({ mt: 8, mb: 20, alignItems: "stretch", gap: { base: 6, lg: 1 } })}>
             {allBooks.map((book) => (
