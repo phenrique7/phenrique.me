@@ -8,6 +8,7 @@ import { CheckIcon } from "@/app/_components/close-icon";
 import { languageItems } from "@/app/_content/language-items";
 import { getAppDictionary } from "@/app/_dictionaries/dictionaries";
 import { LanguageBadge } from "@/app/[lang]/_components/header/language-badge";
+import { usePathname } from "next/navigation";
 
 type LanguagesMenuProps = {
   displayLanguage: Languages;
@@ -15,6 +16,10 @@ type LanguagesMenuProps = {
 };
 
 export function LanguagesMenu(props: LanguagesMenuProps) {
+  const pathname = usePathname();
+
+  console.log(pathname);
+
   return (
     <MenuTrigger>
       <Button
@@ -44,7 +49,7 @@ export function LanguagesMenu(props: LanguagesMenuProps) {
           {languageItems.map((language) => (
             <MenuItem
               key={language.id}
-              href={`/${language.id}`}
+              href={pathname.replace(/^(\/(en|pt|de))/, `/${language.id}`)}
               className={flex({
                 p: 2,
                 borderRadius: "md",
@@ -57,7 +62,9 @@ export function LanguagesMenu(props: LanguagesMenuProps) {
             >
               <div className={hstack()}>
                 <div className={flex({ w: 6, h: 6, alignItems: "center" })}>{language.icon}</div>
-                <span className={css({ fontSize: "sm", fontWeight: "medium" })}>{language.name}</span>
+                <span className={css({ fontSize: "sm", fontWeight: "medium" })}>
+                  {language.name}
+                </span>
               </div>
               {language.id === props.displayLanguage ? <CheckIcon /> : null}
             </MenuItem>

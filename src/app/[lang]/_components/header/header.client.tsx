@@ -322,7 +322,12 @@ export function CHeader(props: CHeaderProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.15 }}
-                  className={flex({ alignItems: "center", justifyContent: "space-between", pt: 5, px: 5 })}
+                  className={flex({
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    pt: 5,
+                    px: 5,
+                  })}
                 >
                   <div className={hstack({ gap: 5 })}>
                     <LanguageBadge displayLanguage={props.displayLanguage} />
@@ -332,16 +337,22 @@ export function CHeader(props: CHeaderProps) {
                           {index !== 0 ? (
                             <Separator
                               orientation="vertical"
-                              className={css({ height: 5, width: "1px", bgColor: "clr_neutral_300_700" })}
+                              className={css({
+                                height: 5,
+                                width: "1px",
+                                bgColor: "clr_neutral_300_700",
+                              })}
                             />
                           ) : null}
                           <Link
                             key={language.id}
-                            href={`/${language.id}`}
+                            href={pathname.replace(/^(\/(en|pt|de))/, `/${language.id}`)}
                             className={css({
                               fontWeight: "semibold",
                               color:
-                                props.displayLanguage === language.id ? "clr_neutral_900_50" : "clr_neutral_400_500",
+                                props.displayLanguage === language.id
+                                  ? "clr_neutral_900_50"
+                                  : "clr_neutral_400_500",
                             })}
                           >
                             {language.id}
