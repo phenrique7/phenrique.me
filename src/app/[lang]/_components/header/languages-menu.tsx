@@ -18,8 +18,6 @@ type LanguagesMenuProps = {
 export function LanguagesMenu(props: LanguagesMenuProps) {
   const pathname = usePathname();
 
-  console.log(pathname);
-
   return (
     <MenuTrigger>
       <Button

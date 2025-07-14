@@ -120,7 +120,7 @@ export function CHeader(props: CHeaderProps) {
           >
             <div className={hstack({ gap: 6 })}>
               <Link
-                href="/"
+                href={`/${props.displayLanguage}`}
                 className={css({
                   h: 10,
                   w: 10,
@@ -154,7 +154,7 @@ export function CHeader(props: CHeaderProps) {
               {props.navLinks.items.map((link, index) => (
                 <Link
                   key={link._title}
-                  href={pathname + link.path}
+                  href={`/${props.displayLanguage}` + link.path}
                   className={css({
                     pointerEvents: link.path !== "/reading" ? "none" : "default", // Remove later when menu pages are ready
                     p: 1.5,
@@ -281,7 +281,7 @@ export function CHeader(props: CHeaderProps) {
                   {props.navLinks.items.map((link) => (
                     <Link
                       key={link._title}
-                      href={link.path}
+                      href={`/${props.displayLanguage}` + link.path}
                       className={hstack({
                         pointerEvents: link.path !== "/reading" ? "none" : "default", // Remove later when menu pages are ready
                         p: 1.5,
