@@ -45,7 +45,7 @@ export default defineConfig({
           value: { base: "{colors.neutral.300}", _dark: "{colors.neutral.700}" },
         },
         clr_neutral_900_50: {
-          // svg-hover-color, svg-fill-color
+          // text-hiper-primary, svg-hover-color, svg-fill-color
           value: { base: "{colors.neutral.900}", _dark: "{colors.neutral.50}" },
         },
         clr_neutral_800_200: {
@@ -57,7 +57,7 @@ export default defineConfig({
           value: { base: "{colors.neutral.700}", _dark: "{colors.neutral.400}" },
         },
         clr_neutral_400_500: {
-          // text-secondary
+          // text-forty
           value: { base: "{colors.neutral.400}", _dark: "{colors.neutral.500}" },
         },
       },

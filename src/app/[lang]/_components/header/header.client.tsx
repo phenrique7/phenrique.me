@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { Fragment, useEffect, useState, useRef } from "react";
 import { Separator, ToggleButton } from "react-aria-components";
@@ -35,6 +36,7 @@ type CHeaderProps = {
 };
 
 export function CHeader(props: CHeaderProps) {
+  const pathname = usePathname();
   const lastScrollY = useRef(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -152,9 +154,9 @@ export function CHeader(props: CHeaderProps) {
               {props.navLinks.items.map((link, index) => (
                 <Link
                   key={link._title}
-                  href={link.path}
+                  href={pathname + link.path}
                   className={css({
-                    pointerEvents: "none", // Remove later when menu pages are ready
+                    pointerEvents: link.path !== "/reading" ? "none" : "default", // Remove later when menu pages are ready
                     p: 1.5,
                     position: "relative",
                     fontWeight: "medium",
@@ -164,13 +166,13 @@ export function CHeader(props: CHeaderProps) {
                   })}
                 >
                   {link.label}
-                  {index === 0 ? (
+                  {index === 3 ? (
                     <span
                       className={css({
                         left: 0,
                         right: 0,
                         height: "1px",
-                        bottom: "-11px",
+                        bottom: "-10px",
                         bgGradient: "to-r",
                         position: "absolute",
                         gradientFrom: "red.400/0",
@@ -179,7 +181,7 @@ export function CHeader(props: CHeaderProps) {
                       })}
                     />
                   ) : null}
-                  {link.path !== "/" ? (
+                  {link.path !== "/" && link.path !== "/reading" ? (
                     <span
                       className={css({
                         position: "absolute",
@@ -281,7 +283,7 @@ export function CHeader(props: CHeaderProps) {
                       key={link._title}
                       href={link.path}
                       className={hstack({
-                        pointerEvents: "none", // Remove later when menu pages are ready
+                        pointerEvents: link.path !== "/reading" ? "none" : "default", // Remove later when menu pages are ready
                         p: 1.5,
                         fontSize: "sm",
                         position: "relative",
@@ -293,7 +295,7 @@ export function CHeader(props: CHeaderProps) {
                     >
                       <span dangerouslySetInnerHTML={{ __html: link.icon! }} />
                       {link.label}
-                      {link.path !== "/" ? (
+                      {link.path !== "/" && link.path !== "/reading" ? (
                         <span
                           className={css({
                             position: "absolute",
