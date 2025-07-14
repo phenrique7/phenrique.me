@@ -166,13 +166,13 @@ export function CHeader(props: CHeaderProps) {
                   })}
                 >
                   {link.label}
-                  {index === 3 ? (
+                  {pathname.includes("reading") && index === 3 ? (
                     <span
                       className={css({
                         left: 0,
                         right: 0,
-                        height: "1px",
-                        bottom: "-10px",
+                        height: "2px",
+                        bottom: "-11px",
                         bgGradient: "to-r",
                         position: "absolute",
                         gradientFrom: "red.400/0",
