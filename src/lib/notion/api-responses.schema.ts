@@ -1,6 +1,6 @@
 import * as z from "zod/v4";
 
-export const readingStatusBooksResponseSchema = z.object({
+export const booksResponseSchema = z.object({
   results: z.array(
     z.object({
       id: z.string(),
@@ -11,6 +11,16 @@ export const readingStatusBooksResponseSchema = z.object({
               plain_text: z.string(),
             }),
           ),
+        }),
+        Status: z.object({
+          status: z.object({
+            name: z
+              .string()
+              .pipe(z.transform((val) => val.toLowerCase().replace(" ", "-")))
+              .pipe(
+                z.union([z.literal("not-started"), z.literal("reading"), z.literal("completed")]),
+              ),
+          }),
         }),
         Cover: z.object({
           files: z.array(
@@ -39,6 +49,13 @@ export const readingStatusBooksResponseSchema = z.object({
           formula: z.object({
             number: z.number().nullable(),
           }),
+        }),
+        Rating: z.object({
+          select: z
+            .object({
+              name: z.string(),
+            })
+            .nullable(),
         }),
       }),
     }),
@@ -69,6 +86,6 @@ export const bookGenreResponseSchema = z.object({
   }),
 });
 
-export type ReadingStatusBookResponse = z.infer<typeof readingStatusBooksResponseSchema>;
+export type BooksResponse = z.infer<typeof booksResponseSchema>;
 export type BookAuthorResponse = z.infer<typeof bookAuthorResponseSchema>;
 export type BookGenreResponse = z.infer<typeof bookGenreResponseSchema>;

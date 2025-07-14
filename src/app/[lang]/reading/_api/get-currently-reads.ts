@@ -11,14 +11,15 @@ type GetCurrentlyReadsResponse = Array<{
 
 export async function getCurrentlyReads(): Promise<GetCurrentlyReadsResponse> {
   const notion = new NotionHQ();
+  const currentlyReads: GetCurrentlyReadsResponse = [];
 
   const readingStatusBooks = await notion.getReadingStatusBooks();
 
-  const currentlyReads: GetCurrentlyReadsResponse = [];
-
   for (const book of readingStatusBooks.results) {
     const authorsPageIds = book.properties.Author.relation;
-    const authors = await Promise.all(authorsPageIds.map((author) => notion.getBookAuthor(author.id)));
+    const authors = await Promise.all(
+      authorsPageIds.map((author) => notion.getBookAuthor(author.id)),
+    );
 
     const genresPageIds = book.properties.Genre.relation;
     const genres = await Promise.all(genresPageIds.map((genre) => notion.getBookGenre(genre.id)));
