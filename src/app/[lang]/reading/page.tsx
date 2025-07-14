@@ -2,15 +2,14 @@ import { css } from "@/panda/css";
 import { flex, grid, vstack } from "@/panda/patterns";
 import { OuterContainer } from "@/app/_components/outer-container";
 import { InnerContainer } from "@/app/_components/inner-container";
+import { BookItem } from "@/app/[lang]/reading/_components/book-item";
+import { getFinishedReads } from "@/app/[lang]/reading/_api/get-finished-reads";
 import { getCurrentlyReads } from "@/app/[lang]/reading/_api/get-currently-reads";
 import { BookPreviewCard } from "@/app/[lang]/reading/_components/book-preview-card";
 
-// import bookData from "@/app/[lang]/reading/book-data.json";
-
 export default async function ReadingPage() {
   const currentlyReads = await getCurrentlyReads();
-
-  console.log("readingBooks", currentlyReads);
+  const allBooks = await getFinishedReads();
 
   return (
     <OuterContainer
@@ -24,8 +23,18 @@ export default async function ReadingPage() {
     >
       <InnerContainer>
         <div className={vstack({ mt: 32, alignItems: "stretch", gap: 8 })}>
-          <h1 className={css({ fontSize: "2xl", fontWeight: "semibold", color: "clr_neutral_900_50" })}>Reading</h1>
-          <h2 className={css({ fontSize: "sm", fontWeight: "medium", color: "clr_neutral_700_400" })}>
+          <h1
+            className={css({
+              fontSize: "2xl",
+              fontWeight: "semibold",
+              color: "clr_neutral_900_50",
+            })}
+          >
+            Reading
+          </h1>
+          <h2
+            className={css({ fontSize: "sm", fontWeight: "medium", color: "clr_neutral_700_400" })}
+          >
             Currently reading
           </h2>
         </div>
@@ -33,8 +42,8 @@ export default async function ReadingPage() {
           <div className={css({ mt: 12, color: "clr_neutral_700_400", textAlign: "center" })}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
+              width="32"
+              height="32"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -55,7 +64,14 @@ export default async function ReadingPage() {
               <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H8" />
               <path d="M8 22H6.5a1 1 0 0 1 0-5H8" />
             </svg>
-            <h3 className={css({ mt: 3.5, fontWeight: "semibold", color: "clr_neutral_800_200", fontSize: "sm" })}>
+            <h3
+              className={css({
+                mt: 3.5,
+                fontWeight: "semibold",
+                color: "clr_neutral_800_200",
+                fontSize: "sm",
+              })}
+            >
               No reads
             </h3>
             <p
@@ -76,7 +92,10 @@ export default async function ReadingPage() {
             className={grid({
               mt: 6,
               gap: 8,
-              gridTemplateColumns: { base: "repeat(1, minmax(0, 1fr))", md: "repeat(2, minmax(0, 1fr))" },
+              gridTemplateColumns: {
+                base: "repeat(1, minmax(0, 1fr))",
+                md: "repeat(2, minmax(0, 1fr))",
+              },
             })}
           >
             {currentlyReads.map((book) => (
@@ -114,6 +133,16 @@ export default async function ReadingPage() {
           >
             More reads
           </h2>
+          <ul className={vstack({ mt: 8, mb: 20, alignItems: "stretch", gap: { base: 6, lg: 1 } })}>
+            {allBooks.map((book) => (
+              <BookItem
+                key={book.id}
+                title={book.title}
+                rating={book.rating}
+                authors={book.authors}
+              />
+            ))}
+          </ul>
         </div>
       </InnerContainer>
     </OuterContainer>

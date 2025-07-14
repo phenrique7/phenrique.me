@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { css } from "@/panda/css";
 import { flex, hstack, vstack } from "@/panda/patterns";
+import { BookGenreBadge } from "@/app/[lang]/reading/_components/book-genre-badge";
 
 type BookPreviewCardProps = {
   title: string;
@@ -25,10 +26,10 @@ export function BookPreviewCard(props: BookPreviewCardProps) {
     >
       <Image
         priority
-        alt="Book"
         width={539}
         height={784}
         src={props.cover}
+        alt={props.title}
         className={css({ borderTopLeftRadius: "xl", borderBottomLeftRadius: "xl", maxWidth: 32, boxShadow: "sm" })}
       />
       <div className={flex({ flexDirection: "column", justifyContent: "space-between", px: 5, py: 4, flex: 1 })}>
@@ -55,31 +56,13 @@ export function BookPreviewCard(props: BookPreviewCardProps) {
               color: "clr_neutral_700_400",
             })}
           >
-            by {props.authors.length === 0 ? "Unknown" : props.authors.join(", ")}
+            {props.authors.length === 0 ? "Unknown" : props.authors.join(", ")}
           </h4>
         </div>
         <div className={vstack({ alignItems: "stretch" })}>
           <div className={hstack({ gap: 2 })}>
             {props.genres.map((genre) => (
-              <span
-                key={genre}
-                className={css({
-                  px: 2,
-                  py: 1,
-                  fontSize: "xs",
-                  w: "fit-content",
-                  borderRadius: "md",
-                  fontWeight: "medium",
-                  alignItems: "center",
-                  display: "inline-flex",
-                  bg: "clr_neutral_100_800",
-                  color: "clr_neutral_800_200",
-                  ring: "1px solid",
-                  ringColor: "clr_neutral_300_700",
-                })}
-              >
-                {genre}
-              </span>
+              <BookGenreBadge key={genre}>{genre}</BookGenreBadge>
             ))}
           </div>
           <div className={flex({ gap: 2, alignItems: "center" })}>
