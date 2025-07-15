@@ -16,12 +16,6 @@ export async function Footer(props: FooterProps) {
   const data = await basehub().query({
     layout: {
       footer: {
-        mask: {
-          url: true,
-          alt: true,
-          width: true,
-          height: true,
-        },
         socialLinks: {
           items: {
             _title: true,

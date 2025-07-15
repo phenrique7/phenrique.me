@@ -1,14 +1,14 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { Button, Menu, MenuItem, MenuTrigger, Popover } from "react-aria-components";
 import { css } from "@/panda/css";
 import type { Languages } from "@/types/app";
-import { flex, hstack } from "@/panda/patterns";
+import { center, flex } from "@/panda/patterns";
 import { CheckIcon } from "@/app/_components/close-icon";
 import { languageItems } from "@/app/_content/language-items";
+import { LanguagesIcon } from "@/app/_components/languages-icon";
 import { getAppDictionary } from "@/app/_dictionaries/dictionaries";
-import { LanguageBadge } from "@/app/[lang]/_components/header/language-badge";
-import { usePathname } from "next/navigation";
 
 type LanguagesMenuProps = {
   displayLanguage: Languages;
@@ -30,7 +30,9 @@ export function LanguagesMenu(props: LanguagesMenuProps) {
           justifyContent: "center",
         })}
       >
-        <LanguageBadge displayLanguage={props.displayLanguage} />
+        <span className={center({ w: 5, h: 5, color: "clr_neutral_800_200" })}>
+          <LanguagesIcon />
+        </span>
       </Button>
       <Popover placement="bottom">
         <Menu
@@ -58,12 +60,7 @@ export function LanguagesMenu(props: LanguagesMenuProps) {
                 _hover: { bg: "clr_neutral_300_700", cursor: "default" },
               })}
             >
-              <div className={hstack()}>
-                <div className={flex({ w: 6, h: 6, alignItems: "center" })}>{language.icon}</div>
-                <span className={css({ fontSize: "sm", fontWeight: "medium" })}>
-                  {language.name}
-                </span>
-              </div>
+              <span className={css({ fontSize: "sm", fontWeight: "medium" })}>{language.name}</span>
               {language.id === props.displayLanguage ? <CheckIcon /> : null}
             </MenuItem>
           ))}

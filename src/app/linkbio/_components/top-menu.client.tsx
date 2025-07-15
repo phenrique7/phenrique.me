@@ -2,7 +2,15 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Button, Header, Menu, MenuItem, MenuSection, MenuTrigger, Popover } from "react-aria-components";
+import {
+  Menu,
+  Button,
+  Header,
+  Popover,
+  MenuItem,
+  MenuSection,
+  MenuTrigger,
+} from "react-aria-components";
 import { css } from "@/panda/css";
 import type { Languages } from "@/types/app";
 import { flex, hstack } from "@/panda/patterns";
@@ -15,7 +23,8 @@ const shareLinks = [
   {
     id: "x-twitter",
     name: "X (Twitter)",
-    link: (text: string) => `https://x.com/intent/tweet?text=${text}! - https://phenrique.me/linkbio`,
+    link: (text: string) =>
+      `https://x.com/intent/tweet?text=${text}! - https://phenrique.me/linkbio`,
     icon: (
       <svg viewBox="0 0 48 48">
         <circle cx="50%" cy="50%" r="50%" fill="black"></circle>
@@ -43,7 +52,8 @@ const shareLinks = [
   {
     id: "linkedin",
     name: "LinkedIn",
-    link: (_: string) => "https://www.linkedin.com/sharing/share-offsite/?url=https://phenrique.me/linkbio",
+    link: (_: string) =>
+      "https://www.linkedin.com/sharing/share-offsite/?url=https://phenrique.me/linkbio",
     icon: (
       <svg viewBox="0 0 24 24">
         <circle cx="50%" cy="50%" r="50%" fill="#0A66C2"></circle>
@@ -57,9 +67,16 @@ const shareLinks = [
   {
     id: "email",
     name: "E-mail",
-    link: (text: string) => `mailto:?subject=${text}! &body= ${text} - https://phenrique.me/linkbio`,
+    link: (text: string) =>
+      `mailto:?subject=${text}! &body= ${text} - https://phenrique.me/linkbio`,
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <circle cx="12" cy="12" r="12" fill="#60696c" />
         <g transform="translate(4.5 4.5)">
           <path
@@ -173,10 +190,7 @@ export function CTopMenu(props: CTopMenuProps) {
                     _hover: { bg: "neutral.700", cursor: "default" },
                   })}
                 >
-                  <div className={hstack()}>
-                    <div className={flex({ w: 6, h: 6, alignItems: "center" })}>{language.icon}</div>
-                    <span>{language.name}</span>
-                  </div>
+                  <span>{language.name}</span>
                   {language.id === props.displayLanguage ? <CheckIcon /> : null}
                 </MenuItem>
               ))}
@@ -204,7 +218,13 @@ export function CTopMenu(props: CTopMenuProps) {
                 })}
               >
                 <div className={css({ w: 6, h: 6 })}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <circle cx="12" cy="12" r="12" fill="#e0e2d9" />
                     <g transform="translate(4.5 4.5)">
                       <path
