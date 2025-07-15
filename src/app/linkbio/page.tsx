@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { basehub } from "basehub";
 import type { Metadata } from "next";
 import { css } from "@/panda/css";
@@ -7,12 +6,12 @@ import { Head } from "@/app/linkbio/_components/head";
 import { ensureChosenLanguage } from "@/utils/locale";
 import { getLocaleLanguage } from "@/app/linkbio/_utils/locale";
 import { SocialLinks } from "@/app/linkbio/_components/social-links";
-import { TopMenuSkeleton, TopMenu } from "@/app/linkbio/_components/top-menu";
-import { Presentation, PresentationSkeleton } from "@/app/linkbio/_components/presentation";
+import { TopMenu } from "@/app/linkbio/_components/top-menu";
+import { Presentation } from "@/app/linkbio/_components/presentation";
 
-export const experimental_ppr = true;
-
-export async function generateMetadata({ searchParams }: Pick<PageProps, "searchParams">): Promise<Metadata> {
+export async function generateMetadata({
+  searchParams,
+}: Pick<PageProps, "searchParams">): Promise<Metadata> {
   const chosenLanguage = ((await searchParams) as { lang: string } | undefined)?.lang;
 
   let displayLanguage = ensureChosenLanguage(chosenLanguage);
@@ -107,13 +106,9 @@ export default function LinkbioPage(props: PageProps) {
           position: "relative",
         })}
       >
-        <Suspense fallback={<TopMenuSkeleton />}>
-          <TopMenu searchParams={props.searchParams} />
-        </Suspense>
+        <TopMenu searchParams={props.searchParams} />
         <Head>
-          <Suspense fallback={<PresentationSkeleton />}>
-            <Presentation searchParams={props.searchParams} />
-          </Suspense>
+          <Presentation searchParams={props.searchParams} />
         </Head>
         <SocialLinks />
       </main>
