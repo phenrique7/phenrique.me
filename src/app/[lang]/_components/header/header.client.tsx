@@ -9,13 +9,13 @@ import { Separator, ToggleButton } from "react-aria-components";
 import { css } from "@/panda/css";
 import type { Languages } from "@/types/app";
 import type { MediaData } from "@/types/basehub";
-import { flex, hstack, vstack } from "@/panda/patterns";
+import { center, flex, hstack, vstack } from "@/panda/patterns";
 import { useMediaQuery } from "@/app/_hooks/use-media-query";
 import { languageItems } from "@/app/_content/language-items";
+import { LanguagesIcon } from "@/app/_components/languages-icon";
 import { getAppDictionary } from "@/app/_dictionaries/dictionaries";
 import { ThemeToggle } from "@/app/[lang]/_components/header/theme-toggle";
 import { LanguagesMenu } from "@/app/[lang]/_components/header/languages-menu";
-import { LanguageBadge } from "@/app/[lang]/_components/header/language-badge";
 
 type NavLink = {
   _title: string;
@@ -47,6 +47,12 @@ export function CHeader(props: CHeaderProps) {
       setIsMenuOpen(false);
     }
   }, [isSMScreen, isMenuOpen]);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  }, [pathname]);
 
   useEffect(() => {
     let scrollTimeout: NodeJS.Timeout;
@@ -330,7 +336,9 @@ export function CHeader(props: CHeaderProps) {
                   })}
                 >
                   <div className={hstack({ gap: 5 })}>
-                    <LanguageBadge displayLanguage={props.displayLanguage} />
+                    <span className={center({ w: 5, h: 5, color: "clr_neutral_800_200" })}>
+                      <LanguagesIcon />
+                    </span>
                     <div className={hstack({ gap: 2 })}>
                       {languageItems.map((language, index) => (
                         <Fragment key={language.id}>
