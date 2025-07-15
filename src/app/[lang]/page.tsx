@@ -11,7 +11,7 @@ type HomePageProps = Pick<PageProps<{ lang: "en" | "pt" | "de" }>, "params">;
 export default async function HomePage(props: HomePageProps) {
   const displayLanguage = (await props.params).lang;
 
-  const data = await basehub().query({
+  const data = await basehub({ cache: "force-cache" }).query({
     home: {
       bioSection: {
         __args: {
@@ -63,7 +63,9 @@ export default async function HomePage(props: HomePageProps) {
           displayLanguage={displayLanguage}
           data={data.home.bioSection.description.markdown}
           wrapper={(props) => (
-            <div className={"prose-ui antialiased " + css({ mt: 4, maxW: "2xl" })}>{props.children}</div>
+            <div className={"prose-ui antialiased " + css({ mt: 4, maxW: "2xl" })}>
+              {props.children}
+            </div>
           )}
         />
       </InnerContainer>
