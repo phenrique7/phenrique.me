@@ -1,4 +1,3 @@
-import { unstable_cache as cache } from "next/cache";
 import { css } from "@/panda/css";
 import type { PageProps } from "@/types/next";
 import { flex, grid, vstack } from "@/panda/patterns";
@@ -10,15 +9,14 @@ import { getCurrentlyReads } from "@/app/[lang]/reading/_api/get-currently-reads
 import { getAppDictionary } from "@/app/[lang]/reading/_dictionaries/dictionaries";
 import { BookPreviewCard } from "@/app/[lang]/reading/_components/book-preview-card";
 
-const getCachedCurrentlyReads = cache(getCurrentlyReads);
-const getCachedFinishedReads = cache(getFinishedReads);
+export const dynamic = "force-static";
 
 type ReadingPageProps = Pick<PageProps<{ lang: "en" | "pt" | "de" }>, "params">;
 
 export default async function ReadingPage(props: ReadingPageProps) {
   const displayLanguage = (await props.params).lang;
-  const currentlyReads = await getCachedCurrentlyReads();
-  const allBooks = await getCachedFinishedReads();
+  const currentlyReads = await getCurrentlyReads();
+  const allBooks = await getFinishedReads();
   const dict = await getAppDictionary(displayLanguage);
 
   return (
