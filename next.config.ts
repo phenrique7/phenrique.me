@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   experimental: {
     reactCompiler: true,
+    ppr: "incremental",
   },
   images: {
     remotePatterns: [
@@ -13,7 +14,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "prod-files-secure.s3.us-west-2.amazonaws.com",
-      }
+      },
     ],
   },
 };

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { basehub } from "basehub";
 import type { Metadata } from "next";
 import { css } from "@/panda/css";
@@ -6,8 +7,10 @@ import { Head } from "@/app/linkbio/_components/head";
 import { ensureChosenLanguage } from "@/utils/locale";
 import { getLocaleLanguage } from "@/app/linkbio/_utils/locale";
 import { SocialLinks } from "@/app/linkbio/_components/social-links";
-import { TopMenu } from "@/app/linkbio/_components/top-menu";
-import { Presentation } from "@/app/linkbio/_components/presentation";
+import { TopMenuSkeleton, TopMenu } from "@/app/linkbio/_components/top-menu";
+import { Presentation, PresentationSkeleton } from "@/app/linkbio/_components/presentation";
+
+export const experimental_ppr = true;
 
 export async function generateMetadata({
   searchParams,
@@ -106,9 +109,13 @@ export default function LinkbioPage(props: PageProps) {
           position: "relative",
         })}
       >
-        <TopMenu searchParams={props.searchParams} />
+        <Suspense fallback={<TopMenuSkeleton />}>
+          <TopMenu searchParams={props.searchParams} />
+        </Suspense>
         <Head>
-          <Presentation searchParams={props.searchParams} />
+          <Suspense fallback={<PresentationSkeleton />}>
+            <Presentation searchParams={props.searchParams} />
+          </Suspense>
         </Head>
         <SocialLinks />
       </main>
