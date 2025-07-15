@@ -12,7 +12,9 @@ import { Presentation, PresentationSkeleton } from "@/app/linkbio/_components/pr
 
 export const experimental_ppr = true;
 
-export async function generateMetadata({ searchParams }: Pick<PageProps, "searchParams">): Promise<Metadata> {
+export async function generateMetadata({
+  searchParams,
+}: Pick<PageProps, "searchParams">): Promise<Metadata> {
   const chosenLanguage = ((await searchParams) as { lang: string } | undefined)?.lang;
 
   let displayLanguage = ensureChosenLanguage(chosenLanguage);
