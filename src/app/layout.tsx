@@ -17,7 +17,7 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const meta = await basehub().query({
+  const meta = await basehub({ cache: "force-cache" }).query({
     home: {
       metadata: {
         title: true,
@@ -64,7 +64,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function AppLayout(props: Readonly<React.PropsWithChildren>) {
   return (
-    <html lang="en" className={[GeistSans.className, GeistMono.className].join(" ")} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={[GeistSans.className, GeistMono.className].join(" ")}
+      suppressHydrationWarning
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
