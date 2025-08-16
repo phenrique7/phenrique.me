@@ -1,11 +1,12 @@
+import { basehub } from "basehub";
+import type { Metadata } from "next";
+
 import { css } from "@/panda/css";
 import type { PageProps } from "@/types/next";
 import { flex, grid, vstack } from "@/panda/patterns";
 import { OuterContainer } from "@/app/_components/outer-container";
 import { InnerContainer } from "@/app/_components/inner-container";
 import { BookItem } from "@/app/[lang]/reading/_components/book-item";
-import { getFinishedReads } from "@/app/[lang]/reading/_api/get-finished-reads";
-import { getCurrentlyReads } from "@/app/[lang]/reading/_api/get-currently-reads";
 import { getAppDictionary } from "@/app/[lang]/reading/_dictionaries/dictionaries";
 import { BookPreviewCard } from "@/app/[lang]/reading/_components/book-preview-card";
 
@@ -13,11 +14,97 @@ export const dynamic = "force-static";
 
 type ReadingPageProps = Pick<PageProps<{ lang: "en" | "pt" | "de" }>, "params">;
 
+export async function generateMetadata(props: ReadingPageProps): Promise<Metadata> {
+  const displayLanguage = (await props.params).lang;
+
+  const meta = await basehub().query({
+    reading: {
+      metadata: {
+        __args: {
+          variants: { language: displayLanguage },
+        },
+        title: true,
+        xUsername: true,
+        description: true,
+        ogImage: {
+          url: true,
+        },
+      },
+    },
+  });
+
+  return {
+    title: meta.reading.metadata.title,
+    description: meta.reading.metadata.description,
+    openGraph: {
+      title: meta.reading.metadata.title,
+      images: [
+        {
+          width: 1200,
+          height: 630,
+          url: meta.reading.metadata.ogImage.url,
+        },
+      ],
+    },
+    twitter: {
+      title: meta.reading.metadata.title,
+      description: meta.reading.metadata.description,
+      images: [{ url: meta.reading.metadata.ogImage.url }],
+    },
+  };
+}
+
 export default async function ReadingPage(props: ReadingPageProps) {
   const displayLanguage = (await props.params).lang;
-  const currentlyReads = await getCurrentlyReads();
-  const allBooks = await getFinishedReads();
+  const currentlyReads = await basehub().query({
+    reading: {
+      books: {
+        __args: {
+          filter: {
+            status: {
+              includes: "Reading",
+            },
+          },
+        },
+        items: {
+          _id: true,
+          _title: true,
+          genres: true,
+          authors: true,
+          progress: true,
+          cover: {
+            url: true,
+            alt: true,
+            width: true,
+            height: true,
+          },
+        },
+      },
+    },
+  });
+  const finishedBooks = await basehub().query({
+    reading: {
+      books: {
+        __args: {
+          filter: {
+            status: {
+              includes: "Finished",
+            },
+          },
+        },
+        items: {
+          _id: true,
+          _title: true,
+          rating: true,
+          authors: true,
+        },
+      },
+    },
+  });
   const dict = await getAppDictionary(displayLanguage);
+
+  console.log(currentlyReads);
+  console.log(finishedBooks);
 
   return (
     <OuterContainer
@@ -46,7 +133,7 @@ export default async function ReadingPage(props: ReadingPageProps) {
             {dict["currently-reads"]["section-title"]}
           </h2>
         </div>
-        {currentlyReads.length === 0 ? (
+        {currentlyReads.reading.books.items.length === 0 ? (
           <div className={css({ mt: 12, color: "clr_neutral_700_400", textAlign: "center" })}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -106,14 +193,14 @@ export default async function ReadingPage(props: ReadingPageProps) {
               },
             })}
           >
-            {currentlyReads.map((book) => (
+            {currentlyReads.reading.books.items.map((book) => (
               <BookPreviewCard
-                key={book.id}
-                title={book.title}
-                cover={book.cover}
+                key={book._id}
+                title={book._title}
                 genres={book.genres}
                 authors={book.authors}
                 progress={book.progress}
+                coverUrl={book.cover?.url ?? null}
               />
             ))}
           </div>
@@ -142,12 +229,12 @@ export default async function ReadingPage(props: ReadingPageProps) {
             {dict["more-reads"]}
           </h2>
           <ul className={vstack({ mt: 8, mb: 20, alignItems: "stretch", gap: { base: 6, lg: 1 } })}>
-            {allBooks.map((book) => (
+            {finishedBooks.reading.books.items.map((book) => (
               <BookItem
-                key={book.id}
-                title={book.title}
-                rating={book.rating}
+                key={book._id}
+                title={book._title}
                 authors={book.authors}
+                rating={book.rating ?? 0}
               />
             ))}
           </ul>

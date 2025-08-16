@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+
 import type { Languages } from "@/types/app";
 
 export async function getLocaleLanguage(): Promise<Languages> {

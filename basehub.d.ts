@@ -46,11 +46,15 @@ export interface Scalars {
   options: string[];
   multiple: boolean
 } | {
-  type: "file";
-  private: boolean
+  type: "file"
 }))[],
     BSHBRichTextContentSchema: RichTextNode[],
     BSHBRichTextTOCSchema: RichTextTocNode[],
+    BSHBSelect_1461570115: 'Reading' | 'Finished',
+    BSHBSelect_346271021: 'Vida Nova' | 'Kírion' | 'Shedd Publicações' | 'Thomas Nelson Brasil' | 'Fiel' | 'Companhia das Letras' | 'Pro Nobis' | 'Cultura Cristã' | 'Pilgrim' | ' Genever Benning',
+    BSHBSelect__1049998026: 'Christian' | 'Apologetics' | 'Biography' | 'Education' | 'Family' | 'Fiction' | 'Finances' | 'Personal Development' | 'Philosophy' | 'Social & Political Science' | 'Software Engineering',
+    BSHBSelect__1414420368: 'Physical' | 'Digital',
+    BSHBSelect__1885717383: 'Dane C. Ortlund' | 'Robert Nystrom' | 'Timothy Keller' | 'James W. Sire' | 'Heber Campos Jr.' | 'Costa Neto' | 'John Piper' | 'A.-D. Sertillanges' | 'Russell P. Shedd' | 'Larry Crabb' | 'Sinclair B. Ferguson' | 'Kevin DeYoung' | 'John Bunyan',
     Boolean: boolean,
     CodeSnippetLanguage: B_Language,
     DateTime: any,
@@ -131,7 +135,7 @@ export interface BlockColor {
     __typename: 'BlockColor'
 }
 
-export type BlockDocument = (BioSection | BioSection_1 | Components | Footer | Header | Home | Language | Layout | Linkbio | MetaComponent | NavLinks | NavLinksComponent | Settings | SocialLinks | SocialLinksItem | SocialLinksItem_1 | SocialLinks_1 | _AgentSTART | metaComponent_AsList | navLinksComponent_AsList | socialLinksItem1_AsList | socialLinksItem_AsList) & { __isUnion?: true }
+export type BlockDocument = (BioSection | BioSection_1 | Books | BooksItem | Components | Footer | Header | Home | Language | Layout | Linkbio | MetaComponent | NavLinks | NavLinksComponent | Reading | Settings | SocialLinks | SocialLinksItem | SocialLinksItem_1 | SocialLinks_1 | _AgentStart | booksItem_AsList | metaComponent_AsList | navLinksComponent_AsList | socialLinksItem1_AsList | socialLinksItem_AsList) & { __isUnion?: true }
 
 export interface BlockDocumentSys {
     apiNamePath: Scalars['String']
@@ -190,7 +194,7 @@ export interface BlockImage {
     __typename: 'BlockImage'
 }
 
-export type BlockList = (NavLinks | SocialLinks | SocialLinks_1 | metaComponent_AsList | navLinksComponent_AsList | socialLinksItem1_AsList | socialLinksItem_AsList) & { __isUnion?: true }
+export type BlockList = (Books | NavLinks | SocialLinks | SocialLinks_1 | booksItem_AsList | metaComponent_AsList | navLinksComponent_AsList | socialLinksItem1_AsList | socialLinksItem_AsList) & { __isUnion?: true }
 
 export interface BlockOgImage {
     height: Scalars['Int']
@@ -201,7 +205,7 @@ export interface BlockOgImage {
 
 
 /** Rich text block */
-export type BlockRichText = (Description) & { __isUnion?: true }
+export type BlockRichText = (Description | Review | Summary) & { __isUnion?: true }
 
 export interface BlockVideo {
     aspectRatio: Scalars['String']
@@ -216,6 +220,56 @@ export interface BlockVideo {
     width: Scalars['Int']
     __typename: 'BlockVideo'
 }
+
+export interface Books {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _meta: ListMeta
+    /** The key used to search from the frontend. */
+    _searchKey: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item: (BooksItem | null)
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items: BooksItem[]
+    __typename: 'Books'
+}
+
+export interface BooksItem {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight: (SearchHighlight_f2146f8fe10a8c3a119aa[] | null)
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    authors: Scalars['BSHBSelect__1885717383'][]
+    cover: (BlockImage | null)
+    edition: Scalars['Float']
+    /** ISO 8601 date string. */
+    finishedDate: (Scalars['String'] | null)
+    format: Scalars['BSHBSelect__1414420368']
+    genres: Scalars['BSHBSelect__1049998026'][]
+    progress: (Scalars['Float'] | null)
+    publicationDate: Scalars['Float']
+    publisher: Scalars['BSHBSelect_346271021'][]
+    rating: (Scalars['Float'] | null)
+    review: (Review | null)
+    status: Scalars['BSHBSelect_1461570115']
+    subtitle: (Scalars['String'] | null)
+    summary: (Summary | null)
+    __typename: 'BooksItem'
+}
+
+export type BooksItemOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'authors__ASC' | 'authors__DESC' | 'cover__ASC' | 'cover__DESC' | 'edition__ASC' | 'edition__DESC' | 'finishedDate__ASC' | 'finishedDate__DESC' | 'format__ASC' | 'format__DESC' | 'genres__ASC' | 'genres__DESC' | 'progress__ASC' | 'progress__DESC' | 'publicationDate__ASC' | 'publicationDate__DESC' | 'publisher__ASC' | 'publisher__DESC' | 'rating__ASC' | 'rating__DESC' | 'review__ASC' | 'review__DESC' | 'status__ASC' | 'status__DESC' | 'subtitle__ASC' | 'subtitle__DESC' | 'summary__ASC' | 'summary__DESC'
 
 export interface Components {
     _analyticsKey: Scalars['String']
@@ -352,6 +406,8 @@ export type MediaBlockUnion = (BlockAudio | BlockFile | BlockImage | BlockVideo)
 export interface MetaComponent {
     _analyticsKey: Scalars['String']
     _dashboardUrl: Scalars['String']
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight: (SearchHighlight_91e9974655b66a1057f04[] | null)
     _id: Scalars['String']
     _idPath: Scalars['String']
     _slug: Scalars['String']
@@ -422,6 +478,8 @@ export interface NavLinks {
 export interface NavLinksComponent {
     _analyticsKey: Scalars['String']
     _dashboardUrl: Scalars['String']
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight: (SearchHighlight_99e6d765742b93dae0e64[] | null)
     _id: Scalars['String']
     _idPath: Scalars['String']
     _slug: Scalars['String']
@@ -437,11 +495,13 @@ export interface NavLinksComponent {
 export type NavLinksComponentOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'icon__ASC' | 'icon__DESC' | 'label__ASC' | 'label__DESC' | 'path__ASC' | 'path__DESC'
 
 export interface Query {
-    _agent: (_AgentSTART | null)
+    _agent: (_AgentStart | null)
     /** Query across the custom AI agents in the repository. */
     _agents: _agents
     /** Query across all of the instances of a component. Pass in filters and sorts if you want, and get each instance via the `items` key. */
     _componentInstances: _components
+    /** The diff between the current branch and the head commit. */
+    _diff: Scalars['JSON']
     /** The structure of the repository. Used by START. */
     _structure: Scalars['JSON']
     _sys: RepoSys
@@ -449,8 +509,23 @@ export interface Query {
     home: Home
     layout: Layout
     linkbio: Linkbio
+    reading: Reading
     settings: Settings
     __typename: 'Query'
+}
+
+export interface Reading {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    books: Books
+    metadata: MetaComponent
+    __typename: 'Reading'
 }
 
 export interface RepoSys {
@@ -463,7 +538,62 @@ export interface RepoSys {
     __typename: 'RepoSys'
 }
 
-export type RichTextJson = (BaseRichTextJson | DescriptionRichText) & { __isUnion?: true }
+export interface Review {
+    html: Scalars['String']
+    json: ReviewRichText
+    markdown: Scalars['String']
+    plainText: Scalars['String']
+    readingTime: Scalars['Int']
+    __typename: 'Review'
+}
+
+export interface ReviewRichText {
+    content: Scalars['BSHBRichTextContentSchema']
+    toc: Scalars['BSHBRichTextTOCSchema']
+    __typename: 'ReviewRichText'
+}
+
+export type RichTextJson = (BaseRichTextJson | DescriptionRichText | ReviewRichText | SummaryRichText) & { __isUnion?: true }
+
+export interface SearchHighlight_07d88f073e1178df9d82c {
+    /** The field/path that was matched (e.g., "title", "body.content") */
+    by: Scalars['String']
+    /** HTML snippet with <mark> tags around the matched terms */
+    snippet: Scalars['String']
+    __typename: 'SearchHighlight_07d88f073e1178df9d82c'
+}
+
+export interface SearchHighlight_2277c49accc2d1e49a599 {
+    /** The field/path that was matched (e.g., "title", "body.content") */
+    by: Scalars['String']
+    /** HTML snippet with <mark> tags around the matched terms */
+    snippet: Scalars['String']
+    __typename: 'SearchHighlight_2277c49accc2d1e49a599'
+}
+
+export interface SearchHighlight_91e9974655b66a1057f04 {
+    /** The field/path that was matched (e.g., "title", "body.content") */
+    by: Scalars['String']
+    /** HTML snippet with <mark> tags around the matched terms */
+    snippet: Scalars['String']
+    __typename: 'SearchHighlight_91e9974655b66a1057f04'
+}
+
+export interface SearchHighlight_99e6d765742b93dae0e64 {
+    /** The field/path that was matched (e.g., "title", "body.content") */
+    by: Scalars['String']
+    /** HTML snippet with <mark> tags around the matched terms */
+    snippet: Scalars['String']
+    __typename: 'SearchHighlight_99e6d765742b93dae0e64'
+}
+
+export interface SearchHighlight_f2146f8fe10a8c3a119aa {
+    /** The field/path that was matched (e.g., "title", "body.content") */
+    by: Scalars['String']
+    /** HTML snippet with <mark> tags around the matched terms */
+    snippet: Scalars['String']
+    __typename: 'SearchHighlight_f2146f8fe10a8c3a119aa'
+}
 
 export interface Settings {
     _analyticsKey: Scalars['String']
@@ -500,6 +630,8 @@ export interface SocialLinks {
 export interface SocialLinksItem {
     _analyticsKey: Scalars['String']
     _dashboardUrl: Scalars['String']
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight: (SearchHighlight_07d88f073e1178df9d82c[] | null)
     _id: Scalars['String']
     _idPath: Scalars['String']
     _slug: Scalars['String']
@@ -517,6 +649,8 @@ export type SocialLinksItemOrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt
 export interface SocialLinksItem_1 {
     _analyticsKey: Scalars['String']
     _dashboardUrl: Scalars['String']
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight: (SearchHighlight_2277c49accc2d1e49a599[] | null)
     _id: Scalars['String']
     _idPath: Scalars['String']
     _slug: Scalars['String']
@@ -530,7 +664,7 @@ export interface SocialLinksItem_1 {
     __typename: 'SocialLinksItem_1'
 }
 
-export type SocialLinksItem_1OrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'mediaLink__ASC' | 'mediaLink__DESC' | 'mediaLogo__ASC' | 'mediaLogo__DESC' | 'mediaName__ASC' | 'mediaName__DESC' | 'mediaSlug__ASC' | 'mediaSlug__DESC'
+export type SocialLinksItem_1OrderByEnum = '_sys_createdAt__ASC' | '_sys_createdAt__DESC' | '_sys_hash__ASC' | '_sys_hash__DESC' | '_sys_id__ASC' | '_sys_id__DESC' | '_sys_lastModifiedAt__ASC' | '_sys_lastModifiedAt__DESC' | '_sys_slug__ASC' | '_sys_slug__DESC' | '_sys_title__ASC' | '_sys_title__DESC' | 'mediaLink__ASC' | 'mediaLink__DESC' | 'mediaLogo__ASC' | 'mediaLogo__DESC' | 'mediaName__ASC' | 'mediaName__DESC' | 'mediaSlug__ASC' | 'mediaSlug__DESC' | 'untitled__ASC' | 'untitled__DESC'
 
 export interface SocialLinks_1 {
     _analyticsKey: Scalars['String']
@@ -549,6 +683,21 @@ export interface SocialLinks_1 {
     /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
     items: SocialLinksItem_1[]
     __typename: 'SocialLinks_1'
+}
+
+export interface Summary {
+    html: Scalars['String']
+    json: SummaryRichText
+    markdown: Scalars['String']
+    plainText: Scalars['String']
+    readingTime: Scalars['Int']
+    __typename: 'Summary'
+}
+
+export interface SummaryRichText {
+    content: Scalars['BSHBRichTextContentSchema']
+    toc: Scalars['BSHBRichTextTOCSchema']
+    __typename: 'SummaryRichText'
 }
 
 export interface TransactionStatus {
@@ -573,7 +722,7 @@ export interface Variant {
     __typename: 'Variant'
 }
 
-export interface _AgentSTART {
+export interface _AgentStart {
     _agentKey: Scalars['String']
     _analyticsKey: Scalars['String']
     _dashboardUrl: Scalars['String']
@@ -598,7 +747,7 @@ export interface _AgentSTART {
     searchTheWeb: Scalars['Boolean']
     slackInstallUrl: Scalars['String']
     systemPrompt: Scalars['String']
-    __typename: '_AgentSTART'
+    __typename: '_AgentStart'
 }
 
 export interface _BranchInfo {
@@ -667,16 +816,36 @@ export type _ResolveTargetsWithEnum = 'id' | 'objectName'
 export type _StructureFormatEnum = 'json' | 'xml'
 
 export interface _agents {
-    start: _AgentSTART
+    start: _AgentStart
     __typename: '_agents'
 }
 
 export interface _components {
+    booksItem: booksItem_AsList
     meta: metaComponent_AsList
     navLinks: navLinksComponent_AsList
     socialLinksItem: socialLinksItem_AsList
     socialLinksItem1: socialLinksItem1_AsList
     __typename: '_components'
+}
+
+export interface booksItem_AsList {
+    _analyticsKey: Scalars['String']
+    _dashboardUrl: Scalars['String']
+    _id: Scalars['String']
+    _idPath: Scalars['String']
+    _meta: ListMeta
+    /** The key used to search from the frontend. */
+    _searchKey: Scalars['String']
+    _slug: Scalars['String']
+    _slugPath: Scalars['String']
+    _sys: BlockDocumentSys
+    _title: Scalars['String']
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item: (BooksItem | null)
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items: BooksItem[]
+    __typename: 'booksItem_AsList'
 }
 
 export interface metaComponent_AsList {
@@ -854,6 +1023,8 @@ export interface BlockDocumentGenqlSelection{
     _title?: boolean | number
     on_BioSection?: BioSectionGenqlSelection
     on_BioSection_1?: BioSection_1GenqlSelection
+    on_Books?: BooksGenqlSelection
+    on_BooksItem?: BooksItemGenqlSelection
     on_Components?: ComponentsGenqlSelection
     on_Footer?: FooterGenqlSelection
     on_Header?: HeaderGenqlSelection
@@ -864,12 +1035,14 @@ export interface BlockDocumentGenqlSelection{
     on_MetaComponent?: MetaComponentGenqlSelection
     on_NavLinks?: NavLinksGenqlSelection
     on_NavLinksComponent?: NavLinksComponentGenqlSelection
+    on_Reading?: ReadingGenqlSelection
     on_Settings?: SettingsGenqlSelection
     on_SocialLinks?: SocialLinksGenqlSelection
     on_SocialLinksItem?: SocialLinksItemGenqlSelection
     on_SocialLinksItem_1?: SocialLinksItem_1GenqlSelection
     on_SocialLinks_1?: SocialLinks_1GenqlSelection
-    on__AgentSTART?: _AgentSTARTGenqlSelection
+    on__AgentStart?: _AgentStartGenqlSelection
+    on_booksItem_AsList?: booksItem_AsListGenqlSelection
     on_metaComponent_AsList?: metaComponent_AsListGenqlSelection
     on_navLinksComponent_AsList?: navLinksComponent_AsListGenqlSelection
     on_socialLinksItem1_AsList?: socialLinksItem1_AsListGenqlSelection
@@ -952,9 +1125,11 @@ export interface BlockListGenqlSelection{
     _slugPath?: boolean | number
     _sys?: BlockDocumentSysGenqlSelection
     _title?: boolean | number
+    on_Books?: BooksGenqlSelection
     on_NavLinks?: NavLinksGenqlSelection
     on_SocialLinks?: SocialLinksGenqlSelection
     on_SocialLinks_1?: SocialLinks_1GenqlSelection
+    on_booksItem_AsList?: booksItem_AsListGenqlSelection
     on_metaComponent_AsList?: metaComponent_AsListGenqlSelection
     on_navLinksComponent_AsList?: navLinksComponent_AsListGenqlSelection
     on_socialLinksItem1_AsList?: socialLinksItem1_AsListGenqlSelection
@@ -984,6 +1159,8 @@ export interface BlockRichTextGenqlSelection{
     /** Words per minute, defaults to average 183wpm */
     wpm?: (Scalars['Int'] | null)} } | boolean | number
     on_Description?: DescriptionGenqlSelection
+    on_Review?: ReviewGenqlSelection
+    on_Summary?: SummaryGenqlSelection
     __typename?: boolean | number
 }
 
@@ -1000,6 +1177,74 @@ export interface BlockVideoGenqlSelection{
     width?: boolean | number
     __typename?: boolean | number
 }
+
+export interface BooksGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _meta?: ListMetaGenqlSelection
+    /** The key used to search from the frontend. */
+    _searchKey?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item?: BooksItemGenqlSelection
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items?: BooksItemGenqlSelection
+    __typename?: boolean | number
+}
+
+export interface BooksItemGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight?: SearchHighlight_f2146f8fe10a8c3a119aaGenqlSelection
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    authors?: boolean | number
+    cover?: BlockImageGenqlSelection
+    edition?: boolean | number
+    /** ISO 8601 date string. */
+    finishedDate?: boolean | number
+    format?: boolean | number
+    genres?: boolean | number
+    progress?: boolean | number
+    publicationDate?: boolean | number
+    publisher?: boolean | number
+    rating?: boolean | number
+    review?: ReviewGenqlSelection
+    status?: boolean | number
+    subtitle?: boolean | number
+    summary?: SummaryGenqlSelection
+    __typename?: boolean | number
+}
+
+export interface BooksItemFilterInput {AND?: (BooksItemFilterInput | null),OR?: (BooksItemFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),authors?: (SelectFilter | null),edition?: (NumberFilter | null),finishedDate?: (DateFilter | null),format?: (SelectFilter | null),genres?: (SelectFilter | null),progress?: (NumberFilter | null),publicationDate?: (NumberFilter | null),publisher?: (SelectFilter | null),rating?: (NumberFilter | null),status?: (SelectFilter | null),subtitle?: (StringFilter | null)}
+
+export interface BooksItemSearchInput {
+/** Searchable fields for query */
+by?: (Scalars['String'][] | null),
+/** Search query */
+q?: (Scalars['String'] | null)}
 
 export interface ComponentsGenqlSelection{
     _analyticsKey?: { __args: {
@@ -1065,6 +1310,8 @@ export interface FooterGenqlSelection{
     first?: (Scalars['Int'] | null), 
     /** Order by a field. */
     orderBy?: (SocialLinksItemOrderByEnum | null), 
+    /** Search configuration */
+    search?: (SocialLinksItemSearchInput | null), 
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null)} })
     source?: boolean | number
@@ -1100,6 +1347,8 @@ export interface HeaderGenqlSelection{
     first?: (Scalars['Int'] | null), 
     /** Order by a field. */
     orderBy?: (NavLinksComponentOrderByEnum | null), 
+    /** Search configuration */
+    search?: (NavLinksComponentSearchInput | null), 
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null), variants?: (Language__VariantsInput | null)} })
     __typename?: boolean | number
@@ -1190,6 +1439,8 @@ export interface LinkbioGenqlSelection{
     first?: (Scalars['Int'] | null), 
     /** Order by a field. */
     orderBy?: (SocialLinksItem_1OrderByEnum | null), 
+    /** Search configuration */
+    search?: (SocialLinksItem_1SearchInput | null), 
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null)} })
     __typename?: boolean | number
@@ -1236,6 +1487,8 @@ export interface MetaComponentGenqlSelection{
      */
     scope?: (AnalyticsKeyScope | null)} } | boolean | number
     _dashboardUrl?: boolean | number
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight?: SearchHighlight_91e9974655b66a1057f04GenqlSelection
     _id?: boolean | number
     _idPath?: boolean | number
     _slug?: boolean | number
@@ -1250,6 +1503,12 @@ export interface MetaComponentGenqlSelection{
 }
 
 export interface MetaComponentFilterInput {AND?: (MetaComponentFilterInput | null),OR?: (MetaComponentFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),description?: (StringFilter | null),title?: (StringFilter | null),xUsername?: (StringFilter | null)}
+
+export interface MetaComponentSearchInput {
+/** Searchable fields for query */
+by?: (Scalars['String'][] | null),
+/** Search query */
+q?: (Scalars['String'] | null)}
 
 export interface MutationGenqlSelection{
     /**
@@ -1342,6 +1601,8 @@ export interface NavLinksComponentGenqlSelection{
      */
     scope?: (AnalyticsKeyScope | null)} } | boolean | number
     _dashboardUrl?: boolean | number
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight?: SearchHighlight_99e6d765742b93dae0e64GenqlSelection
     _id?: boolean | number
     _idPath?: boolean | number
     _slug?: boolean | number
@@ -1356,16 +1617,26 @@ export interface NavLinksComponentGenqlSelection{
 
 export interface NavLinksComponentFilterInput {AND?: (NavLinksComponentFilterInput | null),OR?: (NavLinksComponentFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),label?: (StringFilter | null),path?: (StringFilter | null)}
 
+export interface NavLinksComponentSearchInput {
+/** Searchable fields for query */
+by?: (Scalars['String'][] | null),
+/** Search query */
+q?: (Scalars['String'] | null)}
+
 export interface NumberFilter {eq?: (Scalars['Float'] | null),gt?: (Scalars['Float'] | null),gte?: (Scalars['Float'] | null),isNull?: (Scalars['Boolean'] | null),lt?: (Scalars['Float'] | null),lte?: (Scalars['Float'] | null),neq?: (Scalars['Float'] | null)}
 
 export interface QueryGenqlSelection{
-    _agent?: (_AgentSTARTGenqlSelection & { __args: {
+    _agent?: (_AgentStartGenqlSelection & { __args: {
     /** The ID of the agent. */
     id: Scalars['String']} })
     /** Query across the custom AI agents in the repository. */
     _agents?: _agentsGenqlSelection
     /** Query across all of the instances of a component. Pass in filters and sorts if you want, and get each instance via the `items` key. */
     _componentInstances?: _componentsGenqlSelection
+    /** The diff between the current branch and the head commit. */
+    _diff?: { __args: {
+    /** Simplified diff returns only the items array showing statuses. */
+    simplified?: (Scalars['Boolean'] | null)} } | boolean | number
     /** The structure of the repository. Used by START. */
     _structure?: { __args: {
     /** The format of the structure. */
@@ -1385,7 +1656,38 @@ export interface QueryGenqlSelection{
     home?: HomeGenqlSelection
     layout?: LayoutGenqlSelection
     linkbio?: LinkbioGenqlSelection
+    reading?: ReadingGenqlSelection
     settings?: SettingsGenqlSelection
+    __typename?: boolean | number
+}
+
+export interface ReadingGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    books?: (BooksGenqlSelection & { __args?: {
+    /** Filter by a field. */
+    filter?: (BooksItemFilterInput | null), 
+    /** Limit the number of items returned. Defaults to 500. */
+    first?: (Scalars['Int'] | null), 
+    /** Order by a field. */
+    orderBy?: (BooksItemOrderByEnum | null), 
+    /** Search configuration */
+    search?: (BooksItemSearchInput | null), 
+    /** Skip the first n items. */
+    skip?: (Scalars['Int'] | null)} })
+    metadata?: (MetaComponentGenqlSelection & { __args?: {variants?: (Language__VariantsInput | null)} })
     __typename?: boolean | number
 }
 
@@ -1399,11 +1701,74 @@ export interface RepoSysGenqlSelection{
     __typename?: boolean | number
 }
 
+export interface ReviewGenqlSelection{
+    html?: { __args: {
+    /** It automatically generates a unique id for each heading present in the HTML. Enabled by default. */
+    slugs?: (Scalars['Boolean'] | null), 
+    /** Inserts a table of contents at the beginning of the HTML. */
+    toc?: (Scalars['Boolean'] | null)} } | boolean | number
+    json?: ReviewRichTextGenqlSelection
+    markdown?: boolean | number
+    plainText?: boolean | number
+    readingTime?: { __args: {
+    /** Words per minute, defaults to average 183wpm */
+    wpm?: (Scalars['Int'] | null)} } | boolean | number
+    __typename?: boolean | number
+}
+
+export interface ReviewRichTextGenqlSelection{
+    content?: boolean | number
+    toc?: boolean | number
+    __typename?: boolean | number
+}
+
 export interface RichTextJsonGenqlSelection{
     content?: boolean | number
     toc?: boolean | number
     on_BaseRichTextJson?: BaseRichTextJsonGenqlSelection
     on_DescriptionRichText?: DescriptionRichTextGenqlSelection
+    on_ReviewRichText?: ReviewRichTextGenqlSelection
+    on_SummaryRichText?: SummaryRichTextGenqlSelection
+    __typename?: boolean | number
+}
+
+export interface SearchHighlight_07d88f073e1178df9d82cGenqlSelection{
+    /** The field/path that was matched (e.g., "title", "body.content") */
+    by?: boolean | number
+    /** HTML snippet with <mark> tags around the matched terms */
+    snippet?: boolean | number
+    __typename?: boolean | number
+}
+
+export interface SearchHighlight_2277c49accc2d1e49a599GenqlSelection{
+    /** The field/path that was matched (e.g., "title", "body.content") */
+    by?: boolean | number
+    /** HTML snippet with <mark> tags around the matched terms */
+    snippet?: boolean | number
+    __typename?: boolean | number
+}
+
+export interface SearchHighlight_91e9974655b66a1057f04GenqlSelection{
+    /** The field/path that was matched (e.g., "title", "body.content") */
+    by?: boolean | number
+    /** HTML snippet with <mark> tags around the matched terms */
+    snippet?: boolean | number
+    __typename?: boolean | number
+}
+
+export interface SearchHighlight_99e6d765742b93dae0e64GenqlSelection{
+    /** The field/path that was matched (e.g., "title", "body.content") */
+    by?: boolean | number
+    /** HTML snippet with <mark> tags around the matched terms */
+    snippet?: boolean | number
+    __typename?: boolean | number
+}
+
+export interface SearchHighlight_f2146f8fe10a8c3a119aaGenqlSelection{
+    /** The field/path that was matched (e.g., "title", "body.content") */
+    by?: boolean | number
+    /** HTML snippet with <mark> tags around the matched terms */
+    snippet?: boolean | number
     __typename?: boolean | number
 }
 
@@ -1462,6 +1827,8 @@ export interface SocialLinksItemGenqlSelection{
      */
     scope?: (AnalyticsKeyScope | null)} } | boolean | number
     _dashboardUrl?: boolean | number
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight?: SearchHighlight_07d88f073e1178df9d82cGenqlSelection
     _id?: boolean | number
     _idPath?: boolean | number
     _slug?: boolean | number
@@ -1476,6 +1843,12 @@ export interface SocialLinksItemGenqlSelection{
 
 export interface SocialLinksItemFilterInput {AND?: (SocialLinksItemFilterInput | null),OR?: (SocialLinksItemFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),href?: (StringFilter | null),label?: (StringFilter | null)}
 
+export interface SocialLinksItemSearchInput {
+/** Searchable fields for query */
+by?: (Scalars['String'][] | null),
+/** Search query */
+q?: (Scalars['String'] | null)}
+
 export interface SocialLinksItem_1GenqlSelection{
     _analyticsKey?: { __args: {
     /**
@@ -1485,6 +1858,8 @@ export interface SocialLinksItem_1GenqlSelection{
      */
     scope?: (AnalyticsKeyScope | null)} } | boolean | number
     _dashboardUrl?: boolean | number
+    /** Array of search highlight information with field names and HTML markup */
+    _highlight?: SearchHighlight_2277c49accc2d1e49a599GenqlSelection
     _id?: boolean | number
     _idPath?: boolean | number
     _slug?: boolean | number
@@ -1499,6 +1874,12 @@ export interface SocialLinksItem_1GenqlSelection{
 }
 
 export interface SocialLinksItem_1FilterInput {AND?: (SocialLinksItem_1FilterInput | null),OR?: (SocialLinksItem_1FilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),mediaLink?: (StringFilter | null),mediaName?: (StringFilter | null),mediaSlug?: (StringFilter | null)}
+
+export interface SocialLinksItem_1SearchInput {
+/** Searchable fields for query */
+by?: (Scalars['String'][] | null),
+/** Search query */
+q?: (Scalars['String'] | null)}
 
 export interface SocialLinks_1GenqlSelection{
     _analyticsKey?: { __args: {
@@ -1529,6 +1910,27 @@ export interface StringFilter {contains?: (Scalars['String'] | null),endsWith?: 
 
 export interface StringMatchesFilter {caseSensitive?: (Scalars['Boolean'] | null),pattern: Scalars['String']}
 
+export interface SummaryGenqlSelection{
+    html?: { __args: {
+    /** It automatically generates a unique id for each heading present in the HTML. Enabled by default. */
+    slugs?: (Scalars['Boolean'] | null), 
+    /** Inserts a table of contents at the beginning of the HTML. */
+    toc?: (Scalars['Boolean'] | null)} } | boolean | number
+    json?: SummaryRichTextGenqlSelection
+    markdown?: boolean | number
+    plainText?: boolean | number
+    readingTime?: { __args: {
+    /** Words per minute, defaults to average 183wpm */
+    wpm?: (Scalars['Int'] | null)} } | boolean | number
+    __typename?: boolean | number
+}
+
+export interface SummaryRichTextGenqlSelection{
+    content?: boolean | number
+    toc?: boolean | number
+    __typename?: boolean | number
+}
+
 export interface TargetBlock {focus?: (Scalars['Boolean'] | null),id: Scalars['String'],label: Scalars['String']}
 
 export interface TransactionStatusGenqlSelection{
@@ -1551,7 +1953,7 @@ export interface VariantGenqlSelection{
     __typename?: boolean | number
 }
 
-export interface _AgentSTARTGenqlSelection{
+export interface _AgentStartGenqlSelection{
     _agentKey?: boolean | number
     _analyticsKey?: { __args: {
     /**
@@ -1647,11 +2049,22 @@ export interface _PlaygroundInfoGenqlSelection{
 }
 
 export interface _agentsGenqlSelection{
-    start?: _AgentSTARTGenqlSelection
+    start?: _AgentStartGenqlSelection
     __typename?: boolean | number
 }
 
 export interface _componentsGenqlSelection{
+    booksItem?: (booksItem_AsListGenqlSelection & { __args?: {
+    /** Filter by a field. */
+    filter?: (BooksItemFilterInput | null), 
+    /** Limit the number of items returned. Defaults to 500. */
+    first?: (Scalars['Int'] | null), 
+    /** Order by a field. */
+    orderBy?: (BooksItemOrderByEnum | null), 
+    /** Search configuration */
+    search?: (BooksItemSearchInput | null), 
+    /** Skip the first n items. */
+    skip?: (Scalars['Int'] | null)} })
     meta?: (metaComponent_AsListGenqlSelection & { __args?: {
     /** Filter by a field. */
     filter?: (MetaComponentFilterInput | null), 
@@ -1659,6 +2072,8 @@ export interface _componentsGenqlSelection{
     first?: (Scalars['Int'] | null), 
     /** Order by a field. */
     orderBy?: (MetaComponentOrderByEnum | null), 
+    /** Search configuration */
+    search?: (MetaComponentSearchInput | null), 
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null), variants?: (Language__VariantsInput | null)} })
     navLinks?: (navLinksComponent_AsListGenqlSelection & { __args?: {
@@ -1668,6 +2083,8 @@ export interface _componentsGenqlSelection{
     first?: (Scalars['Int'] | null), 
     /** Order by a field. */
     orderBy?: (NavLinksComponentOrderByEnum | null), 
+    /** Search configuration */
+    search?: (NavLinksComponentSearchInput | null), 
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null), variants?: (Language__VariantsInput | null)} })
     socialLinksItem?: (socialLinksItem_AsListGenqlSelection & { __args?: {
@@ -1677,6 +2094,8 @@ export interface _componentsGenqlSelection{
     first?: (Scalars['Int'] | null), 
     /** Order by a field. */
     orderBy?: (SocialLinksItemOrderByEnum | null), 
+    /** Search configuration */
+    search?: (SocialLinksItemSearchInput | null), 
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null)} })
     socialLinksItem1?: (socialLinksItem1_AsListGenqlSelection & { __args?: {
@@ -1686,8 +2105,35 @@ export interface _componentsGenqlSelection{
     first?: (Scalars['Int'] | null), 
     /** Order by a field. */
     orderBy?: (SocialLinksItem_1OrderByEnum | null), 
+    /** Search configuration */
+    search?: (SocialLinksItem_1SearchInput | null), 
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null)} })
+    __typename?: boolean | number
+}
+
+export interface booksItem_AsListGenqlSelection{
+    _analyticsKey?: { __args: {
+    /**
+     * The scope of the analytics key. Use `send` for just ingesting data. Use `query` if you need to show an analytics data in your website.
+     * 
+     * Have in mind, if you expose your `query` analytics key in the frontend, you'll be exposing all of this block's analytics data to the public. This is generally safe, but it might not be in your case.
+     */
+    scope?: (AnalyticsKeyScope | null)} } | boolean | number
+    _dashboardUrl?: boolean | number
+    _id?: boolean | number
+    _idPath?: boolean | number
+    _meta?: ListMetaGenqlSelection
+    /** The key used to search from the frontend. */
+    _searchKey?: boolean | number
+    _slug?: boolean | number
+    _slugPath?: boolean | number
+    _sys?: BlockDocumentSysGenqlSelection
+    _title?: boolean | number
+    /** Returns the first item in the list, or null if the list is empty. Useful when you expect only one result. */
+    item?: BooksItemGenqlSelection
+    /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
+    items?: BooksItemGenqlSelection
     __typename?: boolean | number
 }
 
@@ -1848,6 +2294,14 @@ export interface FragmentsMap {
     root: BlockVideo,
     selection: BlockVideoGenqlSelection,
 }
+  Books: {
+    root: Books,
+    selection: BooksGenqlSelection,
+}
+  BooksItem: {
+    root: BooksItem,
+    selection: BooksItemGenqlSelection,
+}
   Components: {
     root: Components,
     selection: ComponentsGenqlSelection,
@@ -1916,13 +2370,45 @@ export interface FragmentsMap {
     root: Query,
     selection: QueryGenqlSelection,
 }
+  Reading: {
+    root: Reading,
+    selection: ReadingGenqlSelection,
+}
   RepoSys: {
     root: RepoSys,
     selection: RepoSysGenqlSelection,
 }
+  Review: {
+    root: Review,
+    selection: ReviewGenqlSelection,
+}
+  ReviewRichText: {
+    root: ReviewRichText,
+    selection: ReviewRichTextGenqlSelection,
+}
   RichTextJson: {
     root: RichTextJson,
     selection: RichTextJsonGenqlSelection,
+}
+  SearchHighlight_07d88f073e1178df9d82c: {
+    root: SearchHighlight_07d88f073e1178df9d82c,
+    selection: SearchHighlight_07d88f073e1178df9d82cGenqlSelection,
+}
+  SearchHighlight_2277c49accc2d1e49a599: {
+    root: SearchHighlight_2277c49accc2d1e49a599,
+    selection: SearchHighlight_2277c49accc2d1e49a599GenqlSelection,
+}
+  SearchHighlight_91e9974655b66a1057f04: {
+    root: SearchHighlight_91e9974655b66a1057f04,
+    selection: SearchHighlight_91e9974655b66a1057f04GenqlSelection,
+}
+  SearchHighlight_99e6d765742b93dae0e64: {
+    root: SearchHighlight_99e6d765742b93dae0e64,
+    selection: SearchHighlight_99e6d765742b93dae0e64GenqlSelection,
+}
+  SearchHighlight_f2146f8fe10a8c3a119aa: {
+    root: SearchHighlight_f2146f8fe10a8c3a119aa,
+    selection: SearchHighlight_f2146f8fe10a8c3a119aaGenqlSelection,
 }
   Settings: {
     root: Settings,
@@ -1944,6 +2430,14 @@ export interface FragmentsMap {
     root: SocialLinks_1,
     selection: SocialLinks_1GenqlSelection,
 }
+  Summary: {
+    root: Summary,
+    selection: SummaryGenqlSelection,
+}
+  SummaryRichText: {
+    root: SummaryRichText,
+    selection: SummaryRichTextGenqlSelection,
+}
   TransactionStatus: {
     root: TransactionStatus,
     selection: TransactionStatusGenqlSelection,
@@ -1952,9 +2446,9 @@ export interface FragmentsMap {
     root: Variant,
     selection: VariantGenqlSelection,
 }
-  _AgentSTART: {
-    root: _AgentSTART,
-    selection: _AgentSTARTGenqlSelection,
+  _AgentStart: {
+    root: _AgentStart,
+    selection: _AgentStartGenqlSelection,
 }
   _BranchInfo: {
     root: _BranchInfo,
@@ -1983,6 +2477,10 @@ export interface FragmentsMap {
   _components: {
     root: _components,
     selection: _componentsGenqlSelection,
+}
+  booksItem_AsList: {
+    root: booksItem_AsList,
+    selection: booksItem_AsListGenqlSelection,
 }
   metaComponent_AsList: {
     root: metaComponent_AsList,

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+
 import { ensureChosenLanguage } from "@/utils/locale";
 
 export function middleware(request: NextRequest) {
@@ -7,14 +8,16 @@ export function middleware(request: NextRequest) {
   const locale = acceptLanguage?.split(",")[0];
   const displayLanguage = ensureChosenLanguage(locale) ?? "en";
 
-  request.nextUrl.pathname = `/${displayLanguage}`;
+  // check if the route already has a language
+  if (request.nextUrl.pathname.startsWith(`/${displayLanguage}`)) {
+    return NextResponse.next();
+  }
 
-  return NextResponse.redirect(request.nextUrl);
+  return NextResponse.redirect(
+    new URL(`/${displayLanguage}${request.nextUrl.pathname}`, request.url),
+  );
 }
 
 export const config = {
-  matcher: [
-    // only run on root (/) URL
-    "/",
-  ],
+  matcher: ["/", "/reading/:path*"],
 };

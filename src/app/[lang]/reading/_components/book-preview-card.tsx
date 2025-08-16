@@ -5,14 +5,14 @@ import { BookGenreBadge } from "@/app/[lang]/reading/_components/book-genre-badg
 
 type BookPreviewCardProps = {
   title: string;
-  cover: string;
   genres: string[];
   authors: string[];
+  coverUrl: string | null;
   progress: number | null;
 };
 
 export function BookPreviewCard(props: BookPreviewCardProps) {
-  const bookProgress = (props.progress ?? 0) * 100;
+  const bookProgress = props.progress ?? 0;
 
   return (
     <div
@@ -28,11 +28,24 @@ export function BookPreviewCard(props: BookPreviewCardProps) {
         priority
         width={539}
         height={784}
-        src={props.cover}
         alt={props.title}
-        className={css({ borderTopLeftRadius: "xl", borderBottomLeftRadius: "xl", maxWidth: 32, boxShadow: "sm" })}
+        src={props.coverUrl ?? "/images/book-cover-placeholder.png"}
+        className={css({
+          borderTopLeftRadius: "xl",
+          borderBottomLeftRadius: "xl",
+          maxWidth: 32,
+          boxShadow: "sm",
+        })}
       />
-      <div className={flex({ flexDirection: "column", justifyContent: "space-between", px: 5, py: 4, flex: 1 })}>
+      <div
+        className={flex({
+          flexDirection: "column",
+          justifyContent: "space-between",
+          px: 5,
+          py: 4,
+          flex: 1,
+        })}
+      >
         <div className={vstack({ gap: 3, alignItems: "stretch" })}>
           <h3
             title={props.title}
@@ -88,7 +101,9 @@ export function BookPreviewCard(props: BookPreviewCardProps) {
                 })}
               />
             </div>
-            <span className={css({ fontSize: "sm", color: "clr_neutral_700_400" })}>{bookProgress}%</span>
+            <span className={css({ fontSize: "sm", color: "clr_neutral_700_400" })}>
+              {bookProgress}%
+            </span>
           </div>
         </div>
       </div>
