@@ -6,12 +6,14 @@ import type { PageProps } from "@/types/next";
 import { OuterContainer } from "@/app/_components/outer-container";
 import { InnerContainer } from "@/app/_components/inner-container";
 
+export const dynamic = "force-static";
+
 type HomePageProps = Pick<PageProps<{ lang: "en" | "pt" | "de" }>, "params">;
 
 export default async function HomePage(props: HomePageProps) {
   const displayLanguage = (await props.params).lang;
 
-  const data = await basehub({ cache: "force-cache" }).query({
+  const data = await basehub().query({
     home: {
       bioSection: {
         __args: {
