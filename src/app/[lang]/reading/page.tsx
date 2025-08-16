@@ -2,6 +2,7 @@ import { basehub } from "basehub";
 import type { Metadata } from "next";
 
 import { css } from "@/panda/css";
+import type { Languages } from "@/types/app";
 import type { PageProps } from "@/types/next";
 import { flex, grid, vstack } from "@/panda/patterns";
 import { OuterContainer } from "@/app/_components/outer-container";
@@ -12,10 +13,10 @@ import { BookPreviewCard } from "@/app/[lang]/reading/_components/book-preview-c
 
 export const dynamic = "force-static";
 
-type ReadingPageProps = Pick<PageProps<{ lang: "en" | "pt" | "de" }>, "params">;
+type ReadingPageProps = Pick<PageProps, "params">;
 
 export async function generateMetadata(props: ReadingPageProps): Promise<Metadata> {
-  const displayLanguage = (await props.params).lang;
+  const displayLanguage = (await props.params!).lang as Languages;
 
   const meta = await basehub().query({
     reading: {
@@ -55,7 +56,7 @@ export async function generateMetadata(props: ReadingPageProps): Promise<Metadat
 }
 
 export default async function ReadingPage(props: ReadingPageProps) {
-  const displayLanguage = (await props.params).lang;
+  const displayLanguage = (await props.params!).lang as Languages;
   const currentlyReads = await basehub().query({
     reading: {
       books: {
