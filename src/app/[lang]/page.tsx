@@ -1,17 +1,19 @@
 import { basehub } from "basehub";
+
 import { css } from "@/panda/css";
 import { MDX } from "@/app/_components/mdx";
 import { flex } from "@/panda/patterns";
+import type { Languages } from "@/types/app";
 import type { PageProps } from "@/types/next";
 import { OuterContainer } from "@/app/_components/outer-container";
 import { InnerContainer } from "@/app/_components/inner-container";
 
 export const dynamic = "force-static";
 
-type HomePageProps = Pick<PageProps<{ lang: "en" | "pt" | "de" }>, "params">;
+type HomePageProps = Pick<PageProps, "params">;
 
 export default async function HomePage(props: HomePageProps) {
-  const displayLanguage = (await props.params).lang;
+  const displayLanguage = (await props.params!).lang as Languages;
 
   const data = await basehub().query({
     home: {

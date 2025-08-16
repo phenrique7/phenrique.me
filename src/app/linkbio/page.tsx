@@ -1,7 +1,9 @@
 import { Suspense } from "react";
 import { basehub } from "basehub";
 import type { Metadata } from "next";
+
 import { css } from "@/panda/css";
+import type { Languages } from "@/types/app";
 import type { PageProps } from "@/types/next";
 import { Head } from "@/app/linkbio/_components/head";
 import { ensureChosenLanguage } from "@/utils/locale";
@@ -15,7 +17,7 @@ export const experimental_ppr = true;
 export async function generateMetadata({
   searchParams,
 }: Pick<PageProps, "searchParams">): Promise<Metadata> {
-  const chosenLanguage = ((await searchParams) as { lang: string } | undefined)?.lang;
+  const chosenLanguage = ((await searchParams) as { lang: Languages } | undefined)?.lang;
 
   let displayLanguage = ensureChosenLanguage(chosenLanguage);
 

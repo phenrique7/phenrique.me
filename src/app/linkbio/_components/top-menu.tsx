@@ -1,4 +1,5 @@
 import { css } from "@/panda/css";
+import type { Languages } from "@/types/app";
 import type { PageProps } from "@/types/next";
 import { ensureChosenLanguage } from "@/utils/locale";
 import { getLocaleLanguage } from "@/app/linkbio/_utils/locale";
@@ -30,7 +31,7 @@ export function TopMenuSkeleton() {
 type TopMenuProps = Pick<PageProps, "searchParams">;
 
 export async function TopMenu(props: TopMenuProps) {
-  const chosenLanguage = ((await props.searchParams) as { lang: string } | undefined)?.lang;
+  const chosenLanguage = ((await props.searchParams) as { lang: Languages } | undefined)?.lang;
 
   let displayLanguage = ensureChosenLanguage(chosenLanguage);
 

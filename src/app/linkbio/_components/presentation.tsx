@@ -1,6 +1,8 @@
-import { css } from "@/panda/css";
 import { basehub } from "basehub";
+
+import { css } from "@/panda/css";
 import { vstack } from "@/panda/patterns";
+import type { Languages } from "@/types/app";
 import type { PageProps } from "@/types/next";
 import { ensureChosenLanguage } from "@/utils/locale";
 import { ErrorFallback } from "@/app/_components/error-fallback";
@@ -41,7 +43,7 @@ export function PresentationSkeleton() {
 type PresentationProps = Pick<PageProps, "searchParams">;
 
 export async function Presentation(props: PresentationProps) {
-  const chosenLanguage = ((await props.searchParams) as { lang: string } | undefined)?.lang;
+  const chosenLanguage = ((await props.searchParams) as { lang: Languages } | undefined)?.lang;
 
   let displayLanguage = ensureChosenLanguage(chosenLanguage);
 
