@@ -50,11 +50,11 @@ export interface Scalars {
 }))[],
     BSHBRichTextContentSchema: RichTextNode[],
     BSHBRichTextTOCSchema: RichTextTocNode[],
-    BSHBSelect_1461570115: 'Reading' | 'Finished',
-    BSHBSelect_346271021: 'Vida Nova' | 'Kírion' | 'Shedd Publicações' | 'Thomas Nelson Brasil' | 'Fiel' | 'Companhia das Letras' | 'Pro Nobis' | 'Cultura Cristã' | 'Pilgrim' | ' Genever Benning',
-    BSHBSelect__1049998026: 'Christian' | 'Apologetics' | 'Biography' | 'Education' | 'Family' | 'Fiction' | 'Finances' | 'Personal Development' | 'Philosophy' | 'Social & Political Science' | 'Software Engineering',
-    BSHBSelect__1414420368: 'Physical' | 'Digital',
-    BSHBSelect__1885717383: 'Dane C. Ortlund' | 'Robert Nystrom' | 'Timothy Keller' | 'James W. Sire' | 'Heber Campos Jr.' | 'Costa Neto' | 'John Piper' | 'A.-D. Sertillanges' | 'Russell P. Shedd' | 'Larry Crabb' | 'Sinclair B. Ferguson' | 'Kevin DeYoung' | 'John Bunyan',
+    BSHBSelect_2048205991: 'Vida Nova' | 'Kírion' | 'Shedd Publicações' | 'Thomas Nelson Brasil' | 'Fiel' | 'Companhia das Letras' | 'Pro Nobis' | 'Cultura Cristã' | 'Pilgrim' | ' Genever Benning',
+    BSHBSelect_274798727: 'Dane C. Ortlund' | 'Robert Nystrom' | 'Timothy Keller' | 'James W. Sire' | 'Heber Campos Jr.' | 'Costa Neto' | 'John Piper' | 'A.-D. Sertillanges' | 'Russell P. Shedd' | 'Larry Crabb' | 'Sinclair B. Ferguson' | 'Kevin DeYoung' | 'John Bunyan',
+    BSHBSelect__462599322: 'Reading' | 'Finished',
+    BSHBSelect__635238408: 'Physical' | 'Digital',
+    BSHBSelect__949924030: 'Christian' | 'Apologetics' | 'Biography' | 'Education' | 'Family' | 'Fiction' | 'Finances' | 'Personal Development' | 'Philosophy' | 'Social & Political Science' | 'Software Engineering',
     Boolean: boolean,
     CodeSnippetLanguage: B_Language,
     DateTime: any,
@@ -244,26 +244,26 @@ export interface BooksItem {
     _analyticsKey: Scalars['String']
     _dashboardUrl: Scalars['String']
     /** Array of search highlight information with field names and HTML markup */
-    _highlight: (SearchHighlight_f2146f8fe10a8c3a119aa[] | null)
+    _highlight: (SearchHighlight_Deq0JwtICPSdpUxrdsugH[] | null)
     _id: Scalars['String']
     _idPath: Scalars['String']
     _slug: Scalars['String']
     _slugPath: Scalars['String']
     _sys: BlockDocumentSys
     _title: Scalars['String']
-    authors: Scalars['BSHBSelect__1885717383'][]
+    authors: Scalars['BSHBSelect_274798727'][]
     cover: (BlockImage | null)
     edition: Scalars['Float']
     /** ISO 8601 date string. */
     finishedDate: (Scalars['String'] | null)
-    format: Scalars['BSHBSelect__1414420368']
-    genres: Scalars['BSHBSelect__1049998026'][]
+    format: Scalars['BSHBSelect__635238408']
+    genres: Scalars['BSHBSelect__949924030'][]
     progress: (Scalars['Float'] | null)
     publicationDate: Scalars['Float']
-    publisher: Scalars['BSHBSelect_346271021'][]
+    publisher: Scalars['BSHBSelect_2048205991'][]
     rating: (Scalars['Float'] | null)
     review: (Review | null)
-    status: Scalars['BSHBSelect_1461570115']
+    status: Scalars['BSHBSelect__462599322']
     subtitle: (Scalars['String'] | null)
     summary: (Summary | null)
     __typename: 'BooksItem'
@@ -587,12 +587,12 @@ export interface SearchHighlight_99e6d765742b93dae0e64 {
     __typename: 'SearchHighlight_99e6d765742b93dae0e64'
 }
 
-export interface SearchHighlight_f2146f8fe10a8c3a119aa {
+export interface SearchHighlight_Deq0JwtICPSdpUxrdsugH {
     /** The field/path that was matched (e.g., "title", "body.content") */
     by: Scalars['String']
     /** HTML snippet with <mark> tags around the matched terms */
     snippet: Scalars['String']
-    __typename: 'SearchHighlight_f2146f8fe10a8c3a119aa'
+    __typename: 'SearchHighlight_Deq0JwtICPSdpUxrdsugH'
 }
 
 export interface Settings {
@@ -1213,7 +1213,7 @@ export interface BooksItemGenqlSelection{
     scope?: (AnalyticsKeyScope | null)} } | boolean | number
     _dashboardUrl?: boolean | number
     /** Array of search highlight information with field names and HTML markup */
-    _highlight?: SearchHighlight_f2146f8fe10a8c3a119aaGenqlSelection
+    _highlight?: SearchHighlight_Deq0JwtICPSdpUxrdsugHGenqlSelection
     _id?: boolean | number
     _idPath?: boolean | number
     _slug?: boolean | number
@@ -1764,7 +1764,7 @@ export interface SearchHighlight_99e6d765742b93dae0e64GenqlSelection{
     __typename?: boolean | number
 }
 
-export interface SearchHighlight_f2146f8fe10a8c3a119aaGenqlSelection{
+export interface SearchHighlight_Deq0JwtICPSdpUxrdsugHGenqlSelection{
     /** The field/path that was matched (e.g., "title", "body.content") */
     by?: boolean | number
     /** HTML snippet with <mark> tags around the matched terms */
@@ -2406,9 +2406,9 @@ export interface FragmentsMap {
     root: SearchHighlight_99e6d765742b93dae0e64,
     selection: SearchHighlight_99e6d765742b93dae0e64GenqlSelection,
 }
-  SearchHighlight_f2146f8fe10a8c3a119aa: {
-    root: SearchHighlight_f2146f8fe10a8c3a119aa,
-    selection: SearchHighlight_f2146f8fe10a8c3a119aaGenqlSelection,
+  SearchHighlight_Deq0JwtICPSdpUxrdsugH: {
+    root: SearchHighlight_Deq0JwtICPSdpUxrdsugH,
+    selection: SearchHighlight_Deq0JwtICPSdpUxrdsugHGenqlSelection,
 }
   Settings: {
     root: Settings,

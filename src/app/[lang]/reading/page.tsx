@@ -103,9 +103,6 @@ export default async function ReadingPage(props: ReadingPageProps) {
   });
   const dict = await getAppDictionary(displayLanguage);
 
-  console.log(currentlyReads);
-  console.log(finishedBooks);
-
   return (
     <OuterContainer
       styles={{
