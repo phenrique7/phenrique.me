@@ -50,11 +50,11 @@ export interface Scalars {
 }))[],
     BSHBRichTextContentSchema: RichTextNode[],
     BSHBRichTextTOCSchema: RichTextTocNode[],
-    BSHBSelect_1461570115: 'Reading' | 'Finished',
-    BSHBSelect_346271021: 'Vida Nova' | 'Kírion' | 'Shedd Publicações' | 'Thomas Nelson Brasil' | 'Fiel' | 'Companhia das Letras' | 'Pro Nobis' | 'Cultura Cristã' | 'Pilgrim' | ' Genever Benning',
-    BSHBSelect__1049998026: 'Christian' | 'Apologetics' | 'Biography' | 'Education' | 'Family' | 'Fiction' | 'Finances' | 'Personal Development' | 'Philosophy' | 'Social & Political Science' | 'Software Engineering',
-    BSHBSelect__1414420368: 'Physical' | 'Digital',
-    BSHBSelect__1885717383: 'Dane C. Ortlund' | 'Robert Nystrom' | 'Timothy Keller' | 'James W. Sire' | 'Heber Campos Jr.' | 'Costa Neto' | 'John Piper' | 'A.-D. Sertillanges' | 'Russell P. Shedd' | 'Larry Crabb' | 'Sinclair B. Ferguson' | 'Kevin DeYoung' | 'John Bunyan',
+    BSHBSelect_2048205991: 'Vida Nova' | 'Kírion' | 'Shedd Publicações' | 'Thomas Nelson Brasil' | 'Fiel' | 'Companhia das Letras' | 'Pro Nobis' | 'Cultura Cristã' | 'Pilgrim' | ' Genever Benning',
+    BSHBSelect_274798727: 'Dane C. Ortlund' | 'Robert Nystrom' | 'Timothy Keller' | 'James W. Sire' | 'Heber Campos Jr.' | 'Costa Neto' | 'John Piper' | 'A.-D. Sertillanges' | 'Russell P. Shedd' | 'Larry Crabb' | 'Sinclair B. Ferguson' | 'Kevin DeYoung' | 'John Bunyan',
+    BSHBSelect__462599322: 'Reading' | 'Finished',
+    BSHBSelect__635238408: 'Physical' | 'Digital',
+    BSHBSelect__949924030: 'Christian' | 'Apologetics' | 'Biography' | 'Education' | 'Family' | 'Fiction' | 'Finances' | 'Personal Development' | 'Philosophy' | 'Social & Political Science' | 'Software Engineering',
     Boolean: boolean,
     CodeSnippetLanguage: B_Language,
     DateTime: any,
@@ -244,26 +244,26 @@ export interface BooksItem {
     _analyticsKey: Scalars['String']
     _dashboardUrl: Scalars['String']
     /** Array of search highlight information with field names and HTML markup */
-    _highlight: (SearchHighlight_f2146f8fe10a8c3a119aa[] | null)
+    _highlight: (SearchHighlight_Deq0JwtICPSdpUxrdsugH[] | null)
     _id: Scalars['String']
     _idPath: Scalars['String']
     _slug: Scalars['String']
     _slugPath: Scalars['String']
     _sys: BlockDocumentSys
     _title: Scalars['String']
-    authors: Scalars['BSHBSelect__1885717383'][]
+    authors: Scalars['BSHBSelect_274798727'][]
     cover: (BlockImage | null)
     edition: Scalars['Float']
     /** ISO 8601 date string. */
     finishedDate: (Scalars['String'] | null)
-    format: Scalars['BSHBSelect__1414420368']
-    genres: Scalars['BSHBSelect__1049998026'][]
+    format: Scalars['BSHBSelect__635238408']
+    genres: Scalars['BSHBSelect__949924030'][]
     progress: (Scalars['Float'] | null)
     publicationDate: Scalars['Float']
-    publisher: Scalars['BSHBSelect_346271021'][]
+    publisher: Scalars['BSHBSelect_2048205991'][]
     rating: (Scalars['Float'] | null)
     review: (Review | null)
-    status: Scalars['BSHBSelect_1461570115']
+    status: Scalars['BSHBSelect__462599322']
     subtitle: (Scalars['String'] | null)
     summary: (Summary | null)
     __typename: 'BooksItem'
@@ -587,12 +587,12 @@ export interface SearchHighlight_99e6d765742b93dae0e64 {
     __typename: 'SearchHighlight_99e6d765742b93dae0e64'
 }
 
-export interface SearchHighlight_f2146f8fe10a8c3a119aa {
+export interface SearchHighlight_Deq0JwtICPSdpUxrdsugH {
     /** The field/path that was matched (e.g., "title", "body.content") */
     by: Scalars['String']
     /** HTML snippet with <mark> tags around the matched terms */
     snippet: Scalars['String']
-    __typename: 'SearchHighlight_f2146f8fe10a8c3a119aa'
+    __typename: 'SearchHighlight_Deq0JwtICPSdpUxrdsugH'
 }
 
 export interface Settings {
@@ -929,6 +929,7 @@ export interface BaseRichTextJsonGenqlSelection{
     content?: boolean | number
     toc?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "BaseRichTextJson"
 }
 
 export interface BioSectionGenqlSelection{
@@ -950,6 +951,7 @@ export interface BioSectionGenqlSelection{
     subtitle?: boolean | number
     title?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "BioSection"
 }
 
 export interface BioSection_1GenqlSelection{
@@ -972,6 +974,7 @@ export interface BioSection_1GenqlSelection{
     name?: boolean | number
     quote?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "BioSection_1"
 }
 
 export interface BlockAudioGenqlSelection{
@@ -983,6 +986,7 @@ export interface BlockAudioGenqlSelection{
     mimeType?: boolean | number
     url?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "BlockAudio"
 }
 
 export interface BlockCodeSnippetGenqlSelection{
@@ -994,6 +998,7 @@ export interface BlockCodeSnippetGenqlSelection{
     theme?: (Scalars['String'] | null)} } | boolean | number
     language?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "BlockCodeSnippet"
 }
 
 export interface BlockColorGenqlSelection{
@@ -1004,6 +1009,7 @@ export interface BlockColorGenqlSelection{
     r?: boolean | number
     rgb?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "BlockColor"
 }
 
 export interface BlockDocumentGenqlSelection{
@@ -1048,6 +1054,7 @@ export interface BlockDocumentGenqlSelection{
     on_socialLinksItem1_AsList?: socialLinksItem1_AsListGenqlSelection
     on_socialLinksItem_AsList?: socialLinksItem_AsListGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "BlockDocument"
 }
 
 export interface BlockDocumentSysGenqlSelection{
@@ -1061,6 +1068,7 @@ export interface BlockDocumentSysGenqlSelection{
     slugPath?: boolean | number
     title?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "BlockDocumentSys"
 }
 
 export interface BlockFileGenqlSelection{
@@ -1070,6 +1078,7 @@ export interface BlockFileGenqlSelection{
     mimeType?: boolean | number
     url?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "BlockFile"
 }
 
 export interface BlockImageGenqlSelection{
@@ -1105,6 +1114,7 @@ export interface BlockImageGenqlSelection{
     url?: { __args: {anim?: (Scalars['String'] | null), background?: (Scalars['String'] | null), blur?: (Scalars['Int'] | null), border?: (Scalars['String'] | null), brightness?: (Scalars['Int'] | null), compression?: (Scalars['String'] | null), contrast?: (Scalars['Int'] | null), dpr?: (Scalars['Int'] | null), fit?: (Scalars['String'] | null), format?: (Scalars['String'] | null), gamma?: (Scalars['String'] | null), gravity?: (Scalars['String'] | null), height?: (Scalars['Int'] | null), metadata?: (Scalars['String'] | null), quality?: (Scalars['Int'] | null), rotate?: (Scalars['String'] | null), sharpen?: (Scalars['String'] | null), trim?: (Scalars['String'] | null), width?: (Scalars['Int'] | null)} } | boolean | number
     width?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "BlockImage"
 }
 
 export interface BlockListGenqlSelection{
@@ -1135,6 +1145,7 @@ export interface BlockListGenqlSelection{
     on_socialLinksItem1_AsList?: socialLinksItem1_AsListGenqlSelection
     on_socialLinksItem_AsList?: socialLinksItem_AsListGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "BlockList"
 }
 
 export interface BlockOgImageGenqlSelection{
@@ -1142,6 +1153,7 @@ export interface BlockOgImageGenqlSelection{
     url?: boolean | number
     width?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "BlockOgImage"
 }
 
 
@@ -1162,6 +1174,7 @@ export interface BlockRichTextGenqlSelection{
     on_Review?: ReviewGenqlSelection
     on_Summary?: SummaryGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "BlockRichText"
 }
 
 export interface BlockVideoGenqlSelection{
@@ -1176,6 +1189,7 @@ export interface BlockVideoGenqlSelection{
     url?: boolean | number
     width?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "BlockVideo"
 }
 
 export interface BooksGenqlSelection{
@@ -1201,6 +1215,7 @@ export interface BooksGenqlSelection{
     /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
     items?: BooksItemGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "Books"
 }
 
 export interface BooksItemGenqlSelection{
@@ -1213,7 +1228,7 @@ export interface BooksItemGenqlSelection{
     scope?: (AnalyticsKeyScope | null)} } | boolean | number
     _dashboardUrl?: boolean | number
     /** Array of search highlight information with field names and HTML markup */
-    _highlight?: SearchHighlight_f2146f8fe10a8c3a119aaGenqlSelection
+    _highlight?: SearchHighlight_Deq0JwtICPSdpUxrdsugHGenqlSelection
     _id?: boolean | number
     _idPath?: boolean | number
     _slug?: boolean | number
@@ -1236,6 +1251,7 @@ export interface BooksItemGenqlSelection{
     subtitle?: boolean | number
     summary?: SummaryGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "BooksItem"
 }
 
 export interface BooksItemFilterInput {AND?: (BooksItemFilterInput | null),OR?: (BooksItemFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),authors?: (SelectFilter | null),edition?: (NumberFilter | null),finishedDate?: (DateFilter | null),format?: (SelectFilter | null),genres?: (SelectFilter | null),progress?: (NumberFilter | null),publicationDate?: (NumberFilter | null),publisher?: (SelectFilter | null),rating?: (NumberFilter | null),status?: (SelectFilter | null),subtitle?: (StringFilter | null)}
@@ -1263,6 +1279,7 @@ export interface ComponentsGenqlSelection{
     _title?: boolean | number
     meta?: (MetaComponentGenqlSelection & { __args?: {variants?: (Language__VariantsInput | null)} })
     __typename?: boolean | number
+    __fragmentOn?: "Components"
 }
 
 export interface DateFilter {eq?: (Scalars['DateTime'] | null),isAfter?: (Scalars['DateTime'] | null),isBefore?: (Scalars['DateTime'] | null),isNull?: (Scalars['Boolean'] | null),neq?: (Scalars['DateTime'] | null),onOrAfter?: (Scalars['DateTime'] | null),onOrBefore?: (Scalars['DateTime'] | null)}
@@ -1280,12 +1297,14 @@ export interface DescriptionGenqlSelection{
     /** Words per minute, defaults to average 183wpm */
     wpm?: (Scalars['Int'] | null)} } | boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "Description"
 }
 
 export interface DescriptionRichTextGenqlSelection{
     content?: boolean | number
     toc?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "DescriptionRichText"
 }
 
 export interface FooterGenqlSelection{
@@ -1316,12 +1335,14 @@ export interface FooterGenqlSelection{
     skip?: (Scalars['Int'] | null)} })
     source?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "Footer"
 }
 
 export interface GetUploadSignedURLGenqlSelection{
     signedURL?: boolean | number
     uploadURL?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "GetUploadSignedURL"
 }
 
 export interface HeaderGenqlSelection{
@@ -1352,6 +1373,7 @@ export interface HeaderGenqlSelection{
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null), variants?: (Language__VariantsInput | null)} })
     __typename?: boolean | number
+    __fragmentOn?: "Header"
 }
 
 export interface HomeGenqlSelection{
@@ -1372,6 +1394,7 @@ export interface HomeGenqlSelection{
     bioSection?: (BioSectionGenqlSelection & { __args?: {variants?: (Language__VariantsInput | null)} })
     metadata?: (MetaComponentGenqlSelection & { __args?: {variants?: (Language__VariantsInput | null)} })
     __typename?: boolean | number
+    __fragmentOn?: "Home"
 }
 
 export interface LanguageGenqlSelection{
@@ -1391,6 +1414,7 @@ export interface LanguageGenqlSelection{
     _title?: boolean | number
     variants?: VariantGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "Language"
 }
 
 export interface Language__VariantsInput {language?: (LanguageEnum | null)}
@@ -1413,6 +1437,7 @@ export interface LayoutGenqlSelection{
     footer?: FooterGenqlSelection
     header?: HeaderGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "Layout"
 }
 
 export interface LinkbioGenqlSelection{
@@ -1444,6 +1469,7 @@ export interface LinkbioGenqlSelection{
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null)} })
     __typename?: boolean | number
+    __fragmentOn?: "Linkbio"
 }
 
 export interface ListFilter {isEmpty?: (Scalars['Boolean'] | null),length?: (Scalars['Int'] | null)}
@@ -1454,6 +1480,7 @@ export interface ListMetaGenqlSelection{
     /** Total number of items in collection before any filtering/pagination */
     totalCount?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "ListMeta"
 }
 
 export interface MediaBlockGenqlSelection{
@@ -1467,6 +1494,7 @@ export interface MediaBlockGenqlSelection{
     on_BlockImage?: BlockImageGenqlSelection
     on_BlockVideo?: BlockVideoGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "MediaBlock"
 }
 
 export interface MediaBlockUnionGenqlSelection{
@@ -1475,7 +1503,8 @@ export interface MediaBlockUnionGenqlSelection{
     on_BlockImage?:BlockImageGenqlSelection,
     on_BlockVideo?:BlockVideoGenqlSelection,
     on_MediaBlock?: MediaBlockGenqlSelection,
-    __typename?: boolean | number
+    __typename?: boolean | number,
+    __fragmentOn?: "MediaBlockUnion"
 }
 
 export interface MetaComponentGenqlSelection{
@@ -1500,6 +1529,7 @@ export interface MetaComponentGenqlSelection{
     title?: boolean | number
     xUsername?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "MetaComponent"
 }
 
 export interface MetaComponentFilterInput {AND?: (MetaComponentFilterInput | null),OR?: (MetaComponentFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),description?: (StringFilter | null),title?: (StringFilter | null),xUsername?: (StringFilter | null)}
@@ -1565,6 +1595,7 @@ export interface MutationGenqlSelection{
     /** Transaction ID */
     id: Scalars['String']} })
     __typename?: boolean | number
+    __fragmentOn?: "Mutation"
 }
 
 export interface NavLinksGenqlSelection{
@@ -1590,6 +1621,7 @@ export interface NavLinksGenqlSelection{
     /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
     items?: NavLinksComponentGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "NavLinks"
 }
 
 export interface NavLinksComponentGenqlSelection{
@@ -1613,6 +1645,7 @@ export interface NavLinksComponentGenqlSelection{
     label?: boolean | number
     path?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "NavLinksComponent"
 }
 
 export interface NavLinksComponentFilterInput {AND?: (NavLinksComponentFilterInput | null),OR?: (NavLinksComponentFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),label?: (StringFilter | null),path?: (StringFilter | null)}
@@ -1659,6 +1692,7 @@ export interface QueryGenqlSelection{
     reading?: ReadingGenqlSelection
     settings?: SettingsGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "Query"
 }
 
 export interface ReadingGenqlSelection{
@@ -1689,6 +1723,7 @@ export interface ReadingGenqlSelection{
     skip?: (Scalars['Int'] | null)} })
     metadata?: (MetaComponentGenqlSelection & { __args?: {variants?: (Language__VariantsInput | null)} })
     __typename?: boolean | number
+    __fragmentOn?: "Reading"
 }
 
 export interface RepoSysGenqlSelection{
@@ -1699,6 +1734,7 @@ export interface RepoSysGenqlSelection{
     slug?: boolean | number
     title?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "RepoSys"
 }
 
 export interface ReviewGenqlSelection{
@@ -1714,12 +1750,14 @@ export interface ReviewGenqlSelection{
     /** Words per minute, defaults to average 183wpm */
     wpm?: (Scalars['Int'] | null)} } | boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "Review"
 }
 
 export interface ReviewRichTextGenqlSelection{
     content?: boolean | number
     toc?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "ReviewRichText"
 }
 
 export interface RichTextJsonGenqlSelection{
@@ -1730,6 +1768,7 @@ export interface RichTextJsonGenqlSelection{
     on_ReviewRichText?: ReviewRichTextGenqlSelection
     on_SummaryRichText?: SummaryRichTextGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "RichTextJson"
 }
 
 export interface SearchHighlight_07d88f073e1178df9d82cGenqlSelection{
@@ -1738,6 +1777,7 @@ export interface SearchHighlight_07d88f073e1178df9d82cGenqlSelection{
     /** HTML snippet with <mark> tags around the matched terms */
     snippet?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "SearchHighlight_07d88f073e1178df9d82c"
 }
 
 export interface SearchHighlight_2277c49accc2d1e49a599GenqlSelection{
@@ -1746,6 +1786,7 @@ export interface SearchHighlight_2277c49accc2d1e49a599GenqlSelection{
     /** HTML snippet with <mark> tags around the matched terms */
     snippet?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "SearchHighlight_2277c49accc2d1e49a599"
 }
 
 export interface SearchHighlight_91e9974655b66a1057f04GenqlSelection{
@@ -1754,6 +1795,7 @@ export interface SearchHighlight_91e9974655b66a1057f04GenqlSelection{
     /** HTML snippet with <mark> tags around the matched terms */
     snippet?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "SearchHighlight_91e9974655b66a1057f04"
 }
 
 export interface SearchHighlight_99e6d765742b93dae0e64GenqlSelection{
@@ -1762,14 +1804,16 @@ export interface SearchHighlight_99e6d765742b93dae0e64GenqlSelection{
     /** HTML snippet with <mark> tags around the matched terms */
     snippet?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "SearchHighlight_99e6d765742b93dae0e64"
 }
 
-export interface SearchHighlight_f2146f8fe10a8c3a119aaGenqlSelection{
+export interface SearchHighlight_Deq0JwtICPSdpUxrdsugHGenqlSelection{
     /** The field/path that was matched (e.g., "title", "body.content") */
     by?: boolean | number
     /** HTML snippet with <mark> tags around the matched terms */
     snippet?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "SearchHighlight_Deq0JwtICPSdpUxrdsugH"
 }
 
 export interface SelectFilter {excludes?: (Scalars['String'] | null),excludesAll?: (Scalars['String'][] | null),includes?: (Scalars['String'] | null),includesAll?: (Scalars['String'][] | null),includesAny?: (Scalars['String'][] | null),isEmpty?: (Scalars['Boolean'] | null)}
@@ -1791,6 +1835,7 @@ export interface SettingsGenqlSelection{
     _title?: boolean | number
     language?: LanguageGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "Settings"
 }
 
 export interface SocialLinksGenqlSelection{
@@ -1816,6 +1861,7 @@ export interface SocialLinksGenqlSelection{
     /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
     items?: SocialLinksItemGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "SocialLinks"
 }
 
 export interface SocialLinksItemGenqlSelection{
@@ -1839,6 +1885,7 @@ export interface SocialLinksItemGenqlSelection{
     icon?: boolean | number
     label?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "SocialLinksItem"
 }
 
 export interface SocialLinksItemFilterInput {AND?: (SocialLinksItemFilterInput | null),OR?: (SocialLinksItemFilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),href?: (StringFilter | null),label?: (StringFilter | null)}
@@ -1871,6 +1918,7 @@ export interface SocialLinksItem_1GenqlSelection{
     mediaName?: boolean | number
     mediaSlug?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "SocialLinksItem_1"
 }
 
 export interface SocialLinksItem_1FilterInput {AND?: (SocialLinksItem_1FilterInput | null),OR?: (SocialLinksItem_1FilterInput | null),_id?: (StringFilter | null),_slug?: (StringFilter | null),_sys_apiNamePath?: (StringFilter | null),_sys_createdAt?: (DateFilter | null),_sys_hash?: (StringFilter | null),_sys_id?: (StringFilter | null),_sys_idPath?: (StringFilter | null),_sys_lastModifiedAt?: (DateFilter | null),_sys_slug?: (StringFilter | null),_sys_slugPath?: (StringFilter | null),_sys_title?: (StringFilter | null),_title?: (StringFilter | null),mediaLink?: (StringFilter | null),mediaName?: (StringFilter | null),mediaSlug?: (StringFilter | null)}
@@ -1904,6 +1952,7 @@ export interface SocialLinks_1GenqlSelection{
     /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
     items?: SocialLinksItem_1GenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "SocialLinks_1"
 }
 
 export interface StringFilter {contains?: (Scalars['String'] | null),endsWith?: (Scalars['String'] | null),eq?: (Scalars['String'] | null),in?: (Scalars['String'][] | null),isNull?: (Scalars['Boolean'] | null),matches?: (StringMatchesFilter | null),notEq?: (Scalars['String'] | null),notIn?: (Scalars['String'][] | null),startsWith?: (Scalars['String'] | null)}
@@ -1923,12 +1972,14 @@ export interface SummaryGenqlSelection{
     /** Words per minute, defaults to average 183wpm */
     wpm?: (Scalars['Int'] | null)} } | boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "Summary"
 }
 
 export interface SummaryRichTextGenqlSelection{
     content?: boolean | number
     toc?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "SummaryRichText"
 }
 
 export interface TargetBlock {focus?: (Scalars['Boolean'] | null),id: Scalars['String'],label: Scalars['String']}
@@ -1942,6 +1993,7 @@ export interface TransactionStatusGenqlSelection{
     startedAt?: boolean | number
     status?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "TransactionStatus"
 }
 
 export interface VariantGenqlSelection{
@@ -1951,6 +2003,7 @@ export interface VariantGenqlSelection{
     isDefault?: boolean | number
     label?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "Variant"
 }
 
 export interface _AgentStartGenqlSelection{
@@ -1985,6 +2038,7 @@ export interface _AgentStartGenqlSelection{
     slackInstallUrl?: boolean | number
     systemPrompt?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "_AgentStart"
 }
 
 export interface _BranchInfoGenqlSelection{
@@ -2009,12 +2063,14 @@ export interface _BranchInfoGenqlSelection{
     updatedAt?: boolean | number
     workingRootBlockId?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "_BranchInfo"
 }
 
 export interface _BranchesGenqlSelection{
     _meta?: ListMetaGenqlSelection
     items?: _BranchInfoGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "_Branches"
 }
 
 export interface _CommitInfoGenqlSelection{
@@ -2032,12 +2088,14 @@ export interface _CommitInfoGenqlSelection{
     repoId?: boolean | number
     rootBlockId?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "_CommitInfo"
 }
 
 export interface _GitInfoGenqlSelection{
     branch?: boolean | number
     deploymentUrl?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "_GitInfo"
 }
 
 export interface _PlaygroundInfoGenqlSelection{
@@ -2046,11 +2104,13 @@ export interface _PlaygroundInfoGenqlSelection{
     expiresAt?: boolean | number
     id?: boolean | number
     __typename?: boolean | number
+    __fragmentOn?: "_PlaygroundInfo"
 }
 
 export interface _agentsGenqlSelection{
     start?: _AgentStartGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "_agents"
 }
 
 export interface _componentsGenqlSelection{
@@ -2110,6 +2170,7 @@ export interface _componentsGenqlSelection{
     /** Skip the first n items. */
     skip?: (Scalars['Int'] | null)} })
     __typename?: boolean | number
+    __fragmentOn?: "_components"
 }
 
 export interface booksItem_AsListGenqlSelection{
@@ -2135,6 +2196,7 @@ export interface booksItem_AsListGenqlSelection{
     /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
     items?: BooksItemGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "booksItem_AsList"
 }
 
 export interface metaComponent_AsListGenqlSelection{
@@ -2160,6 +2222,7 @@ export interface metaComponent_AsListGenqlSelection{
     /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
     items?: MetaComponentGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "metaComponent_AsList"
 }
 
 export interface navLinksComponent_AsListGenqlSelection{
@@ -2185,6 +2248,7 @@ export interface navLinksComponent_AsListGenqlSelection{
     /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
     items?: NavLinksComponentGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "navLinksComponent_AsList"
 }
 
 export interface socialLinksItem1_AsListGenqlSelection{
@@ -2210,6 +2274,7 @@ export interface socialLinksItem1_AsListGenqlSelection{
     /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
     items?: SocialLinksItem_1GenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "socialLinksItem1_AsList"
 }
 
 export interface socialLinksItem_AsListGenqlSelection{
@@ -2235,6 +2300,7 @@ export interface socialLinksItem_AsListGenqlSelection{
     /** Returns the list of items after filtering and paginating according to the arguments sent by the client. */
     items?: SocialLinksItemGenqlSelection
     __typename?: boolean | number
+    __fragmentOn?: "socialLinksItem_AsList"
 }
 
 export interface FragmentsMap {
@@ -2406,9 +2472,9 @@ export interface FragmentsMap {
     root: SearchHighlight_99e6d765742b93dae0e64,
     selection: SearchHighlight_99e6d765742b93dae0e64GenqlSelection,
 }
-  SearchHighlight_f2146f8fe10a8c3a119aa: {
-    root: SearchHighlight_f2146f8fe10a8c3a119aa,
-    selection: SearchHighlight_f2146f8fe10a8c3a119aaGenqlSelection,
+  SearchHighlight_Deq0JwtICPSdpUxrdsugH: {
+    root: SearchHighlight_Deq0JwtICPSdpUxrdsugH,
+    selection: SearchHighlight_Deq0JwtICPSdpUxrdsugHGenqlSelection,
 }
   Settings: {
     root: Settings,

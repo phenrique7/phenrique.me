@@ -2,6 +2,7 @@ import { basehub } from "basehub";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import "@/ui/styles/base.css";
@@ -78,6 +79,7 @@ export default function AppLayout(props: Readonly<React.PropsWithChildren>) {
       </head>
       <body className={css({ fontFamily: "GeistSans" })}>
         <Provider>{props.children}</Provider>
+        <Analytics />
         <SpeedInsights />
       </body>
     </html>
