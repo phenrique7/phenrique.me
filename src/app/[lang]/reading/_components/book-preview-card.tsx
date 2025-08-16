@@ -21,6 +21,11 @@ export function BookPreviewCard(props: BookPreviewCardProps) {
   const { isOverflowing, scrollPos } = useOverflow<HTMLDivElement>(ref);
 
   const bookProgress = props.progress ?? 0;
+  const overflowGradient = scrollPos.atStart
+    ? "linear-gradient(to right, black 75%, transparent 100%)" // fade only the right edge
+    : scrollPos.atEnd
+      ? "linear-gradient(to left, black 75%, transparent 100%)" // fade only the left edge
+      : `linear-gradient(to right, transparent 0, black 2rem, black calc(100% - 2rem), transparent 100%)`; // fade both edges
 
   return (
     <div
@@ -89,12 +94,8 @@ export function BookPreviewCard(props: BookPreviewCardProps) {
               ...(isOverflowing && {
                 p: 0.5,
                 overflowX: "scroll",
-                WebkitMaskImage: scrollPos.atEnd
-                  ? "none"
-                  : "linear-gradient(to right, black 75%, transparent 100%)",
-                maskImage: scrollPos.atEnd
-                  ? "none"
-                  : "linear-gradient(to right, black 75%, transparent 100%)",
+                WebkitMaskImage: overflowGradient,
+                maskImage: overflowGradient,
               }),
             })}
           >
