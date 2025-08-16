@@ -12,6 +12,7 @@ export function BookGenreBadge(props: BookGenreBadgeProps) {
         fontSize: "xs",
         w: "fit-content",
         borderRadius: "md",
+        whiteSpace: "nowrap",
         fontWeight: "medium",
         alignItems: "center",
         display: "inline-flex",

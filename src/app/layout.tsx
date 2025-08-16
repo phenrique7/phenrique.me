@@ -3,7 +3,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import type { Metadata, Viewport } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { GoogleTagManager } from "@next/third-parties/google";
+
 import "@/ui/styles/base.css";
 import { css } from "@/panda/css";
 import { Provider } from "@/app/_components/provider";
@@ -77,7 +77,6 @@ export default function AppLayout(props: Readonly<React.PropsWithChildren>) {
         />
       </head>
       <body className={css({ fontFamily: "GeistSans" })}>
-        <GoogleTagManager gtmId="GTM-5CX6S9KJ" />
         <Provider>{props.children}</Provider>
         <SpeedInsights />
       </body>
