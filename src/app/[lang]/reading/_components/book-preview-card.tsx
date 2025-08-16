@@ -1,6 +1,11 @@
+"use client";
+
+import { useRef } from "react";
 import Image from "next/image";
+
 import { css } from "@/panda/css";
 import { flex, hstack, vstack } from "@/panda/patterns";
+import { useOverflow } from "@/app/_hooks/use-overflow";
 import { BookGenreBadge } from "@/app/[lang]/reading/_components/book-genre-badge";
 
 type BookPreviewCardProps = {
@@ -12,6 +17,9 @@ type BookPreviewCardProps = {
 };
 
 export function BookPreviewCard(props: BookPreviewCardProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { isOverflowing, scrollPos } = useOverflow<HTMLDivElement>(ref);
+
   const bookProgress = props.progress ?? 0;
 
   return (
@@ -44,6 +52,7 @@ export function BookPreviewCard(props: BookPreviewCardProps) {
           px: 5,
           py: 4,
           flex: 1,
+          overflow: "hidden",
         })}
       >
         <div className={vstack({ gap: 3, alignItems: "stretch" })}>
@@ -72,8 +81,23 @@ export function BookPreviewCard(props: BookPreviewCardProps) {
             {props.authors.length === 0 ? "Unknown" : props.authors.join(", ")}
           </h4>
         </div>
-        <div className={vstack({ alignItems: "stretch" })}>
-          <div className={hstack({ gap: 2 })}>
+        <div className={vstack({ alignItems: "stretch", width: "full" })}>
+          <div
+            ref={ref}
+            className={hstack({
+              gap: 2,
+              ...(isOverflowing && {
+                p: 0.5,
+                overflowX: "scroll",
+                WebkitMaskImage: scrollPos.atEnd
+                  ? "none"
+                  : "linear-gradient(to right, black 75%, transparent 100%)",
+                maskImage: scrollPos.atEnd
+                  ? "none"
+                  : "linear-gradient(to right, black 75%, transparent 100%)",
+              }),
+            })}
+          >
             {props.genres.map((genre) => (
               <BookGenreBadge key={genre}>{genre}</BookGenreBadge>
             ))}
