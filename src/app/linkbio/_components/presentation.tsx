@@ -74,7 +74,7 @@ export async function Presentation(props: PresentationProps) {
     });
 
     return (
-      <div lang={displayLanguage} className={vstack({ mt: 2, gap: 0 })}>
+      <div lang={displayLanguage} className={vstack({ mt: 3, gap: 0.5 })}>
         <h2
           className={css({
             fontSize: "sm",
@@ -86,18 +86,18 @@ export async function Presentation(props: PresentationProps) {
           {data.linkbio.bioSection.description}
         </h2>
         {data.linkbio.bioSection.quote ? (
-          <span
+          <h3
             className={css({
-              fontSize: "sm",
               display: "block",
               color: "#fffcf4b0",
               fontStyle: "italic",
-              fontWeight: "medium",
+              fontWeight: "semibold",
+              fontFamily: "etBookFont",
               maxWidth: { base: "sm", sm: "md" },
             })}
           >
             {data.linkbio.bioSection.quote}
-          </span>
+          </h3>
         ) : null}
       </div>
     );

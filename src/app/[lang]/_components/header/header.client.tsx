@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { Fragment, useEffect, useState, useRef } from "react";
 import { Separator, ToggleButton } from "react-aria-components";
+
 import { css } from "@/panda/css";
 import type { Languages } from "@/types/app";
 import type { MediaData } from "@/types/basehub";
@@ -87,6 +88,7 @@ export function CHeader(props: CHeaderProps) {
 
   return (
     <div
+      data-component="header"
       className={flex({
         top: 4,
         zIndex: 2,

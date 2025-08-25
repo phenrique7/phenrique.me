@@ -9,15 +9,14 @@ import { Head } from "@/app/linkbio/_components/head";
 import { ensureChosenLanguage } from "@/utils/locale";
 import { getLocaleLanguage } from "@/app/linkbio/_utils/locale";
 import { SocialLinks } from "@/app/linkbio/_components/social-links";
-import { TopMenuSkeleton, TopMenu } from "@/app/linkbio/_components/top-menu";
+import { TopMenu } from "@/app/linkbio/_components/top-menu";
 import { Presentation, PresentationSkeleton } from "@/app/linkbio/_components/presentation";
+import { TopMenuSkeleton } from "@/app/linkbio/_components/top-menu.skeleton";
 
 export const experimental_ppr = true;
 
-export async function generateMetadata({
-  searchParams,
-}: Pick<PageProps, "searchParams">): Promise<Metadata> {
-  const chosenLanguage = ((await searchParams) as { lang: Languages } | undefined)?.lang;
+export async function generateMetadata(props: Pick<PageProps, "searchParams">): Promise<Metadata> {
+  const chosenLanguage = ((await props.searchParams) as { lang: Languages } | undefined)?.lang;
 
   let displayLanguage = ensureChosenLanguage(chosenLanguage);
 

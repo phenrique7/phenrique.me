@@ -8,6 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@/ui/styles/base.css";
 import { css } from "@/panda/css";
 import { Provider } from "@/app/_components/provider";
+import { etBookFont } from "@/app/_utils/et-book-font";
 import { themeEffect } from "@/app/_utils/theme-effect";
 
 export const viewport: Viewport = {
@@ -67,7 +68,7 @@ export default function AppLayout(props: Readonly<React.PropsWithChildren>) {
   return (
     <html
       lang="en"
-      className={[GeistSans.className, GeistMono.className].join(" ")}
+      className={[GeistSans.className, GeistMono.className, etBookFont.className].join(" ")}
       suppressHydrationWarning
     >
       <head>

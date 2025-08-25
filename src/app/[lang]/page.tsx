@@ -44,9 +44,12 @@ export default async function HomePage(props: HomePageProps) {
         <h2
           className={css({
             width: "fit-content",
-            fontWeight: "medium",
+            fontWeight: "semibold",
             color: "transparent",
+            fontSize: "1.25rem",
+            fontStyle: "italic",
             backgroundClip: "text",
+            fontFamily: "etBookFont",
             backgroundImage: `linear-gradient(135deg, token(colors.clr_gray_soft), token(colors.clr_coral_flame))`,
           })}
         >
