@@ -13,6 +13,7 @@ export default async function MainLayout(props: LayoutProps) {
 
   return (
     <div
+      data-component="main-layout"
       className={flex({
         minH: "100dvh",
         bgColor: "clr_white_neutral_900",

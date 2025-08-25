@@ -13,12 +13,12 @@ export function OuterContainer(props: OuterContainerProps) {
   const { noiseBackground = true } = props;
   const outerContainerStyles = container.raw({
     w: "full",
-    maxW: { base: "full", md: "4xl", lg: "6xl" },
+    maxW: { base: "full", md: "4xl", lg: "5xl", "2xl": "6xl" },
     px: { base: 0, md: 8 },
   });
 
   return (
-    <div className={css(outerContainerStyles, props.styles?.root)}>
+    <div className={css(outerContainerStyles, props.styles?.root)} data-component="outer-container">
       <div
         className={css(
           {
