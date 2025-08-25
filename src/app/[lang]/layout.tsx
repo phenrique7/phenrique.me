@@ -3,6 +3,7 @@ import type { Languages } from "@/types/app";
 import type { LayoutProps } from "@/types/next";
 import { Header } from "@/app/[lang]/_components/header/header";
 import { Footer } from "@/app/[lang]/_components/footer/footer";
+import { OuterContainer } from "@/app/_components/outer-container";
 
 export async function generateStaticParams() {
   return [{ lang: "en" }, { lang: "pt" }, { lang: "de" }];
@@ -21,7 +22,17 @@ export default async function MainLayout(props: LayoutProps) {
       })}
     >
       <Header displayLanguage={displayLanguage} />
-      {props.children}
+      <OuterContainer
+        styles={{
+          root: flex.raw({
+            flexDirection: "column",
+            flex: { base: 1, lg: "auto" },
+          }),
+          content: { flex: 1 },
+        }}
+      >
+        {props.children}
+      </OuterContainer>
       <Footer displayLanguage={displayLanguage} />
     </div>
   );

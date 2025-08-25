@@ -59,7 +59,6 @@ export async function Presentation(props: PresentationProps) {
             className={css({
               display: "block",
               color: "#fffcf4b0",
-              fontStyle: "italic",
               fontWeight: "semibold",
               fontFamily: "etBookFont",
               maxWidth: { base: "sm", sm: "md" },

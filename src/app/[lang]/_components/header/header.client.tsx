@@ -10,7 +10,6 @@ import { Separator, ToggleButton } from "react-aria-components";
 import { css } from "@/panda/css";
 import type { Languages } from "@/types/app";
 import type { MediaData } from "@/types/basehub";
-import { __STORYBOOK__ } from "@/utils/constants";
 import { center, flex, hstack, vstack } from "@/panda/patterns";
 import { useMediaQuery } from "@/app/_hooks/use-media-query";
 import { languageItems } from "@/app/_content/language-items";
@@ -38,7 +37,7 @@ type CHeaderProps = {
 };
 
 export function CHeader(props: CHeaderProps) {
-  const pathname = __STORYBOOK__ ? "/en" : usePathname();
+  const pathname = usePathname();
   const lastScrollY = useRef(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);

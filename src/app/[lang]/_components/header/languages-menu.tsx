@@ -5,7 +5,6 @@ import { Button, Menu, MenuItem, MenuTrigger, Popover } from "react-aria-compone
 import { css } from "@/panda/css";
 import type { Languages } from "@/types/app";
 import { center, flex } from "@/panda/patterns";
-import { __STORYBOOK__ } from "@/utils/constants";
 import { CheckIcon } from "@/app/_components/close-icon";
 import { languageItems } from "@/app/_content/language-items";
 import { LanguagesIcon } from "@/app/_components/languages-icon";
@@ -17,7 +16,7 @@ type LanguagesMenuProps = {
 };
 
 export function LanguagesMenu(props: LanguagesMenuProps) {
-  const pathname = __STORYBOOK__ ? "/en" : usePathname();
+  const pathname = usePathname();
 
   return (
     <MenuTrigger>
