@@ -16,7 +16,7 @@ export const dynamic = "force-static";
 type ReadingPageProps = Pick<PageProps, "params">;
 
 export async function generateMetadata(props: ReadingPageProps): Promise<Metadata> {
-  const displayLanguage = (await props.params!).lang as Languages;
+  const displayLanguage = ((await props.params)?.lang ?? "en") as Languages;
 
   const meta = await basehub().query({
     reading: {
@@ -56,7 +56,7 @@ export async function generateMetadata(props: ReadingPageProps): Promise<Metadat
 }
 
 export default async function ReadingPage(props: ReadingPageProps) {
-  const displayLanguage = (await props.params!).lang as Languages;
+  const displayLanguage = ((await props.params)?.lang ?? "en") as Languages;
   const currentlyReads = await basehub().query({
     reading: {
       books: {

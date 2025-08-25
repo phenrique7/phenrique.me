@@ -10,6 +10,7 @@ import { Separator, ToggleButton } from "react-aria-components";
 import { css } from "@/panda/css";
 import type { Languages } from "@/types/app";
 import type { MediaData } from "@/types/basehub";
+import { __STORYBOOK__ } from "@/utils/constants";
 import { center, flex, hstack, vstack } from "@/panda/patterns";
 import { useMediaQuery } from "@/app/_hooks/use-media-query";
 import { languageItems } from "@/app/_content/language-items";
@@ -37,7 +38,7 @@ type CHeaderProps = {
 };
 
 export function CHeader(props: CHeaderProps) {
-  const pathname = usePathname();
+  const pathname = __STORYBOOK__ ? "/en" : usePathname();
   const lastScrollY = useRef(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -164,7 +165,8 @@ export function CHeader(props: CHeaderProps) {
                   key={link._title}
                   href={`/${props.displayLanguage}` + link.path}
                   className={css({
-                    pointerEvents: link.path !== "/reading" ? "none" : "default", // Remove later when menu pages are ready
+                    pointerEvents:
+                      link.path !== "/reading" && link.path !== "/about" ? "none" : "default", // Remove later when menu pages are ready
                     p: 1.5,
                     position: "relative",
                     fontWeight: "medium",
@@ -174,7 +176,8 @@ export function CHeader(props: CHeaderProps) {
                   })}
                 >
                   {link.label}
-                  {pathname.includes("reading") && index === 3 ? (
+                  {(pathname.includes("reading") && index === 3) ||
+                  (pathname.includes("about") && index === 0) ? (
                     <span
                       className={css({
                         left: 0,
@@ -189,7 +192,7 @@ export function CHeader(props: CHeaderProps) {
                       })}
                     />
                   ) : null}
-                  {link.path !== "/" && link.path !== "/reading" ? (
+                  {link.path !== "/" && link.path !== "/reading" && link.path !== "/about" ? (
                     <span
                       className={css({
                         position: "absolute",
@@ -291,7 +294,8 @@ export function CHeader(props: CHeaderProps) {
                       key={link._title}
                       href={`/${props.displayLanguage}` + link.path}
                       className={hstack({
-                        pointerEvents: link.path !== "/reading" ? "none" : "default", // Remove later when menu pages are ready
+                        pointerEvents:
+                          link.path !== "/reading" && link.path !== "/about" ? "none" : "default", // Remove later when menu pages are ready
                         p: 1.5,
                         fontSize: "sm",
                         position: "relative",
@@ -303,7 +307,7 @@ export function CHeader(props: CHeaderProps) {
                     >
                       <span dangerouslySetInnerHTML={{ __html: link.icon! }} />
                       {link.label}
-                      {link.path !== "/" && link.path !== "/reading" ? (
+                      {link.path !== "/" && link.path !== "/reading" && link.path !== "/about" ? (
                         <span
                           className={css({
                             position: "absolute",

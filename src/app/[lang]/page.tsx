@@ -13,7 +13,7 @@ export const dynamic = "force-static";
 type HomePageProps = Pick<PageProps, "params">;
 
 export default async function HomePage(props: HomePageProps) {
-  const displayLanguage = (await props.params!).lang as Languages;
+  const displayLanguage = ((await props.params)?.lang ?? "en") as Languages;
 
   const data = await basehub().query({
     home: {

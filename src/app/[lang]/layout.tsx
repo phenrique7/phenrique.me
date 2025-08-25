@@ -9,7 +9,7 @@ export async function generateStaticParams() {
 }
 
 export default async function MainLayout(props: LayoutProps) {
-  const displayLanguage = (await props.params!).lang as Languages;
+  const displayLanguage = ((await props.params)?.lang ?? "en") as Languages;
 
   return (
     <div

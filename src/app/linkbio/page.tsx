@@ -7,11 +7,12 @@ import type { Languages } from "@/types/app";
 import type { PageProps } from "@/types/next";
 import { Head } from "@/app/linkbio/_components/head";
 import { ensureChosenLanguage } from "@/utils/locale";
+import { TopMenu } from "@/app/linkbio/_components/top-menu";
 import { getLocaleLanguage } from "@/app/linkbio/_utils/locale";
 import { SocialLinks } from "@/app/linkbio/_components/social-links";
-import { TopMenu } from "@/app/linkbio/_components/top-menu";
-import { Presentation, PresentationSkeleton } from "@/app/linkbio/_components/presentation";
+import { Presentation } from "@/app/linkbio/_components/presentation";
 import { TopMenuSkeleton } from "@/app/linkbio/_components/top-menu.skeleton";
+import { PresentationSkeleton } from "@/app/linkbio/_components/presentation.skeleton";
 
 export const experimental_ppr = true;
 
