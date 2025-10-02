@@ -164,8 +164,7 @@ export function CHeader(props: CHeaderProps) {
                   key={link._title}
                   href={`/${props.displayLanguage}` + link.path}
                   className={css({
-                    pointerEvents:
-                      link.path !== "/reading" && link.path !== "/about" ? "none" : "default", // Remove later when menu pages are ready
+                    pointerEvents: link.path !== "/reading" ? "none" : "default", // Remove later when menu pages are ready
                     p: 1.5,
                     position: "relative",
                     fontWeight: "medium",
@@ -191,7 +190,7 @@ export function CHeader(props: CHeaderProps) {
                       })}
                     />
                   ) : null}
-                  {link.path !== "/" && link.path !== "/reading" && link.path !== "/about" ? (
+                  {link.path !== "/" && link.path !== "/reading" ? (
                     <span
                       className={css({
                         position: "absolute",
@@ -293,8 +292,7 @@ export function CHeader(props: CHeaderProps) {
                       key={link._title}
                       href={`/${props.displayLanguage}` + link.path}
                       className={hstack({
-                        pointerEvents:
-                          link.path !== "/reading" && link.path !== "/about" ? "none" : "default", // Remove later when menu pages are ready
+                        pointerEvents: link.path !== "/reading" ? "none" : "default", // Remove later when menu pages are ready
                         p: 1.5,
                         fontSize: "sm",
                         position: "relative",
@@ -306,7 +304,7 @@ export function CHeader(props: CHeaderProps) {
                     >
                       <span dangerouslySetInnerHTML={{ __html: link.icon! }} />
                       {link.label}
-                      {link.path !== "/" && link.path !== "/reading" && link.path !== "/about" ? (
+                      {link.path !== "/" && link.path !== "/reading" ? (
                         <span
                           className={css({
                             position: "absolute",
