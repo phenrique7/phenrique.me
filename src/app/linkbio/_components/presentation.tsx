@@ -47,7 +47,7 @@ export async function Presentation(props: PresentationProps) {
         <h2
           className={css({
             fontSize: "sm",
-            color: "#fffcf4b0",
+            color: "hsl(0 0% 100%/.85)",
             fontWeight: "semibold",
             maxWidth: { base: "sm", sm: "md" },
           })}
@@ -57,10 +57,11 @@ export async function Presentation(props: PresentationProps) {
         {data.linkbio.bioSection.quote ? (
           <h3
             className={css({
+              fontSize: "sm",
               display: "block",
               color: "#fffcf4b0",
+              fontStyle: "italic",
               fontWeight: "semibold",
-              fontFamily: "etBookFont",
               maxWidth: { base: "sm", sm: "md" },
             })}
           >

@@ -45,9 +45,10 @@ export async function Head(props: HeadProps) {
       </div>
       <h1
         className={css({
-          fontSize: "xl",
-          fontWeight: "bold",
+          fontSize: "3xl",
           color: "transparent",
+          fontWeight: "medium",
+          fontFamily: "Vollkorn",
           backgroundClip: "text",
           backgroundImage: `linear-gradient(to bottom, #F5F5F5, #F5F5F5 40%, #999999)`,
         })}

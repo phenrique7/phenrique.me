@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 
 import { css } from "@/panda/css";
 import type { Languages } from "@/types/app";
-import type { PageProps } from "@/types/next";
 import { Head } from "@/app/linkbio/_components/head";
 import { ensureChosenLanguage } from "@/utils/locale";
 import { TopMenu } from "@/app/linkbio/_components/top-menu";
@@ -16,7 +15,9 @@ import { PresentationSkeleton } from "@/app/linkbio/_components/presentation.ske
 
 export const experimental_ppr = true;
 
-export async function generateMetadata(props: Pick<PageProps, "searchParams">): Promise<Metadata> {
+export async function generateMetadata(
+  props: Pick<PageProps<"/linkbio">, "searchParams">,
+): Promise<Metadata> {
   const chosenLanguage = ((await props.searchParams) as { lang: Languages } | undefined)?.lang;
 
   let displayLanguage = ensureChosenLanguage(chosenLanguage);
@@ -62,7 +63,8 @@ export async function generateMetadata(props: Pick<PageProps, "searchParams">): 
   };
 }
 
-export default function LinkbioPage(props: PageProps) {
+// https://nextjs.org/blog/next-15-5#route-props-helpers
+export default function LinkbioPage(props: PageProps<"/linkbio">) {
   return (
     <>
       <div
