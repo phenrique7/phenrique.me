@@ -9,8 +9,8 @@ const meta = {
     layout: "fullscreen",
   },
   decorators: [
-    (Story) => (
-      <MainLayout>
+    () => (
+      <MainLayout params={Promise.resolve({ lang: "en" })}>
         <main />
       </MainLayout>
     ),
@@ -21,4 +21,10 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    params: Promise.resolve({
+      lang: "en",
+    }),
+  },
+};
