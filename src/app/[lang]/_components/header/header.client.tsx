@@ -174,7 +174,8 @@ export function CHeader(props: CHeaderProps) {
                   })}
                 >
                   {link.label}
-                  {pathname.includes("reading") && index === 3 ? (
+                  {(pathname.includes("reading") && index === 3) ||
+                  (pathname.includes("about") && index === 0) ? (
                     <span
                       className={css({
                         left: 0,
