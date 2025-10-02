@@ -1,6 +1,5 @@
 import { flex } from "@/panda/patterns";
 import type { Languages } from "@/types/app";
-import type { LayoutProps } from "@/types/next";
 import { Header } from "@/app/[lang]/_components/header/header";
 import { Footer } from "@/app/[lang]/_components/footer/footer";
 import { OuterContainer } from "@/app/_components/outer-container";
@@ -8,6 +7,8 @@ import { OuterContainer } from "@/app/_components/outer-container";
 export async function generateStaticParams() {
   return [{ lang: "en" }, { lang: "pt" }, { lang: "de" }];
 }
+
+type LayoutProps = React.PropsWithChildren<Pick<PageProps<"/[lang]">, "params">>;
 
 export default async function MainLayout(props: LayoutProps) {
   const displayLanguage = ((await props.params)?.lang ?? "en") as Languages;

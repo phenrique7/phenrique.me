@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 
 import { css } from "@/panda/css";
 import type { Languages } from "@/types/app";
-import type { PageProps } from "@/types/next";
 import { grid, vstack } from "@/panda/patterns";
 import { InnerContainer } from "@/app/_components/inner-container";
 import { BookItem } from "@/app/[lang]/reading/_components/book-item";
@@ -12,7 +11,7 @@ import { BookPreviewCard } from "@/app/[lang]/reading/_components/book-preview-c
 
 export const dynamic = "force-static";
 
-type ReadingPageProps = Pick<PageProps, "params">;
+type ReadingPageProps = Pick<PageProps<"/[lang]/reading">, "params">;
 
 export async function generateMetadata(props: ReadingPageProps): Promise<Metadata> {
   const displayLanguage = ((await props.params)?.lang ?? "en") as Languages;

@@ -9,7 +9,6 @@ const config: StorybookConfig = {
     name: "@storybook/nextjs",
     options: {},
   },
-  staticDirs: ["../public", { from: "../src/ui/fonts", to: "/fonts" }],
   features: {
     experimentalRSC: true,
   },

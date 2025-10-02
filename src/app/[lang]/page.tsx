@@ -3,12 +3,11 @@ import { basehub } from "basehub";
 import { css } from "@/panda/css";
 import { MDX } from "@/app/_components/mdx";
 import type { Languages } from "@/types/app";
-import type { PageProps } from "@/types/next";
 import { InnerContainer } from "@/app/_components/inner-container";
 
 export const dynamic = "force-static";
 
-type HomePageProps = Pick<PageProps, "params">;
+type HomePageProps = Pick<PageProps<"/[lang]">, "params">;
 
 export default async function HomePage(props: HomePageProps) {
   const displayLanguage = ((await props.params)?.lang ?? "en") as Languages;
